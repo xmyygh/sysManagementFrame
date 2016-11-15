@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A7CA3A32-2D10-4447-B327-D0F2039304DD}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MCL.Management.BLL</RootNamespace>
+    <AssemblyName>MCL.Management.BLL</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Common\SQID.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="System\sysdicBLL.cs" />
+    <Compile Include="System\sysexceptionBLL.cs" />
+    <Compile Include="System\sysloginBLL.cs" />
+    <Compile Include="System\sysloginlogBLL.cs" />
+    <Compile Include="System\sysmenuBLL.cs" />
+    <Compile Include="System\sysmenulimitBLL.cs" />
+    <Compile Include="System\sysroleBLL.cs" />
+    <Compile Include="System\sysroleuserBLL.cs" />
+    <Compile Include="System\sysunitBLL.cs" />
+    <Compile Include="System\sysunituserBLL.cs" />
+    <Compile Include="System\sysuserBLL.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\MCL.Management.Cache\MCL.Management.Cache 服务端缓存核心.csproj">
+      <Project>{12a6d712-0da1-435b-a419-e82b15d184ca}</Project>
+      <Name>MCL.Management.Cache 服务端缓存核心</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\MCL.Management.Utility\MCL.Management.Utility\MCL.Management.Utility 工具类.csproj">
+      <Project>{0e4c0b9d-ef8d-421b-a611-510aa5e29105}</Project>
+      <Name>MCL.Management.Utility 工具类</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MCL.Management.DAL\MCL.Management.DAL.csproj">
+      <Project>{d2e7a42a-d4cf-4bb0-9542-dff694092c4e}</Project>
+      <Name>MCL.Management.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MCL.Management.Models\MCL.Management.Models.csproj">
+      <Project>{51d8f6aa-413e-404a-ad35-2f5ede18ba47}</Project>
+      <Name>MCL.Management.Models</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

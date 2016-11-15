@@ -1,0 +1,56 @@
+﻿using MCL.Management.Client.Cache;
+using MCL.Management.Utility;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+
+namespace MCL.Management.App.Web
+{
+    public class HandlerLoginAttribute : AuthorizeAttribute
+    {
+        private LoginMode _customMode;
+
+        /// <summary>默认构造</summary>
+        /// <param name="Mode">认证模式</param>
+        public HandlerLoginAttribute(LoginMode Mode)
+        {
+            _customMode = Mode;
+        }
+        /// <summary>
+        /// 响应前执行登录验证,查看当前用户是否有效 
+        /// </summary>
+        /// <param name="filterContext"></param>
+        public override void OnAuthorization(AuthorizationContext filterContext)
+        {
+            //登录拦截是否忽略
+            if (_customMode == LoginMode.Ignore)
+            {
+                return;
+            }
+            //登录是否过期
+            if (CurrentUserProvider.Provider.IsOverdue())
+            {
+                WebHelper.WriteCookie("sw_login_error", "Overdue");//登录已超时,请重新登录
+                filterContext.Result = new RedirectResult("~/Login/Default");
+                return;
+            }
+            //是否已登录
+            var OnLine = CurrentUserProvider.Provider.IsOnLine();
+            bool CheckOnLine = CurrentUserProvider.Provider.CheckIsOnLine();
+            if (OnLine == 0 && !CheckOnLine)
+            {
+                WebHelper.WriteCookie("sw_login_error", "OnLine");//您的帐号已在其它地方登录,请重新登录
+                filterContext.Result = new RedirectResult("~/Login/Default");
+                return;
+            }
+            else if (OnLine == -1)
+            {
+                WebHelper.WriteCookie("sw_login_error", "-1");//缓存已超时,请重新登录
+                filterContext.Result = new RedirectResult("~/Login/Default");
+                return;
+            }
+        }
+    }
+}

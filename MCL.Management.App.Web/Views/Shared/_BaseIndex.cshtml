@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ViewBag.Title</title>
+
+    @*@System.Web.Optimization.Styles.Render("~/Content/css",
+            "~/Content/css/table")
+
+    @System.Web.Optimization.Scripts.Render("~/Content/js",
+            "/Content/js/table")*@
+    <link href="~/Content/js/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+    <link href="~/Content/js/bootstrap-table/bootstrap-table.css" rel="stylesheet" /> 
+    <link href="~/Content/js/bootstrap-select2/select2.min.css" rel="stylesheet" />
+    <link href="~/Content/js/bootstrap-sweetalert/sweetalert.css" rel="stylesheet" />
+    <link href="~/Content/css/animate.min.css" rel="stylesheet">
+    <link href="~/Content/css/style.min862f.css?v=4.1.0" rel="stylesheet">
+    <link href="~/Content/css/framework-ui.css" rel="stylesheet" />
+
+    @RenderSection("PageSpecificStyleSheetIncludes", required: false)
+
+</head>
+<body class="gray-bg" style="padding:5px">
+    @RenderBody()
+    @Html.AntiForgeryToken()
+    <script src="~/Content/js/jquery.min.js?v=2.1.4"></script>
+    <script src="~/Content/js/bootstrap/bootstrap.js"></script>
+    <script src="~/Content/js/content.min.js?v=1.0.0"></script>
+    <script src="~/Content/js/bootstrap-table/bootstrap-table.js"></script>
+    <script src="~/Content/js/bootstrap-table/bootstrap-table-zh-CN.js"></script>
+    <script src="~/Content/js/bootstrapTable.js"></script>
+    <script src="~/Content/js/bootstrap-select2/select2.min.js"></script>
+    <script src="~/Content/js/bootstrap-sweetalert/sweetalert-dev.js"></script>
+    <script src="~/Content/js/validate/jquery.validate.js"></script>
+    <script src="~/Content/js/validate/messages_zh.min.js"></script>
+    <script src="~/Content/js/framework-ui.js"></script>
+
+    @RenderSection("PageSpecificJavascriptIncludes", required: false)
+</body>
+</html>

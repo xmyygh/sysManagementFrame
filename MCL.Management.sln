@@ -1,0 +1,107 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MCL.Management.Data 数据库交互核心", "MCL.Management.Data 数据库交互核心", "{2D4B925E-3D6C-4138-9C5D-51FDFC572CD6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MCL.Management.Data.Dapper", "MCL.Management.Data.Dapper", "{9141B2D2-D3FD-46B8-B284-39DE42F4EB9F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dapper NET45", "MCL.Management.Data\MCL.Management.Data.Dapper\dapper-dot-net-master\Dapper NET45\Dapper NET45.csproj", "{0FFF5BC7-0A4B-4D87-835E-4FAD70937507}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "MCL.Management.Data\MCL.Management.Data.Dapper\DataAccess\DataAccess.csproj", "{1FAB4B66-4262-4E33-84E6-28F2DBBD6F2C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MCL.Management.Client.Cache 客户端缓存", "MCL.Management.Client.Cache\MCL.Management.Client.Cache 客户端缓存.csproj", "{0179B29F-95A2-41DF-8DF6-C2CD79707C34}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MCL.Management.Business 业务核心", "MCL.Management.Business 业务核心", "{B36AA5B5-1210-4A25-AA5A-7B1655BCE772}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MCL.Management.App.Cache 服务端缓存", "MCL.Management.Business\MCL.Management.App.Cache\MCL.Management.App.Cache 服务端缓存.csproj", "{6725BEFB-B756-44D1-B550-D887DC274B73}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MCL.Management.BLL", "MCL.Management.Business\MCL.Management.BLL\MCL.Management.BLL.csproj", "{A7CA3A32-2D10-4447-B327-D0F2039304DD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MCL.Management.DAL", "MCL.Management.Business\MCL.Management.DAL\MCL.Management.DAL.csproj", "{D2E7A42A-D4CF-4BB0-9542-DFF694092C4E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MCL.Management.Models", "MCL.Management.Business\MCL.Management.Models\MCL.Management.Models.csproj", "{51D8F6AA-413E-404A-AD35-2F5EDE18BA47}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MCL.Management.Cache 服务端缓存核心", "MCL.Management.Cache\MCL.Management.Cache 服务端缓存核心.csproj", "{12A6D712-0DA1-435B-A419-E82B15D184CA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MCL.Management.App", "MCL.Management.App\MCL.Management.App.csproj", "{F28DCBA9-B939-4826-9685-8BDC46C6F702}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MCL.Management.Utility 工具", "MCL.Management.Utility 工具", "{3F840CBF-EA86-48E2-913D-D3764AF623BC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MCL.Management.Utility 工具类", "MCL.Management.Utility\MCL.Management.Utility\MCL.Management.Utility 工具类.csproj", "{0E4C0B9D-EF8D-421B-A611-510AA5E29105}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MCL.Management.Utility.Log 日志工具类", "MCL.Management.Utility\MCL.Management.Utility.Log\MCL.Management.Utility.Log 日志工具类.csproj", "{AAEDA374-7E6F-4571-98CD-A92C8E774AC0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MCL.Management.App.Web", "MCL.Management.App.Web\MCL.Management.App.Web.csproj", "{09ABA49C-10E6-49F2-8E8B-B6FB8E2E2A66}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0FFF5BC7-0A4B-4D87-835E-4FAD70937507}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FFF5BC7-0A4B-4D87-835E-4FAD70937507}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0FFF5BC7-0A4B-4D87-835E-4FAD70937507}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0FFF5BC7-0A4B-4D87-835E-4FAD70937507}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1FAB4B66-4262-4E33-84E6-28F2DBBD6F2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FAB4B66-4262-4E33-84E6-28F2DBBD6F2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FAB4B66-4262-4E33-84E6-28F2DBBD6F2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FAB4B66-4262-4E33-84E6-28F2DBBD6F2C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0179B29F-95A2-41DF-8DF6-C2CD79707C34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0179B29F-95A2-41DF-8DF6-C2CD79707C34}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0179B29F-95A2-41DF-8DF6-C2CD79707C34}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0179B29F-95A2-41DF-8DF6-C2CD79707C34}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6725BEFB-B756-44D1-B550-D887DC274B73}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6725BEFB-B756-44D1-B550-D887DC274B73}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6725BEFB-B756-44D1-B550-D887DC274B73}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6725BEFB-B756-44D1-B550-D887DC274B73}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7CA3A32-2D10-4447-B327-D0F2039304DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7CA3A32-2D10-4447-B327-D0F2039304DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7CA3A32-2D10-4447-B327-D0F2039304DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7CA3A32-2D10-4447-B327-D0F2039304DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2E7A42A-D4CF-4BB0-9542-DFF694092C4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2E7A42A-D4CF-4BB0-9542-DFF694092C4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2E7A42A-D4CF-4BB0-9542-DFF694092C4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2E7A42A-D4CF-4BB0-9542-DFF694092C4E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51D8F6AA-413E-404A-AD35-2F5EDE18BA47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51D8F6AA-413E-404A-AD35-2F5EDE18BA47}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51D8F6AA-413E-404A-AD35-2F5EDE18BA47}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51D8F6AA-413E-404A-AD35-2F5EDE18BA47}.Release|Any CPU.Build.0 = Release|Any CPU
+		{12A6D712-0DA1-435B-A419-E82B15D184CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12A6D712-0DA1-435B-A419-E82B15D184CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12A6D712-0DA1-435B-A419-E82B15D184CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12A6D712-0DA1-435B-A419-E82B15D184CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F28DCBA9-B939-4826-9685-8BDC46C6F702}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F28DCBA9-B939-4826-9685-8BDC46C6F702}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F28DCBA9-B939-4826-9685-8BDC46C6F702}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F28DCBA9-B939-4826-9685-8BDC46C6F702}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E4C0B9D-EF8D-421B-A611-510AA5E29105}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E4C0B9D-EF8D-421B-A611-510AA5E29105}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E4C0B9D-EF8D-421B-A611-510AA5E29105}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E4C0B9D-EF8D-421B-A611-510AA5E29105}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AAEDA374-7E6F-4571-98CD-A92C8E774AC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AAEDA374-7E6F-4571-98CD-A92C8E774AC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AAEDA374-7E6F-4571-98CD-A92C8E774AC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AAEDA374-7E6F-4571-98CD-A92C8E774AC0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09ABA49C-10E6-49F2-8E8B-B6FB8E2E2A66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09ABA49C-10E6-49F2-8E8B-B6FB8E2E2A66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09ABA49C-10E6-49F2-8E8B-B6FB8E2E2A66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09ABA49C-10E6-49F2-8E8B-B6FB8E2E2A66}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{9141B2D2-D3FD-46B8-B284-39DE42F4EB9F} = {2D4B925E-3D6C-4138-9C5D-51FDFC572CD6}
+		{0FFF5BC7-0A4B-4D87-835E-4FAD70937507} = {9141B2D2-D3FD-46B8-B284-39DE42F4EB9F}
+		{1FAB4B66-4262-4E33-84E6-28F2DBBD6F2C} = {9141B2D2-D3FD-46B8-B284-39DE42F4EB9F}
+		{6725BEFB-B756-44D1-B550-D887DC274B73} = {B36AA5B5-1210-4A25-AA5A-7B1655BCE772}
+		{A7CA3A32-2D10-4447-B327-D0F2039304DD} = {B36AA5B5-1210-4A25-AA5A-7B1655BCE772}
+		{D2E7A42A-D4CF-4BB0-9542-DFF694092C4E} = {B36AA5B5-1210-4A25-AA5A-7B1655BCE772}
+		{51D8F6AA-413E-404A-AD35-2F5EDE18BA47} = {B36AA5B5-1210-4A25-AA5A-7B1655BCE772}
+		{0E4C0B9D-EF8D-421B-A611-510AA5E29105} = {3F840CBF-EA86-48E2-913D-D3764AF623BC}
+		{AAEDA374-7E6F-4571-98CD-A92C8E774AC0} = {3F840CBF-EA86-48E2-913D-D3764AF623BC}
+	EndGlobalSection
+EndGlobal

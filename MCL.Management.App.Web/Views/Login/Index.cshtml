@@ -1,0 +1,159 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>登录</title>
+    <link rel="shortcut icon" href="favicon.ico">   
+    <link href="~/Content/js/bootstrap/bootstrap.min.css" rel="stylesheet" />   
+    <link href="~/Content/css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+
+    <link href="~/Content/css/animate.min.css" rel="stylesheet">
+    <link href="~/Content/css/style.min862f.css?v=4.1.0" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <meta http-equiv="refresh" content="0;ie.html" />
+    <![endif]-->
+    <script>if (window.top !== window.self) { window.top.location = window.location; }</script>
+</head>
+
+<body class="gray-bg">
+
+    <div class="middle-box text-center loginscreen  animated fadeInDown">
+        <div>
+            <div>
+
+                <h1 class="logo-name">SW</h1>
+
+            </div>
+            <h3>SW项目组</h3>
+
+            <form class="m-t" role="form" action="">
+                <div class="form-group">
+                    <input type="text" id="txt_account" class="form-control" placeholder="登录帐号" required="">
+                </div>
+                <div class="form-group">
+                    <input type="password" id="txt_password" class="form-control" placeholder="登录密码" required="">
+                </div>
+                <div class="form-group" style="text-align: left;">
+                    <div class="btn-group">
+                        <input type="checkbox" id="cb_autologin" class="pc" style="margin-bottom: 4.5px; margin-right: 0px; vertical-align: middle;">
+                        <span>自动登录</span>
+                    </div>
+                </div>
+                <button type="button" id="login_button" class="btn btn-primary block full-width m-b"><span>登 录</span></button>
+
+                <div class="login_tips"></div>
+
+            </form>
+        </div>
+    </div>
+    <script src="~/Content/js/jquery.min.js?v=2.1.4"></script>
+    <script src="~/Content/js/bootstrap/bootstrap.js"></script>
+    <script src="~/Content/js/cookie/jquery.cookie.js"></script>
+    <script type="text/javascript">
+        (function ($) {
+            $.login = {
+                formMessage: function (msg) {
+                    $('.login_tips').find('#tips_msg').remove();
+                    $('.login_tips').append('<div id="tips_msg" style="color: red;"><i class="fa fa-question-circle"></i>' + msg + '</div>');
+                },
+                loginClick: function () {
+                    var $username = $("#txt_account");
+                    var $password = $("#txt_password");
+                    var $autologin = $("#autologin");
+                    if ($username.val() == "") {
+                        $username.focus();
+                        $.login.formMessage('请输入登录帐号。');
+                        return false;
+                    } else if ($password.val() == "") {
+                        $password.focus();
+                        $.login.formMessage('请输入登录密码。');
+                        return false;
+                    } else {
+                        $("#login_button").attr('disabled', 'disabled').find('span').html("正在登录...");
+                        $.ajax({
+                            url: "/Login/CheckLogin",
+                            data: { username: $.trim($username.val()), password: $.trim($password.val()) },
+                            type: "post",
+                            dataType: "json",
+                            success: function (data) {
+                                if (data.state == "success") {
+                                    $("#login_button").find('span').html("登录成功，正在跳转...");
+                                    window.setTimeout(function () {
+                                        window.location.href = "/Home/Index";
+                                    }, 500);
+                                } else {
+                                    $("#login_button").removeAttr('disabled').find('span').html("登录");
+                                    $.login.formMessage(data.message);
+                                }
+                            }
+                        });
+                    }
+                },
+                init: function () {
+                    var login_error = top.$.cookie('sw_login_error');
+                    if (login_error != null) {
+                        switch (login_error) {
+                            case "overdue":
+                                $.login.formMessage("系统登录已超时,请重新登录");
+                                break;
+                            case "OnLine":
+                                $.login.formMessage("您的帐号已在其它地方登录,请重新登录");
+                                break;
+                            case "-1":
+                                $.login.formMessage("系统未知错误,请重新登录");
+                                break;
+                        }
+                        top.$.cookie('sw_login_error', '', { path: "/", expires: -1 });
+                    }
+                    //是否自动登录
+                    if (top.$.cookie('sw_autologin') == 1) {
+
+                        $("#cb_autologin").attr("checked", 'true');
+                        $("#txt_account").val(top.$.cookie('sw_account'));
+                        $("#txt_password").val(top.$.cookie('sw_password'));
+
+                        document.getElementById("login_button").focus();
+                        document.getElementById("login_button").click();
+                    }
+                    //设置下次自动登录
+                    $("#cb_autologin").click(function () {
+                        if (!$(this).attr('checked')) {
+                            $(this).attr("checked", 'true');
+                            top.$.cookie('sw_autologin', 1, { path: "/", expires: 7 });
+                            top.$.cookie('sw_account', $("#txt_account").val(), { path: "/", expires: 7 });
+                            top.$.cookie('sw_password', $("#txt_password").val(), { path: "/", expires: 7 });
+                        } else {
+                            $(this).removeAttr("checked");
+                            top.$.cookie('sw_autologin', '', { path: "/", expires: -1 });
+                            top.$.cookie('sw_account', '', { path: "/", expires: -1 });
+                            top.$.cookie('sw_password', '', { path: "/", expires: -1 });
+                        }
+                    });
+
+                    $("#login_button").click(function () {
+                        $.login.loginClick();
+                    });
+                    document.onkeydown = function (e) {
+                        if (!e) e = window.event;
+                        if ((e.keyCode || e.which) == 13) {
+                            document.getElementById("login_button").focus();
+                            document.getElementById("login_button").click();
+                        }
+                    }
+                }
+            };
+            $(function () {
+                $.login.init();
+            });
+        })(jQuery);
+    </script>
+</body>
+</html>
