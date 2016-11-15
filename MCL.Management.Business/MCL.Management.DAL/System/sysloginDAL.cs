@@ -257,11 +257,11 @@ namespace MCL.Management.DAL
                 }
                 if (!string.IsNullOrEmpty(_Wheresyslogin.Password))
                 {
-                    sbwhere.Append(" AND  PASSWORD CONCAT('%',@Password,'%')");
+                    sbwhere.Append(" AND  PASSWORD LIKE CONCAT('%',@Password,'%')");
                 }
                 if (!string.IsNullOrEmpty(_Wheresyslogin.User_Id))
                 {
-                    sbwhere.Append(" AND  USER_ID CONCAT('%',@User_Id,'%')");
+                    sbwhere.Append(" AND  USER_ID LIKE CONCAT('%',@User_Id,'%')");
                 }
                 if (_Wheresyslogin.Enabled != null)
                 {
