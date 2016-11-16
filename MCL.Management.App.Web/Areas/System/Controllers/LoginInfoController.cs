@@ -135,7 +135,7 @@ namespace MCL.Management.App.Web.Areas.System.Controllers
                 int count = bll.IsExist(loginMod);
                 if (count >= 1)
                 {
-                    return Warning("用户名已存在！");
+                    return Warning("登录账户已存在！");
                 }
                 if (!string.IsNullOrEmpty(postData.Password))
                 {
@@ -201,6 +201,5 @@ namespace MCL.Management.App.Web.Areas.System.Controllers
                 throw;
             }
         }
-
     }
 }

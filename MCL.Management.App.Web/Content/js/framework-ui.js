@@ -176,7 +176,7 @@ $.submitForm = function (options) {
                         $(options.modal).modal('hide');
                     }
                     if (options.successbox == true) {
-                        var content="";
+                        var content = "";
                         if (options.title != null && options.title.length > 0) {
                             content = options.title + "成功！";
                         }
@@ -372,7 +372,7 @@ $.fn.formValid = function () {
             element.parents('.has-error').append('<i class="form-control-feedback fa fa-times-circle error" data-placement="left" data-toggle="tooltip" title="' + error[0].innerText + '"></i>');
             $("[data-toggle='tooltip']").tooltip();
             if (element.parents('.input-group').hasClass('input-group')) {
-                element.parents('.has-error').find('i.error').css('right', '33px')
+                element.parents('.has-error').find('i.error').css('right', '33px');
             }
         },
         success: function (element) {
@@ -390,6 +390,46 @@ $.fn.clearFormValid = function () {
         $this.removeClass('has-error');
     });
 };
+
+$.IsExist = function (Id, url, msg) {
+    var $this = $("#" + Id);
+    if (!$this.val()) {
+        return false;
+    }
+    window.setTimeout(function () {
+        $.ajax({
+            url: url,
+            data: { "getData": $this.val() },
+            type: "get",
+            dataType: "json",
+            async: false,
+            cache: false,
+            global: false,
+            success: function (data) {
+                if (data.state == "success") {
+
+                    if ($this.parents('.has-error').find('i.isExist').length>0) {
+                        $this.parents('.has-error').find('i.isExist').remove();
+                        $this.parent().removeClass('has-error');
+                    }
+                    return false;
+                } else {
+                    $this.parents('.formValue').addClass('has-error');
+                    $this.parents('.has-error').find('i.isExist').remove();
+                    $this.parents('.has-error').append('<i class="form-control-feedback fa fa-times-circle error isExist" data-placement="left" data-toggle="tooltip" title="' + msg + '"></i>');
+                    $("[data-toggle='tooltip']").tooltip();
+                    if ($this.parents('.input-group').hasClass('input-group')) {
+                        $this.parents('.has-error').find('i.error').css('right', '33px');
+                    }
+                    return true;
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                $.modalAlert("error", "字段是否存在查询错误！", errorThrown);
+            },
+        });
+    }, 500);
+}
 $.fn.clearForm = function () {
     var element = $(this);
     element.find('input,select,checkbox,radio,textarea,password').each(function (r) {
