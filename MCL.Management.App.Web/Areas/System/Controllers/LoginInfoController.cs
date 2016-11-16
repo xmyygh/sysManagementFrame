@@ -17,7 +17,7 @@ namespace MCL.Management.App.Web.Areas.System.Controllers
         //HttpGet HttpPost  http请求类型
         //HandlerAjaxOnly  只能进修ajax操作
         //ValidateAntiForgeryToken 防止CSRF攻击
-
+        //yxl
         #region 视图
         //
         // GET: /System/LoginInfo/
