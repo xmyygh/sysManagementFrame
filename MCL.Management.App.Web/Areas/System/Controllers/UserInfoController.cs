@@ -75,7 +75,7 @@ namespace MCL.Management.App.Web.Areas.System.Controllers
             }
             catch (Exception ex)
             {
-                Logger.Error("查询登录账号错误：" + ex.ToString() + "\r\n");
+                Logger.Error("查询登录用户信息错误：" + ex.ToString() + "\r\n");
                 throw;
             }
 
