@@ -1,6 +1,6 @@
 ﻿.topPanel {height: 50px;line-height: 50px;background: #fff;border: 1px solid #ddd;margin: 0px;border-bottom: none;position: relative;}
 .topPanel .search {width: 20%;min-width: 300px; overflow: auto;margin-left: 5px; position: absolute; top: 0; bottom: 0; position: absolute;}
-.topPanel .search .input-group {line-height: 30px; margin-top: 1px;}
+.topPanel .search .input-group {line-height: 29px; margin-top: 9px;} /*yxl mod*/
 .topPanel .search .input-group .form-control { box-shadow: none;line-height: 29px; padding-top: 0px; padding-bottom: 0px; padding-right: 0px; padding-left: 7px; resize: none; }
 .topPanel .search .input-group .btn {padding: 0px 0px;font-size: 14px;height: 29px; min-width: 30px;}
 .topPanel .search .input-group .btn i{margin-right:0px;}
