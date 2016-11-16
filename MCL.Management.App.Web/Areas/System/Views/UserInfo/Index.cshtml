@@ -3,7 +3,7 @@
     Layout = "~/Views/Shared/_BaseIndex.cshtml";
 }
 @section PageSpecificStyleSheetIncludes{
-    @*<link href="~/Content/js/bootstrap-datetimepicker/bootstrap-datetimepicker.css" rel="stylesheet" />*@
+    <link href="~/Content/js/bootstrap-datetimepicker/bootstrap-datetimepicker.css" rel="stylesheet" />
 }
 @*查询区域*@
 <div class="topPanel">
@@ -155,18 +155,19 @@
 
 </div>
 @section PageSpecificJavascriptIncludes{
-    @*<script src="~/Content/js/bootstrap-datetimepicker/bootstrap-datetimepicker.js"></script>
-    <script src="~/Content/js/bootstrap-datetimepicker/locales/bootstrap-datetimepicker.zh-CN.js"></script>*@
+    <script src="~/Content/js/bootstrap-datetimepicker/bootstrap-datetimepicker.js"></script>
+    <script src="~/Content/js/bootstrap-datetimepicker/locales/bootstrap-datetimepicker.zh-CN.js"></script>
     <script type="text/javascript">
         //表格行号 和操作类型如：增删改查
         var rowindex, btoptions;
 
         $(function () {
-            //$('#Usr_Birthday').datetimepicker({
-            //    format: 'yyyy-mm-dd',
-            //    language: 'zh-CN',
-            //    minView: 2
-            //});
+            $('#Usr_Birthday').datetimepicker({
+                format: 'yyyy-mm-dd',
+                language: 'zh-CN',
+                autoclose: 'true',
+                minView: 2
+            });
             $(".gridPanel").height($(window).height() - 60);
             //帐号状态下拉框绑定 注：下拉框绑定通用的查询都写在ItemDataController中
             $("#User_Enabled").bindSelect({
