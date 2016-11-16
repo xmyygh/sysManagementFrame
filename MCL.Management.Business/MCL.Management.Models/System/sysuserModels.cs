@@ -132,7 +132,11 @@ namespace MCL.Management.Models
             get ;
             set ;
         }
-
+        public string User_EnabledText
+        {
+            get ;
+            set ;
+        }
         /// <summary>
         /// ÃèÊö
         /// <summary>

@@ -1,0 +1,458 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_BaseIndex.cshtml";
+}
+@section PageSpecificStyleSheetIncludes{
+    @*<link href="~/Content/js/bootstrap-datetimepicker/bootstrap-datetimepicker.css" rel="stylesheet" />*@
+}
+@*查询区域*@
+<div class="topPanel">
+    <div class="search">
+        <div class="input-group">
+            <div class="btn-group">
+                <input id="txt_keyword" type="text" class="form-control" placeholder="用户名" style="width: 200px; margin: auto 0;">
+                <span class="input-group-btn">
+                    <button id="btn_search" type="button" class="btn  btn-primary" onclick=" bt_query() "><i class="fa fa-search"></i></button>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*数据显示区域*@
+<div class="gridPanel">
+    <div class="ibox float-e-margins">
+        <div class="ibox-content" style="padding:0 5px 5px">
+            <div class="example-wrap">
+                <div class="example">
+                    <div id="tableToolbar">
+                        <div class="btn-group hidden-xs" role="group">
+                            <button type="button" class="btn btn-outline btn-default" onclick="bt_detail()">
+                                <i class="glyphicon glyphicon-zoom-in" aria-hidden="true">查看</i>
+                            </button>
+                            <button type="button" class="btn btn-outline btn-default" onclick="bt_add()">
+                                <i class="glyphicon glyphicon-plus" aria-hidden="true">新建</i>
+                            </button>
+                            <button type="button" class="btn btn-outline btn-default" onclick="bt_edit()">
+                                <i class="glyphicon glyphicon-edit" aria-hidden="true">修改</i>
+                            </button>
+                            <button type="button" class="btn btn-outline btn-default" onclick="bt_del()">
+                                <i class="glyphicon glyphicon-trash" aria-hidden="true">删除</i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <table id="table"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*弹出框*@
+<div class="modal inmodal" id="myModal" tabindex="-1" data-backdrop="static" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" style="width: 815px">
+        <div class="modal-content animated bounceInRight">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span><span class="sr-only">关闭</span>
+                </button>
+                <h6 class="modal-title">用户信息</h6>
+            </div>
+            <div class="modal-body">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <form class="form-horizontal m-t" id="commentForm">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label"><i style="font-size:16px;color:red;">*  </i>用户编号：</label>
+                                <div class="col-sm-3 formValue">
+                                    <input id="User_Code" name="User_Code" type="text" class="form-control required" maxlength="30" placeholder="请输入用户编号" />
+                                </div>
+                                <label class="col-sm-2 control-label"><i style="font-size:16px;color:red;">*  </i>用户名：</label>
+                                <div class="col-sm-3 formValue">
+                                    <input id="User_Name" name="User_Name" type="text" class="form-control required" maxlength="30" placeholder="请输入用户名" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label"><i style="font-size:16px;color:red;">*  </i>性别：</label>
+                                <div class="col-sm-3 formValue">
+                                    <select id="User_Sex" name="User_Sex" type="select" class="form-control required">
+                                        <option value="">==请选择==</option>
+                                        <option value="M">男</option>
+                                        <option value="W">女</option>
+
+                                    </select>
+                                </div>
+                                <label class="col-sm-2 control-label">生日：</label>
+                                <div class="col-sm-3 formValue">
+                                    @*<input id="Usr_Birthday" name="Usr_Birthday" type="text" readonly class="form-control form_datetime" maxlength="30" placeholder="请输入时间"/>*@
+                                    <div class="input-append date form_datetime">
+                                        <input size="16" type="text" id="Usr_Birthday" name="Usr_Birthday" class="form-control" value=" " readonly>
+                                        <span class=" add-on"><i class="icon-th"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">年龄：</label>
+                                <div class="col-sm-3 formValue">
+                                    <input id="User_Age" name="User_Age" type="text" class="form-control" maxlength="30" placeholder="请输入年龄" />
+                                </div>
+                                <label class="col-sm-2 control-label" style="padding-left: 5px;">身份证号码：</label>
+                                <div class="col-sm-3 formValue">
+                                    <input id="User_Idcard" name="User_Idcard" type="text" class="form-control" maxlength="30" placeholder="请输入身份证号码" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">邮箱：</label>
+                                <div class="col-sm-3 formValue">
+                                    <input id="User_Email" name="User_Email" type="text" class="form-control" maxlength="30" placeholder="请输入邮箱" />
+                                </div>
+                                <label class="col-sm-2 control-label">银行号码：</label>
+                                <div class="col-sm-3 formValue">
+                                    <input id="User_Bankcode" name="User_Bankcode" type="text" class="form-control" maxlength="30" placeholder="请输入银行号码" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">手机号：</label>
+                                <div class="col-sm-3 formValue">
+                                    <input id="User_Mobile" name="User_Mobile" type="text" class="form-control" maxlength="30" placeholder="请输入手机号" />
+                                </div>
+                                <label class="col-sm-2 control-label">QQ号码：</label>
+                                <div class="col-sm-3 formValue">
+                                    <input id="User_Oicq" name="User_Oicq" type="text" class="form-control" maxlength="30" placeholder="请输入QQ号码" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">毕业学校：</label>
+                                <div class="col-sm-8 formValue">
+                                    <input id="User_School" name="User_School" type="text" class="form-control" maxlength="30" placeholder="请输入毕业学校" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">用户状态：</label>
+                                <div class="col-sm-3 formValue">
+                                    <select id="User_Enabled" name="User_Enabled" type="select" class="form-control required">
+                                        <option value="">==请选择==</option>
+                                    </select>
+                                </div>
+                                <label class="col-sm-2 control-label">描述：</label>
+                                <div class="col-sm-3 formValue">
+                                    <input id="User_Description" name="User_Description" type="text" class="form-control" maxlength="30" />
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="bt_ok" class="btn btn-primary" onclick="submitForm()">确定</button>
+                <button type="button" id="bt_close" class="btn btn-danger" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+@section PageSpecificJavascriptIncludes{
+    @*<script src="~/Content/js/bootstrap-datetimepicker/bootstrap-datetimepicker.js"></script>
+    <script src="~/Content/js/bootstrap-datetimepicker/locales/bootstrap-datetimepicker.zh-CN.js"></script>*@
+    <script type="text/javascript">
+        //表格行号 和操作类型如：增删改查
+        var rowindex, btoptions;
+
+        $(function () {
+            //$('#Usr_Birthday').datetimepicker({
+            //    format: 'yyyy-mm-dd',
+            //    language: 'zh-CN',
+            //    minView: 2
+            //});
+            $(".gridPanel").height($(window).height() - 60);
+            //帐号状态下拉框绑定 注：下拉框绑定通用的查询都写在ItemDataController中
+            $("#User_Enabled").bindSelect({
+                url: "/ItemData/GetByKeyItemData",
+                param: { "keyName": "ENABLED" },
+                id: "Sysdic_Code",
+                text: "Sysdic_Name"
+            });
+
+            //初始化表格 以下信息必须有 具体信息可到bootstrapTable.js中查看
+            $("#table").tableClient({
+                url: "/System/UserInfo/GetAllUser",
+                toolbar: '#tableToolbar', //菜单
+                height: $(window).height() - 65,
+                uniqueId: "Account", //主键
+                columns: [
+//字段名称和Model类中的一样
+                    {
+                        checkbox: true,
+                        align: 'center',
+                        valign: 'middle'
+                    },
+                    {
+                        title: '操作',
+                        field: 'operation',
+                        align: 'center',
+                        valign: 'middle',
+                        formatter: function (value, row, index) {
+                            var s = '<a class = "rowEdit" title="修改" href="javascript:void(0)"><i class="glyphicon glyphicon-edit"></i></a>';
+                            var d = '<a class = "rowDelete" title="删除" href="javascript:void(0)"><i class="glyphicon glyphicon-trash"></i></a>';
+                            return s + ' ' + d;
+                        },
+                        events: 'operateEvents'
+                    },
+                    {
+                        title: '编号',
+                        halign: 'center',
+                        field: 'User_Code',
+                        align: 'center',
+                        valign: 'middle',
+                        sortable: true
+                    },
+                    {
+                        title: '用户名',
+                        field: 'User_Name',
+                        align: 'center',
+                        valign: 'middle',
+                    },
+                    {
+                        title: '用户图片URL',
+                        field: 'User_Imageurl',
+                        align: 'center',
+                        valign: 'middle',
+                        sortable: true
+                    },
+                    {
+                        title: '性别',
+                        field: 'User_Sex',
+                        align: 'center',
+                        valign: 'middle',
+                        sortable: true
+                    },
+                    {
+                        title: '生日',
+                        field: 'Usr_Birthday',
+                        align: 'center',
+                        valign: 'middle',
+                        sortable: true
+                    },
+                    {
+                        title: '年龄',
+                        field: 'User_Age',
+                        align: 'center',
+                        valign: 'middle',
+                        sortable: true
+                    },
+                    {
+                        title: '身份证号码',
+                        field: 'User_Idcard',
+                        align: 'center',
+                        valign: 'middle',
+                        sortable: true
+                    },
+                    {
+                        title: '银行号码',
+                        field: 'User_Bankcode',
+                        align: 'center',
+                        valign: 'middle',
+                        sortable: true
+                    },
+                    {
+                        title: '邮箱',
+                        field: 'User_Email',
+                        align: 'center',
+                        valign: 'middle',
+                        sortable: true
+                    },
+                    {
+                        title: '手机号',
+                        field: 'User_Mobile',
+                        align: 'center',
+                        valign: 'middle',
+                        sortable: true
+                    },
+                    {
+                        title: 'QQ号码',
+                        field: 'User_Oicq',
+                        align: 'center',
+                        valign: 'middle',
+                        sortable: true
+                    },
+                    {
+                        title: '毕业学校',
+                        field: 'User_School',
+                        align: 'center',
+                        valign: 'middle',
+                        sortable: true
+                    },
+                    {
+                        title: '有效标识',
+                        field: 'User_EnabledText',
+                        align: 'center',
+                        valign: 'middle',
+                        sortable: true
+                    },
+                    {
+                        title: '描述',
+                        field: 'User_Description',
+                        align: 'center',
+                        valign: 'middle',
+                        sortable: true
+                    },
+                    {
+                        title: '创建时间',
+                        field: 'User_Createdate',
+                        align: 'center',
+                        valign: 'middle',
+                        sortable: true
+                    }
+                ],
+                rowindex: function (index, row) { //根据单击事件获取到选择的行号和这行的数据（json格式）
+                    rowindex = index;
+                }
+            });
+
+            //表格中的操作事件
+            window.operateEvents = {
+                'click .rowEdit': function (event, value, row, index) {
+                    updateRowData(row, index);
+                },
+                'click .rowDelete': function (event, value, row, index) {
+                    delRowData(row);
+                }
+            };
+        });
+        //提交表单
+        function submitForm() {
+            if (!$('#commentForm').formValid()) {
+                return false;
+            }
+
+            var url;
+            var title = "";
+            if (btoptions === 'add') {
+                title = "新增用户"
+                url = "/System/UserInfo/SubmitFormAdd";
+            }
+            else if (btoptions === 'edit') {
+                title = "修改用户";
+                url = "/System/UserInfo/SubmitFormUpdate";
+            }
+
+            var postData = $("#commentForm").formSerialize();
+            postData.User_EnabledText = $('#User_Enabled').find("option:selected").text();
+
+            //提交表单
+            $.submitForm({
+                url: url,
+                param: postData,
+                title: title,
+                modal: $('#myModal'),
+                success: function (data) {
+                    if (btoptions === 'add') {
+                        if (data.state == "success") {
+                            $('#table').bootstrapTable('prepend', postData);
+                        }
+                    }
+                    else if (btoptions === 'edit') {
+                        if (data.state == "success") {
+                            $('#table').bootstrapTable('updateRow', { index: rowindex, row: postData });
+                        }
+                    }
+                }
+            })
+        };
+        //查看
+        function bt_detail() {
+            btoptions = 'detail';
+            modal_open();
+        }
+
+        //添加
+        function bt_add() {
+            btoptions = 'add';
+            modal_open();
+        }
+
+        //修改
+        function bt_edit() {
+            btoptions = 'edit';
+            modal_open();
+        }
+
+        //表格中的修改
+        function updateRowData(row, index) {
+            btoptions = 'edit';
+            rowindex = index;
+
+            modal_open(row);
+        }
+
+        //弹出窗体
+        function modal_open(row) {
+
+            //确定按钮显示
+            $('#bt_ok').css({ "display": "inline" });
+
+            //删除验证信息
+            $('#commentForm').clearFormValid();
+
+            if (btoptions === 'detail') { //查看
+                var rowdata = getTableCheckData();
+                if (rowdata == null) {
+                    return;
+                }
+                $('#commentForm').formSerialize(rowdata); //from表单赋值传json格式数据
+                $('#bt_ok').css({ "display": "none" }); //确定按钮隐藏
+            } else if (btoptions === 'add') { //新增
+                $('#commentForm').clearForm(); //清空from表单内容
+            } else if (btoptions === 'edit') { //修改
+                if (row == null) { //表格修改操作
+                    var rowdata = getTableCheckData();
+                    if (rowdata == null) {
+                        return;
+                    }
+                    $('#commentForm').formSerialize(rowdata);
+                    if (rowdata.length == 0) { //没有选择数据
+                        $('#bt_ok').css({ "display": "none" });
+                    }
+                } else {
+                    $('#commentForm').formSerialize(row);
+                }
+
+            }
+
+            $('#myModal').modal('show').css({
+                width: 'auto'
+            });;
+        };
+
+        //查询
+        function bt_query() {
+            var postData = $("#commentForm").formSerialize();
+            $.ajaxQuery({
+                url: "/System/UserInfo/GetByKeyLogin",
+                param: { postData: postData },
+                success: function (data) {
+                    $('#table').bootstrapTable('load', data.resultdata);
+                }
+            });
+        }
+
+        //获取表格选择的数据
+        function getTableCheckData() {
+            var rowdata = $('#table').bootstrapTable('getSelections');
+            if (rowdata == null || rowdata.length == 0) {
+                $.modalMsg('请选择数据！', '', 2000);
+                return null;
+            } else {
+                if (rowdata.length > 1) {
+                    return rowdata;
+                } else {
+                    return rowdata[0];
+
+                }
+            }
+        }
+    </script>
+}
