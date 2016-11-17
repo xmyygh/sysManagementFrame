@@ -73,9 +73,20 @@ namespace MCL.Management.BLL
         /// <summary>
         /// ĞÂÔö
         /// <summary>
-        public int Insert(sysroleModels _Insertsysrole)
+        public string Insert(sysroleModels _Insertsysrole)
         {
-            return sysroledal.Insert(_Insertsysrole);
+            string id = SQID.GetID();
+            _Insertsysrole.Role_Id = id;
+            _Insertsysrole.Role_Code = id;
+            int row= sysroledal.Insert(_Insertsysrole);
+            if (row>0)
+            {
+                return id;
+            }
+            else
+            {
+                return string.Empty;
+            }
         }
 
         /// <summary>

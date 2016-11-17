@@ -36,18 +36,7 @@
                             <button type="button" class="btn btn-outline btn-default" onclick="bt_del()">
                                 <i class="glyphicon glyphicon-trash" aria-hidden="true">删除</i>
                             </button>
-                        </div>
-                        <div class="btn-group hidden-xs" role="group">
-                            <button type="button" class="btn btn-outline btn-default" onclick="bt_reset()">
-                                <i class="fa fa-key" aria-hidden="true">密码重置</i>
-                            </button>
-                            <button type="button" class="btn btn-outline btn-default" onclick="bt_disable()">
-                                <i class="fa fa-stop" aria-hidden="true">禁用</i>
-                            </button>
-                            <button type="button" class="btn btn-outline btn-default" onclick="bt_enable()">
-                                <i class="fa fa-play" aria-hidden="true">启用</i>
-                            </button>
-                        </div>
+                        </div>                       
                     </div>
 
                     <table id="table"></table>
@@ -64,38 +53,22 @@
                 <button type="button" class="close" data-dismiss="modal">
                     <span aria-hidden="true">&times;</span><span class="sr-only">关闭</span>
                 </button>
-                <h6 class="modal-title">登录信息</h6>
+                <h6 class="modal-title">角色信息</h6>
             </div>
             <div class="modal-body">
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <form class="form-horizontal m-t-xs" id="commentForm">
                             <div class="form-group">
-                                <label class="col-sm-3 control-label"><i style="font-size:16px;color:red;">*  </i>登录帐号：</label>
+                                <label class="col-sm-3 control-label"><i style="font-size:16px;color:red;">*  </i>角色名称：</label>
                                 <div class="col-sm-8 formValue">
-                                    <input id="Account" name="Account" type="text" class="form-control required" maxlength="30" placeholder="请输入登录帐号" />
+                                    <input id="Role_Name" name="Role_Name" type="text" class="form-control required" maxlength="50" placeholder="请输入角色名称" />
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label"><i style="font-size:16px;color:red;">*  </i>登录密码：</label>
+                                <label class="col-sm-3 control-label">角色描述：</label>
                                 <div class="col-sm-8 formValue">
-                                    <input id="Password" name="Password" type="text" class="form-control required" maxlength="30" placeholder="请输入登录密码" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label"><i style="font-size:16px;color:red;">*  </i>用户姓名：</label>
-                                <div class="col-sm-8 formValue">
-                                    <select id="User_Id" name="User_Id" type="select" class="form-control required">
-                                        <option value="">==请选择==</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label"><i style="font-size:16px;color:red;">*  </i>帐号状态：</label>
-                                <div class="col-sm-8 formValue">
-                                    <select id="Enabled" name="Enabled" type="select" class="form-control required">
-                                        <option value="">==请选择==</option>
-                                    </select>
+                                    <input id="Role_Description" name="Role_Description" type="text" class="form-control " maxlength="200" />
                                 </div>
                             </div>
                         </form>
@@ -122,27 +95,12 @@
 
             $(".gridPanel").height($(window).height() - 60);
 
-            //用户姓名下拉框绑定 注：下拉框绑定通用的查询都写在ItemDataController中
-            $("#User_Id").bindSelect({
-                url: "/ItemData/GetAllEnabledUser",
-                id: "User_Id",
-                text: "User_Name"
-            });
-
-            //帐号状态下拉框绑定 注：下拉框绑定通用的查询都写在ItemDataController中
-            $("#Enabled").bindSelect({
-                url: "/ItemData/GetByKeyItemData",
-                param: { "keyName": "ENABLED" },
-                id: "Sysdic_Code",
-                text: "Sysdic_Name"
-            });
-
             //初始化表格 以下信息必须有 具体信息可到bootstrapTable.js中查看
             $("#table").tableClient({
-                url: "/System/LoginInfo/GetAllLogin",
+                url: "/System/RoleInfo/GetAllRole",
                 toolbar: '#tableToolbar', //菜单
                 height: $(window).height() - 65,
-                uniqueId: "Account",    //主键
+                uniqueId: "Role_Id",    //主键
                 columns: [              //字段名称和Model类中的一样
                     {
                         checkbox: true,
@@ -162,32 +120,24 @@
                             events: 'operateEvents'
                         },
                         {
-                            title: '登录帐号',
+                            title: '角色名称',
                             halign: 'center',
-                            field: 'Account',
+                            field: 'Role_Name',
                             align: 'center',
                             valign: 'middle',
                             sortable: true
                         },
                         {
-                            title: '登录密码',
-                            field: 'Password',
+                            title: '角色描述',
+                            field: 'Role_Description',
                             align: 'center',
-                            valign: 'middle',
+                            valign: 'middle'
                         },
                         {
-                            title: '用户姓名',
-                            field: 'User_Name',
+                            title: '创建时间',
+                            field: 'Role_Createdate',
                             align: 'center',
-                            valign: 'middle',
-                            sortable: true
-                        },
-                        {
-                            title: '帐号状态',
-                            field: 'EnabledText',
-                            align: 'center',
-                            valign: 'middle',
-                            sortable: true
+                            valign: 'middle'
                         }
                 ],
                 rowindex: function (index, row) {  //根据单击事件获取到选择的行号和这行的数据（json格式）
@@ -209,7 +159,7 @@
         //查询
         function bt_query() {
             $.ajaxQuery({
-                url: "/System/LoginInfo/GetByKeyLogin",
+                url: "/System/RoleInfo/GetByKeyLogin",
                 param: { postData: function () { return $("#txt_keyword").val(); } },
                 success: function (data) {
                     $('#table').bootstrapTable('load', data.resultdata);
@@ -220,21 +170,21 @@
         //查看
         function bt_detail() {
             btoptions = 'detail';
-            $(".modal-title").text("登录信息");
+            $(".modal-title").text("角色信息");
             modal_open();
         }
 
         //添加
         function bt_add() {
             btoptions = 'add';
-            $(".modal-title").text("新增登录信息");
+            $(".modal-title").text("新增角色信息");
             modal_open();
         }
 
         //修改
         function bt_edit() {
             btoptions = 'edit';
-            $(".modal-title").text("编辑登录信息");
+            $(".modal-title").text("编辑角色信息");
             modal_open();
         }
 
@@ -251,8 +201,6 @@
 
             //确定按钮显示
             $('#bt_ok').css({ "display": "inline" });
-            //登录账号可用
-            $("#Account").removeAttr("disabled");
 
             //删除验证信息
             $('#commentForm').clearFormValid();
@@ -267,10 +215,8 @@
             }
             else if (btoptions === 'add') {  //新增
                 $('#commentForm').clearForm();  //清空from表单内容
-                $('#Password').val("123456");   //密码默认123456
             }
             else if (btoptions === 'edit') { //修改
-                $('#Account').attr("disabled", "false"); //登录账号不可用
                 if (row == null) {  //表格修改操作
                     var rowdata = getTableCheckData();
                     if (rowdata == null) {
@@ -296,20 +242,25 @@
                 return false;
             }
 
+            var postData = $("#commentForm").formSerialize();
+
             var url;
             var title = "";
             if (btoptions === 'add') {
-                title = "新增登录账户"
-                url = "/System/LoginInfo/SubmitFormAdd";
+                title = "新增角色账户"
+                url = "/System/RoleInfo/SubmitFormAdd";
             }
             else if (btoptions === 'edit') {
-                title = "编辑登录账户";
-                url = "/System/LoginInfo/SubmitFormUpdate";
+                title = "编辑角色账户";
+                url = "/System/RoleInfo/SubmitFormUpdate";
+                var rowdata = getTableCheckData();
+                if (rowdata == null) {
+                    return;
+                }
+                postData.Role_Id = rowdata.Role_Id;
+                postData.Role_Code = rowdata.Role_Code;
+                postData.Role_Createdate = rowdata.Role_Createdate;
             }
-
-            var postData = $("#commentForm").formSerialize();
-            postData.User_Name = $('#User_Id').find("option:selected").text();
-            postData.EnabledText = $('#Enabled').find("option:selected").text();
 
             //提交表单
             $.submitForm({
@@ -320,7 +271,7 @@
                 success: function (data) {
                     if (btoptions === 'add') {
                         if (data.state == "success") {
-                            $('#table').bootstrapTable('prepend', postData);
+                            $('#table').bootstrapTable('prepend', data.resultdata);
                         }
                     }
                     else if (btoptions === 'edit') {
@@ -339,10 +290,10 @@
                 return;
             }
             $.deleteForm({
-                url: "/System/LoginInfo/SubmitFormDel",
+                url: "/System/RoleInfo/SubmitFormDel",
                 param: rowdata,
                 success: function () {
-                    $('#table').bootstrapTable('removeByUniqueId', rowdata.Account);
+                    $('#table').bootstrapTable('removeByUniqueId', rowdata.Role_Id);
                 }
             });
         }
@@ -350,61 +301,13 @@
         //表格删除
         function delRowData(rowData) {
             $.deleteForm({
-                url: "/System/LoginInfo/SubmitFormDel",
+                url: "/System/RoleInfo/SubmitFormDel",
                 param: rowData,
                 success: function () {
-                    $('#table').bootstrapTable('removeByUniqueId', rowData.Account);
+                    $('#table').bootstrapTable('removeByUniqueId', rowData.Role_Id);
                 }
             });
-        }
-
-        //重置
-        function bt_reset() {
-            var rowdata = getTableCheckData();
-            if (rowdata == null) {
-                return;
-            }
-            rowdata.Password = "123456";
-            options("您确定将密码重置！", "密码重置", rowdata);
-        }
-
-        //禁用
-        function bt_disable() {
-            var rowdata = getTableCheckData();
-            if (rowdata == null) {
-                return;
-            }
-            rowdata.Enabled = "0";
-            rowdata.EnabledText = "禁用";
-            options("您确定将登录账户禁用！", "登录账户禁用", rowdata);
-        }
-
-        //启用
-        function bt_enable() {
-            var rowdata = getTableCheckData();
-            if (rowdata == null) {
-                return;
-            }
-            rowdata.Enabled = "1";
-            rowdata.EnabledText = "启用";
-            options("您确定将登录账户启用！", "登录账户启用", rowdata);
-        }
-
-        //提交表单弹出是否提交提示框
-        function options(confirmmsg, msg, rowdata) {
-            $.submitFormConfirm({
-                confirmtitle: confirmmsg,
-                url: "/System/LoginInfo/SubmitFormUpdate",
-                param: rowdata,
-                title: msg,
-                successbox: true,
-                success: function (data) {
-                    if (data.state == "success") {
-                        $('#table').bootstrapTable('updateRow', { index: rowindex, row: rowdata });
-                    }
-                }
-            })
-        }
+        }      
 
         //获取表格选择的数据
         function getTableCheckData() {
