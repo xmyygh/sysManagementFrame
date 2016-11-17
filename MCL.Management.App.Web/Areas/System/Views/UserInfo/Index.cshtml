@@ -10,7 +10,7 @@
     <div class="search">
         <div class="input-group">
             <div class="btn-group">
-                <input id="txt_keyword" type="text" class="form-control" placeholder="用户名" style="width: 200px; margin: auto 0;">
+                <input id="txt_keyword" type="text" class="form-control" placeholder="用户姓名" style="width: 200px; margin: auto 0;">
                 <span class="input-group-btn">
                     <button id="btn_search" type="button" class="btn  btn-primary" onclick=" bt_query() "><i class="fa fa-search"></i></button>
                 </span>
@@ -68,9 +68,9 @@
                                 <div class="col-sm-3 formValue">
                                     <input id="User_Code" name="User_Code" type="text" class="form-control required" maxlength="30" placeholder="请输入用户编号" />
                                 </div>
-                                <label class="col-sm-2 control-label"><i style="font-size:16px;color:red;">*  </i>用户名：</label>
+                                <label class="col-sm-2 control-label"><i style="font-size:16px;color:red;">*  </i>用户姓名：</label>
                                 <div class="col-sm-3 formValue">
-                                    <input id="User_Name" name="User_Name" type="text" class="form-control required" maxlength="30" placeholder="请输入用户名" />
+                                    <input id="User_Name" name="User_Name" type="text" class="form-control required" maxlength="30" placeholder="请输入用户姓名" />
                                 </div>
                             </div>
                             <div class="form-group">
@@ -208,95 +208,50 @@
                         sortable: true
                     },
                     {
-                        title: '用户名',
+                        title: '用户姓名',
                         field: 'User_Name',
                         align: 'center',
                         valign: 'middle',
-                    },
-                    {
-                        title: '用户图片URL',
-                        field: 'User_Imageurl',
-                        align: 'center',
-                        valign: 'middle',
-                        sortable: true
-                    },
+                    },                   
                     {
                         title: '性别',
                         field: 'User_Sex',
                         align: 'center',
                         valign: 'middle',
                         sortable: true
-                    },
-                    {
-                        title: '生日',
-                        field: 'Usr_Birthday',
-                        align: 'center',
-                        valign: 'middle',
-                        sortable: true
-                    },
+                    },                   
                     {
                         title: '年龄',
                         field: 'User_Age',
                         align: 'center',
                         valign: 'middle',
                         sortable: true
-                    },
-                    {
-                        title: '身份证号码',
-                        field: 'User_Idcard',
-                        align: 'center',
-                        valign: 'middle',
-                        sortable: true
-                    },
-                    {
-                        title: '银行号码',
-                        field: 'User_Bankcode',
-                        align: 'center',
-                        valign: 'middle',
-                        sortable: true
-                    },
+                    },                    
                     {
                         title: '邮箱',
                         field: 'User_Email',
                         align: 'center',
-                        valign: 'middle',
-                        sortable: true
+                        valign: 'middle'
                     },
                     {
                         title: '手机号',
                         field: 'User_Mobile',
                         align: 'center',
-                        valign: 'middle',
-                        sortable: true
+                        valign: 'middle'
                     },
                     {
                         title: 'QQ号码',
                         field: 'User_Oicq',
                         align: 'center',
-                        valign: 'middle',
-                        sortable: true
-                    },
+                        valign: 'middle'
+                    },                    
                     {
-                        title: '毕业学校',
-                        field: 'User_School',
-                        align: 'center',
-                        valign: 'middle',
-                        sortable: true
-                    },
-                    {
-                        title: '有效标识',
+                        title: '用户状态',
                         field: 'User_EnabledText',
                         align: 'center',
                         valign: 'middle',
                         sortable: true
-                    },
-                    {
-                        title: '描述',
-                        field: 'User_Description',
-                        align: 'center',
-                        valign: 'middle',
-                        sortable: true
-                    },
+                    },                    
                     {
                         title: '创建时间',
                         field: 'User_Createdate',
