@@ -63,9 +63,19 @@ namespace MCL.Management.BLL
         /// <summary>
         /// 新增
         /// <summary>
-        public int Insert(sysuserModels _Insertsysuser)
+        public string Insert(sysuserModels _Insertsysuser)
         {
-            return sysuserdal.Insert(_Insertsysuser);
+            string userid = SQID.GetID();
+            _Insertsysuser.User_Id = userid;
+            int ret= sysuserdal.Insert(_Insertsysuser);
+            if (ret>0)
+            {
+                return userid;
+            }
+            else
+            {
+                return string.Empty;
+            }
         }
 
         /// <summary>

@@ -32,7 +32,7 @@ namespace MCL.Management.BLL
                     }
                 }
 
-                if (nextid.Length > 20)
+                if (nextid.Length > 15)
                 {
                     nextid = Guid.NewGuid().ToString();
                 }
@@ -41,7 +41,7 @@ namespace MCL.Management.BLL
                     sq.UpdateSequence("ID", nextid);
 
                     string temp = string.Empty;
-                    for (int j = 0; j < 20 - nextid.Length; j++)
+                    for (int j = 0; j < 15 - nextid.Length; j++)
                     {
                         temp += "0";
                     }

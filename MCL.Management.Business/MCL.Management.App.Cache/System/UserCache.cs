@@ -8,7 +8,7 @@ using MCL.Management.BLL;
 using MCL.Management.Cache;
 
 namespace MCL.Management.App.Cache
-{
+{           
     public class UserCache
     {
         /// <summary>
@@ -53,7 +53,7 @@ namespace MCL.Management.App.Cache
         /// <summary>
         /// 新增
         /// <summary>
-        public int Insert(sysuserModels _Insertsysuser)
+        public string Insert(sysuserModels _Insertsysuser)
         {
             DelCache();
             return bll.Insert(_Insertsysuser);
