@@ -31,10 +31,10 @@
                                 <i class="glyphicon glyphicon-zoom-in" aria-hidden="true">查看</i>
                             </button>
                             <button type="button" class="btn btn-outline btn-default" onclick="bt_add()">
-                                <i class="glyphicon glyphicon-plus" aria-hidden="true">新建</i>
+                                <i class="glyphicon glyphicon-plus" aria-hidden="true">新增</i>
                             </button>
                             <button type="button" class="btn btn-outline btn-default" onclick="bt_edit()">
-                                <i class="glyphicon glyphicon-edit" aria-hidden="true">修改</i>
+                                <i class="glyphicon glyphicon-edit" aria-hidden="true">编辑</i>
                             </button>
                             <button type="button" class="btn btn-outline btn-default" onclick="bt_del()">
                                 <i class="glyphicon glyphicon-trash" aria-hidden="true">删除</i>
@@ -72,7 +72,7 @@
             <div class="modal-body">
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <form class="form-horizontal m-t" id="commentForm">
+                        <form class="form-horizontal m-t-xs" id="commentForm">
                             <div class="form-group">
                                 <label class="col-sm-3 control-label"><i style="font-size:16px;color:red;">*  </i>登录帐号：</label>
                                 <div class="col-sm-8 formValue">
@@ -223,18 +223,21 @@
         //查看
         function bt_detail() {
             btoptions = 'detail';
+            $(".modal-title").val("登录信息");
             modal_open();
         }
 
         //添加
         function bt_add() {
             btoptions = 'add';
+            $(".modal-title").val("新增登录信息");
             modal_open();
         }
 
         //修改
         function bt_edit() {
             btoptions = 'edit';
+            $(".modal-title").val("编辑登录信息");
             modal_open();
         }
 
@@ -304,7 +307,7 @@
                 url = "/System/LoginInfo/SubmitFormAdd";
             }
             else if (btoptions === 'edit') {
-                title = "修改登录账户";
+                title = "编辑登录账户";
                 url = "/System/LoginInfo/SubmitFormUpdate";
             }
 
