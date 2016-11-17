@@ -364,6 +364,7 @@ $.jsonWhere = function (data, action) {
     return reval;
 }
 
+//控件添加验证信息 mcl 20161117
 $.fn.formValid = function () {
     return $(this).valid({
         errorPlacement: function (error, element) {
@@ -381,6 +382,26 @@ $.fn.formValid = function () {
         }
     });
 }
+
+//控件清除验证信息 mcl 20161117
+$.fn.ValidMsg = function (msg) {
+    var $this = $(this);
+    $this.parents('.formValue').addClass('has-error');
+    $this.parents('.has-error').find('i.error').remove();
+    $this.parents('.has-error').append('<i class="form-control-feedback fa fa-times-circle error" data-placement="left" data-toggle="tooltip" title="' + msg + '"></i>');
+    $("[data-toggle='tooltip']").tooltip();
+    if ($this.parents('.input-group').hasClass('input-group')) {
+        $this.parents('.has-error').find('i.error').css('right', '33px');
+    }
+}
+$.fn.clearValidMsg = function () {
+    var $this = $(this);
+    if ($this.parents('.has-error').find('i.error').length > 0) {
+        $this.parents('.has-error').find('i.error').remove();
+        $this.parent().removeClass('has-error');
+    }
+}
+
 $.fn.clearFormValid = function () {
     var element = $(this);
     element.find('.has-error').each(function (r) {
