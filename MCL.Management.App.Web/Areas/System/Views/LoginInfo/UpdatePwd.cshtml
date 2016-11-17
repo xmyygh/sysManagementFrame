@@ -1,0 +1,83 @@
+﻿@{
+    ViewBag.Title = "UpdatePwd";
+    Layout = "~/Views/Shared/_BaseIndex.cshtml";
+}
+<div class="gridPanel">
+    <div class="panel-body">
+        <form class="form-horizontal m-t" id="commentForm">
+            <div class="form-group" style="margin: 10px auto">
+                <label class="col-sm-4 control-label">登录密码：</label>
+                <div class="col-sm-5 formValue">
+                    <input id="SPassword" name="SPassword" type="password" class="form-control required" maxlength="30" onblur="vpwd()" placeholder="请输入登录密码" />
+                </div>
+            </div>
+            <div class="form-group" style="margin: 10px auto">
+                <label class="col-sm-4 control-label">新登录密码：</label>
+                <div class="col-sm-5 formValue">
+                    <input id="Password" name="Password" type="password" class="form-control required" maxlength="30" placeholder="请输入新登录密码" />
+                </div>
+            </div>
+            <div class="form-group" style="margin: 10px auto">
+                <label class="col-sm-4 control-label">确认新登录密码：</label>
+                <div class="col-sm-5 formValue">
+                    <input id="RPassword" name="RPassword" type="password" class="form-control required" maxlength="30" equalto="#Password" messages:{equalto:'请输入内容'} placeholder="请再次输入新登录密码" />
+                </div>
+            </div>
+            <div class="form-group" style="margin: 10px auto">
+                <div class="col-sm-4">
+                </div>
+                <div class="col-sm-5">
+                    <button type="button" class="btn btn-primary" onclick="bt_save()">
+                        <i class="fa fa-save" aria-hidden="true">保存</i>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+    </div>
+    @section PageSpecificJavascriptIncludes{
+
+        <script type="text/javascript">
+
+            $(function () {
+
+                $(".gridPanel").height($(window).height() - 10);
+            })
+
+            //验证登陆密码是否正确
+            function vpwd()
+            {
+                var pwd = '@ViewBag.pwd';
+                if (pwd != $('#SPassword').val()) {
+                    $('#SPassword').ValidMsg("登录密码错误");
+                    return false;
+                }
+                else {
+                    $('#SPassword').clearValidMsg();
+                    return true;
+                }
+            }
+            //保存按钮
+            function bt_save(confirmmsg, msg, rowdata) {
+
+                if (!$('#commentForm').formValid()) {
+                    return false;
+                }
+                if (!vpwd()) {
+                    return false;
+                }
+
+                $.submitFormConfirm({
+                    confirmtitle: "您确定修改登录密码！",
+                    url: "/System/LoginInfo/SubmitFormUpdatePwd",
+                    param: { "Password": $("#Password").val() },
+                    title: "修改登录密码",
+                    successbox: true,
+                    success: function (data) {
+                        
+                    }
+                })
+            }
+
+        </script>
+    }

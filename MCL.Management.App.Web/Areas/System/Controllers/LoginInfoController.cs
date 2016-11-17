@@ -7,6 +7,7 @@ using MCL.Management.Models;
 using MCL.Management.BLL;
 using MCL.Management.App.Cache;
 using MCL.Management.Utility;
+using MCL.Management.Client.Cache;
 
 namespace MCL.Management.App.Web.Areas.System.Controllers
 {
@@ -38,8 +39,10 @@ namespace MCL.Management.App.Web.Areas.System.Controllers
         /// <returns></returns>
         [HttpGet]
         [HandlerAuthorize]
-        public ActionResult UpdatePW()
+        public ActionResult UpdatePwd()
         {
+            string passwd = CurrentUserProvider.Provider.GetCurrentUser().Password;
+            ViewBag.pwd = Encrypt.Decode(passwd);
             return View();
         }
         #endregion
@@ -198,6 +201,31 @@ namespace MCL.Management.App.Web.Areas.System.Controllers
             catch (Exception ex)
             {
                 Logger.Error("删除登录账号错误：" + ex.ToString() + "\r\n");
+                throw;
+            }
+        }
+
+        [HttpPost]
+        [HandlerAjaxOnly]
+        [ValidateAntiForgeryToken]
+        public ActionResult SubmitFormUpdatePwd(string Password)
+        {
+            LoginCache login = new LoginCache();
+            try
+            {
+                sysloginModels postData = new sysloginModels();
+
+                postData.Account = CurrentUserProvider.Provider.GetCurrentUser().Account;
+                postData.Password = Encrypt.Encode(Password);
+                postData.User_Id = CurrentUserProvider.Provider.GetCurrentUser().UserId;
+                postData.Enabled = 1;
+
+                login.UpdateByKey(postData);
+                return Success("修改登录密码成功。");
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("修改登录密码错误：" + ex.ToString() + "\r\n");
                 throw;
             }
         }
