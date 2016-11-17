@@ -27,6 +27,14 @@ namespace MCL.Management.DAL
             return Convert.ToInt32(_ScalarData);
         }
 
+//        public int IsExist(string _RoleId)
+//        { 
+
+//            SELECT COUNT(1) C FROM SYSROLEUSER 
+//UNION ALL
+//SELECT COUNT(1) C FROM SYSMENULIMIT WHERE MENT_TYPE=2
+//        }
+
         /// <summary>
         /// 查看全部
         /// <summary>
@@ -254,19 +262,19 @@ namespace MCL.Management.DAL
                 }
                 if (!string.IsNullOrEmpty(_Wheresysrole.Role_Code))
                 {
-                    sbwhere.Append(" AND  ROLE_CODE CONCAT('%',@Role_Code,'%')");
+                    sbwhere.Append(" AND  ROLE_CODE LIKE CONCAT('%',@Role_Code,'%')");
                 }
                 if (!string.IsNullOrEmpty(_Wheresysrole.Role_Name))
                 {
-                    sbwhere.Append(" AND  ROLE_NAME CONCAT('%',@Role_Name,'%')");
+                    sbwhere.Append(" AND  ROLE_NAME LIKE CONCAT('%',@Role_Name,'%')");
                 }
                 if (!string.IsNullOrEmpty(_Wheresysrole.Role_Description))
                 {
-                    sbwhere.Append(" AND  ROLE_DESCRIPTION CONCAT('%',@Role_Description,'%')");
+                    sbwhere.Append(" AND  ROLE_DESCRIPTION LIKE CONCAT('%',@Role_Description,'%')");
                 }
                 if (!string.IsNullOrEmpty(_Wheresysrole.Role_Createdate))
                 {
-                    sbwhere.Append(" AND  ROLE_CREATEDATE CONCAT('%',@Role_Createdate,'%')");
+                    sbwhere.Append(" AND  ROLE_CREATEDATE LIKE CONCAT('%',@Role_Createdate,'%')");
                 }
             }
             return sbwhere.ToString();
