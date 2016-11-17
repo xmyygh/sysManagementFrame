@@ -3,7 +3,19 @@
     Layout = "~/Views/Shared/_BaseIndex.cshtml";
 }
 @section PageSpecificStyleSheetIncludes{
-    <link href="~/Content/js/bootstrap-datetimepicker/bootstrap-datetimepicker.css" rel="stylesheet" />
+    <link href="~/Content/js/bootstrap-datetimepicker/bootstrap-datetimepicker.css" rel="stylesheet"/>
+    <style type="text/css">
+        .fixed-table-container {
+            
+            padding-bottom: 37px;
+
+        }
+        .pagination-detail {
+            margin-bottom: 0;
+            margin-top: 0;
+        }
+
+    </style>
 }
 @*查询区域*@
 <div class="topPanel">
@@ -168,7 +180,7 @@
     <script src="~/Content/js/bootstrap-datetimepicker/locales/bootstrap-datetimepicker.zh-CN.js"></script>
     <script type="text/javascript">
         //表格行号 和操作类型如：增删改查
-        var rowindex, btoptions;
+        var rowindex, btoptions,selRow;
 
         $(function () {
             $('#Usr_Birthday').datetimepicker({
@@ -191,7 +203,7 @@
                 url: "/System/UserInfo/GetAllUser",
                 toolbar: '#tableToolbar', //菜单
                 height: $(window).height() - 65,
-                uniqueId: "Account", //主键
+                uniqueId: "User_Id", //主键
                 columns: [
 //字段名称和Model类中的一样
                     {
@@ -212,6 +224,15 @@
                         events: 'operateEvents'
                     },
                     {
+                        title: '主键',
+                        halign: 'center',
+                        field: 'User_Id',
+                        align: 'center',
+                        valign: 'middle',
+                     
+                        sortable: true
+                    },
+                    {
                         title: '编号',
                         halign: 'center',
                         field: 'User_Code',
@@ -227,7 +248,7 @@
                     },                   
                     {
                         title: '性别',
-                        field: 'User_Sex',
+                        field: 'User_SexText',
                         align: 'center',
                         valign: 'middle',
                         sortable: true
@@ -268,9 +289,11 @@
                 ],
                 rowindex: function (index, row) { //根据单击事件获取到选择的行号和这行的数据（json格式）
                     rowindex = index;
+                    selRow = row;
                 }
             });
-
+            //$("#table").bootstrapTable('hideColumn', 'User_Id');
+            $("#table").bootstrapTable('hideColumn', 'User_Createdate');
             //表格中的操作事件
             window.operateEvents = {
                 'click .rowEdit': function (event, value, row, index) {
@@ -286,20 +309,23 @@
             if (!$('#commentForm').formValid()) {
                 return false;
             }
-
+            var postData = $("#commentForm").formSerialize();
+            postData.User_EnabledText = $('#User_Enabled').find("option:selected").text();
+            postData.User_SexText = $('#User_Sex').find("option:selected").text();
             var url;
             var title = "";
             if (btoptions === 'add') {
-                title = "新增用户"
+                title = "新增用户";
+                
                 url = "/System/UserInfo/SubmitFormAdd";
             }
             else if (btoptions === 'edit') {
                 title = "修改用户";
+                postData.User_Id = selRow.User_Id;
                 url = "/System/UserInfo/SubmitFormUpdate";
             }
 
-            var postData = $("#commentForm").formSerialize();
-            postData.User_EnabledText = $('#User_Enabled').find("option:selected").text();
+        
 
             //提交表单
             $.submitForm({
@@ -310,6 +336,8 @@
                 success: function (data) {
                     if (btoptions === 'add') {
                         if (data.state == "success") {
+                            postData.User_Id = data.resultdata;
+                            
                             $('#table').bootstrapTable('prepend', postData);
                         }
                     }
@@ -338,7 +366,31 @@
             btoptions = 'edit';
             modal_open();
         }
+        //删除
+        function bt_del() {
+            var rowdata = getTableCheckData();
+            if (rowdata == null) {
+                return;
+            }
+            $.deleteForm({
+                url: "/System/UserInfo/SubmitFormDel",
+                param: rowdata,
+                success: function () {
+                    $('#table').bootstrapTable('removeByUniqueId', rowdata.User_Id);
+                }
+            });
+        }
 
+        //表格删除
+        function delRowData(rowData) {
+            $.deleteForm({
+                url: "/System/UserInfo/SubmitFormDel",
+                param: rowData,
+                success: function () {
+                    $('#table').bootstrapTable('removeByUniqueId', rowData.User_Id);
+                }
+            });
+        }
         //表格中的修改
         function updateRowData(row, index) {
             btoptions = 'edit';

@@ -51,7 +51,14 @@ namespace MCL.Management.Models
             get ;
             set ;
         }
-
+        /// <summary>
+        /// 性别 M男 W女
+        /// <summary>
+        public string User_SexText
+        {
+            get;
+            set;
+        }
         /// <summary>
         /// 生日
         /// <summary>

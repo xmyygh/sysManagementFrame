@@ -29,7 +29,7 @@ namespace MCL.Management.App.Web.Areas.System.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult SubmitFormAdd(sysuserModels postData)
         {
-            UserCache login = new UserCache();
+            UserCache userCache = new UserCache();
             try
             {
                 sysuserBLL bll = new sysuserBLL();
@@ -40,8 +40,10 @@ namespace MCL.Management.App.Web.Areas.System.Controllers
                 {
                     return Warning("用户名已存在！");
                 }
-                login.Insert(postData);
-                return Success("新增成功。");
+                postData.User_Createdate = DateTime.Now.ToShortDateString();
+                string id = userCache.Insert(postData);
+                postData.User_Id = id;
+                return Success("新增成功。", postData.User_Id);
             }
             catch (Exception ex)
             {
@@ -70,7 +72,8 @@ namespace MCL.Management.App.Web.Areas.System.Controllers
                 foreach (sysuserModels user in userlist)
                 {
 
-                    user.User_EnabledText = user.User_Enabled == 1 ? "使用" : (user.User_Enabled == 0 ? "删除" : "锁定");
+                    user.User_EnabledText = user.User_Enabled == 1 ? "启用" : (user.User_Enabled == 0 ? "禁用" : "锁定");
+                    user.User_SexText = user.User_Sex == "W" ? "女" : "男";
                 }
             }
             catch (Exception ex)

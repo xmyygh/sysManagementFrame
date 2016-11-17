@@ -184,7 +184,7 @@ namespace MCL.Management.DAL
             sbsql.Append(" ) VALUES (");
             sbsql.Append(" @User_Id,@User_Code,@User_Name,@User_Imageurl,@User_Sex,@Usr_Birthday,");
             sbsql.Append(" @User_Age,@User_Idcard,@User_Bankcode,@User_Email,@User_Mobile,");
-            sbsql.Append(" @User_Oicq,@User_School,@User_Enabled,@User_Description,@User_Createdate,");
+            sbsql.Append(" @User_Oicq,@User_School,@User_Enabled,@User_Description,@User_Createdate)");
             int _InsRow = DbHelp.Execute(@sbsql.ToString(), _Insertsysuser , null, null, System.Data.CommandType.Text);
             return _InsRow;
         }
@@ -263,23 +263,23 @@ namespace MCL.Management.DAL
                 }
                 if (!string.IsNullOrEmpty(_Wheresysuser.User_Code))
                 {
-                    sbwhere.Append(" AND  USER_CODE CONCAT('%',@User_Code,'%')");
+                    sbwhere.Append(" AND  USER_CODE LIKE CONCAT('%',@User_Code,'%')");
                 }
                 if (!string.IsNullOrEmpty(_Wheresysuser.User_Name))
                 {
-                    sbwhere.Append(" AND  USER_NAME CONCAT('%',@User_Name,'%')");
+                    sbwhere.Append(" AND  USER_NAME LIKE CONCAT('%',@User_Name,'%')");
                 }
                 if (!string.IsNullOrEmpty(_Wheresysuser.User_Imageurl))
                 {
-                    sbwhere.Append(" AND  USER_IMAGEURL CONCAT('%',@User_Imageurl,'%')");
+                    sbwhere.Append(" AND  USER_IMAGEURL LIKE CONCAT('%',@User_Imageurl,'%')");
                 }
                 if (!string.IsNullOrEmpty(_Wheresysuser.User_Sex))
                 {
-                    sbwhere.Append(" AND  USER_SEX CONCAT('%',@User_Sex,'%')");
+                    sbwhere.Append(" AND  USER_SEX LIKE CONCAT('%',@User_Sex,'%')");
                 }
                 if (!string.IsNullOrEmpty(_Wheresysuser.Usr_Birthday))
                 {
-                    sbwhere.Append(" AND  USR_BIRTHDAY CONCAT('%',@Usr_Birthday,'%')");
+                    sbwhere.Append(" AND  USR_BIRTHDAY LIKE CONCAT('%',@Usr_Birthday,'%')");
                 }
                 if (_Wheresysuser.User_Age != null)
                 {
@@ -287,27 +287,27 @@ namespace MCL.Management.DAL
                 }
                 if (!string.IsNullOrEmpty(_Wheresysuser.User_Idcard))
                 {
-                    sbwhere.Append(" AND  USER_IDCARD CONCAT('%',@User_Idcard,'%')");
+                    sbwhere.Append(" AND  USER_IDCARD LIKE CONCAT('%',@User_Idcard,'%')");
                 }
                 if (!string.IsNullOrEmpty(_Wheresysuser.User_Bankcode))
                 {
-                    sbwhere.Append(" AND  USER_BANKCODE CONCAT('%',@User_Bankcode,'%')");
+                    sbwhere.Append(" AND  USER_BANKCODE LIKE CONCAT('%',@User_Bankcode,'%')");
                 }
                 if (!string.IsNullOrEmpty(_Wheresysuser.User_Email))
                 {
-                    sbwhere.Append(" AND  USER_EMAIL CONCAT('%',@User_Email,'%')");
+                    sbwhere.Append(" AND  USER_EMAIL LIKE CONCAT('%',@User_Email,'%')");
                 }
                 if (!string.IsNullOrEmpty(_Wheresysuser.User_Mobile))
                 {
-                    sbwhere.Append(" AND  USER_MOBILE CONCAT('%',@User_Mobile,'%')");
+                    sbwhere.Append(" AND  USER_MOBILE  LIKE CONCAT('%',@User_Mobile,'%')");
                 }
                 if (!string.IsNullOrEmpty(_Wheresysuser.User_Oicq))
                 {
-                    sbwhere.Append(" AND  USER_OICQ CONCAT('%',@User_Oicq,'%')");
+                    sbwhere.Append(" AND  USER_OICQ LIKE CONCAT('%',@User_Oicq,'%')");
                 }
                 if (!string.IsNullOrEmpty(_Wheresysuser.User_School))
                 {
-                    sbwhere.Append(" AND  USER_SCHOOL CONCAT('%',@User_School,'%')");
+                    sbwhere.Append(" AND  USER_SCHOOL LIKE CONCAT('%',@User_School,'%')");
                 }
                 if (_Wheresysuser.User_Enabled != null)
                 {
@@ -315,11 +315,11 @@ namespace MCL.Management.DAL
                 }
                 if (!string.IsNullOrEmpty(_Wheresysuser.User_Description))
                 {
-                    sbwhere.Append(" AND  USER_DESCRIPTION CONCAT('%',@User_Description,'%')");
+                    sbwhere.Append(" AND  USER_DESCRIPTION LIKE CONCAT('%',@User_Description,'%')");
                 }
                 if (!string.IsNullOrEmpty(_Wheresysuser.User_Createdate))
                 {
-                    sbwhere.Append(" AND  USER_CREATEDATE CONCAT('%',@User_Createdate,'%')");
+                    sbwhere.Append(" AND  USER_CREATEDATE LIKE CONCAT('%',@User_Createdate,'%')");
                 }
             }
             return sbwhere.ToString();
