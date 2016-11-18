@@ -109,6 +109,10 @@ function initTable() {
             columns: columns,
             onLoadSuccess: function (data) {
                 $(cur_table).bootstrapTable('load', data.resultdata);
+            },
+            //注册加载子表的事件。注意下这里的三个参数！
+            onExpandRow: function (index, row, $detail) {
+                oInit.InitSubTable(index, row, $detail);
             }
         });
     }
