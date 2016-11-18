@@ -1,5 +1,5 @@
 ﻿//行号 和操作类型如：增删改查
-var rowindex, btoptions, selRow;
+var rowindex, btoptions, selRow,$selTable;
 
 $(function () {
     $(".gridPanel").height($(window).height() - 60);
@@ -20,19 +20,25 @@ function initTable() {
     var oInit = new Object();
     //初始化表格 以下信息必须有 具体信息可到bootstrapTable.js中查看
     var columns = [
+        {
+            checkbox: true,
+            align: 'center',
+            valign: 'middle'
+        },
 //字段名称和Model类中的一样
         {
             title: '操作',
             field: 'operation',
             align: 'center',
             valign: 'middle',
-            formatter: function(value, row, index) {
+            formatter: function (value, row, index) {
                 var s = '<a class = "rowEdit" title="修改" href="javascript:void(0)"><i class="glyphicon glyphicon-edit"></i></a>';
                 var d = '<a class = "rowDelete" title="删除" href="javascript:void(0)"><i class="glyphicon glyphicon-trash"></i></a>';
                 return s + ' ' + d;
             },
             events: 'operateEvents'
         },
+         
         {
             title: '主键',
             halign: 'center',
@@ -87,6 +93,9 @@ function initTable() {
             rowindex = index;
             selRow = row;
         },
+        onCheck: function (row, $element) {
+            $selTable = $("#table");
+        },
         //注册加载子表的事件。注意下这里的三个参数！
         onExpandRow: function (index, row, $detail) {
             oInit.InitSubTable(index, row, $detail);
@@ -103,12 +112,19 @@ function initTable() {
             showColumns: false,
             showRefresh: false,
             sortable: false,
-            showToggle:false,
+            showToggle: false,
             queryParams: postData,
             ajaxOptions: postData,
             columns: columns,
             onLoadSuccess: function (data) {
                 $(cur_table).bootstrapTable('load', data.resultdata);
+            },
+            onCheck: function (row, $element) {
+                $selTable = $(cur_table);
+            },
+            rowindex: function (index, row) { //根据单击事件获取到选择的行号和这行的数据（json格式）
+                rowindex = index;
+                selRow = row;
             },
             //注册加载子表的事件。注意下这里的三个参数！
             onExpandRow: function (index, row, $detail) {
@@ -272,7 +288,7 @@ function bt_query() {
 
 //获取表格选择的数据
 function getTableCheckData() {
-    var rowdata = $('#table').bootstrapTable('getSelections');
+    var rowdata = $selTable.bootstrapTable('getSelections');
     if (rowdata == null || rowdata.length == 0) {
         $.modalMsg('请选择数据！', '', 2000);
         return null;
