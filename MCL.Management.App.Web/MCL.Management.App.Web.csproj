@@ -165,6 +165,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\System\Controllers\LoginInfoController.cs" />
     <Compile Include="Areas\System\Controllers\RoleInfoController.cs" />
+    <Compile Include="Areas\System\Controllers\UnitInfoController.cs" />
     <Compile Include="Areas\System\Controllers\UserInfoController.cs" />
     <Compile Include="Areas\System\SystemAreaRegistration.cs" />
     <Compile Include="Controllers\ClientsDataController.cs" />
@@ -350,6 +351,8 @@
     <Content Include="App_Config\db.config" />
     <Content Include="App_Config\log4net.config" />
     <Content Include="App_Config\system.config" />
+    <Content Include="Scripts\UnitInfoIndex.js" />
+    <Content Include="Scripts\UserInfoIndex.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -440,6 +443,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\System\Views\RoleInfo\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\System\Views\UnitInfo\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

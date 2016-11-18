@@ -264,19 +264,19 @@ namespace MCL.Management.DAL
                 }
                 if (!string.IsNullOrEmpty(_Wheresysunit.Unti_Type))
                 {
-                    sbwhere.Append(" AND  UNTI_TYPE CONCAT('%',@Unti_Type,'%')");
+                    sbwhere.Append(" AND  UNTI_TYPE LIKE CONCAT('%',@Unti_Type,'%')");
                 }
                 if (!string.IsNullOrEmpty(_Wheresysunit.Unit_Code))
                 {
-                    sbwhere.Append(" AND  UNIT_CODE CONCAT('%',@Unit_Code,'%')");
+                    sbwhere.Append(" AND  UNIT_CODE LIKE CONCAT('%',@Unit_Code,'%')");
                 }
                 if (!string.IsNullOrEmpty(_Wheresysunit.Unit_Name))
                 {
-                    sbwhere.Append(" AND  UNIT_NAME CONCAT('%',@Unit_Name,'%')");
+                    sbwhere.Append(" AND  UNIT_NAME LIKE CONCAT('%',@Unit_Name,'%')");
                 }
                 if (!string.IsNullOrEmpty(_Wheresysunit.Unit_Parentid))
                 {
-                    sbwhere.Append(" AND  UNIT_PARENTID CONCAT('%',@Unit_Parentid,'%')");
+                    sbwhere.Append(" AND  UNIT_PARENTID=@Unit_Parentid");
                 }
                 if (_Wheresysunit.Unit_Deletemark != null)
                 {
@@ -284,11 +284,11 @@ namespace MCL.Management.DAL
                 }
                 if (!string.IsNullOrEmpty(_Wheresysunit.Unit_Description))
                 {
-                    sbwhere.Append(" AND  UNIT_DESCRIPTION CONCAT('%',@Unit_Description,'%')");
+                    sbwhere.Append(" AND  UNIT_DESCRIPTION LIKE CONCAT('%',@Unit_Description,'%')");
                 }
                 if (!string.IsNullOrEmpty(_Wheresysunit.Unit_Createdate))
                 {
-                    sbwhere.Append(" AND  UNIT_CREATEDATE CONCAT('%',@Unit_Createdate,'%')");
+                    sbwhere.Append(" AND  UNIT_CREATEDATE LIKE CONCAT('%',@Unit_Createdate,'%')");
                 }
             }
             return sbwhere.ToString();

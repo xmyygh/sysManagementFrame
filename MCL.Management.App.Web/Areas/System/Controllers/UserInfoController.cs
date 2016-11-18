@@ -106,6 +106,7 @@ namespace MCL.Management.App.Web.Areas.System.Controllers
                 foreach (sysuserModels user in userlist)
                 {
                     user.User_EnabledText = user.User_Enabled == 1 ? "使用" : (user.User_Enabled == 0 ? "删除" : "锁定");
+                    user.User_SexText = user.User_Sex == "W" ? "女" : "男";
                 }
             }
             catch (Exception ex)

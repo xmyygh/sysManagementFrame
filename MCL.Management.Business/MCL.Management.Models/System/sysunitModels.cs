@@ -60,6 +60,14 @@ namespace MCL.Management.Models
             get ;
             set ;
         }
+        /// <summary>
+        /// 删除标识
+        /// <summary>
+        public string Unit_DeletemarkText
+        {
+            get;
+            set;
+        }
 
         /// <summary>
         /// 描述

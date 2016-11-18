@@ -1,0 +1,111 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_BaseIndex.cshtml";
+}
+@section PageSpecificStyleSheetIncludes{
+
+}
+@*查询区域*@
+<div class="topPanel">
+    <div class="search">
+        <div class="input-group">
+            <div class="btn-group">
+                <input id="txt_keyword" type="text" class="form-control" placeholder="用户姓名" style="width: 200px; margin: auto 0;">
+                <span class="input-group-btn">
+                    <button id="btn_search" type="button" class="btn  btn-primary" onclick=" bt_query() "><i class="fa fa-search"></i></button>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*数据显示区域*@
+<div class="gridPanel">
+    <div class="ibox float-e-margins">
+        <div class="ibox-content" style="padding:0 5px 5px">
+            <div class="example-wrap">
+                <div class="example">
+                    <div id="tableToolbar">
+                        <div class="btn-group hidden-xs" role="group">
+                            <button type="button" class="btn btn-outline btn-default" onclick="bt_detail()">
+                                <i class="glyphicon glyphicon-zoom-in" aria-hidden="true">查看</i>
+                            </button>
+                            <button type="button" class="btn btn-outline btn-default" onclick="bt_add()">
+                                <i class="glyphicon glyphicon-plus" aria-hidden="true">新增</i>
+                            </button>
+                            <button type="button" class="btn btn-outline btn-default" onclick="bt_edit()">
+                                <i class="glyphicon glyphicon-edit" aria-hidden="true">编辑</i>
+                            </button>
+                            <button type="button" class="btn btn-outline btn-default" onclick="bt_del()">
+                                <i class="glyphicon glyphicon-trash" aria-hidden="true">删除</i>
+                            </button>
+                        </div>
+                    </div>
+                    <table id="table"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*弹出框*@
+<div class="modal inmodal" id="myModal" tabindex="-1" data-backdrop="static" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" style="width: 815px">
+        <div class="modal-content animated bounceInRight">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span><span class="sr-only">关闭</span>
+                </button>
+                <h6 class="modal-title">科室信息</h6>
+            </div>
+            <div class="modal-body">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <form class="form-horizontal m-t-xs" id="commentForm">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label"><i style="font-size:16px;color:red;">*  </i>单位分类：</label>
+                                <div class="col-sm-3 formValue">
+                                    <input id="Unti_Type" name="Unti_Type" type="text" class="form-control required" maxlength="30" placeholder="请输入单位分类" />
+                                </div>
+                                <label class="col-sm-2 control-label"><i style="font-size:16px;color:red;">*  </i>单位编码：</label>
+                                <div class="col-sm-3 formValue">
+                                    <input id="Unit_Code" name="Unit_Code" type="text" class="form-control required" maxlength="30" placeholder="请输入单位编码" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label"><i style="font-size:16px;color:red;">*  </i>单位名称：</label>
+                                <div class="col-sm-3 formValue">
+                                    <input id="Unit_Name" name="Unit_Name" type="text" class="form-control required" maxlength="30" placeholder="请输入单位名称" />
+                                </div>
+                                <label class="col-sm-2 control-label">父编码：</label>
+                                <div class="col-sm-3 formValue">
+                                    <input id="Unit_Parentid" name="Unit_Parentid" type="text" class="form-control" maxlength="30" placeholder="请输入父编码" />
+                                </div>
+                            </div>
+                           
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">删除标识：</label>
+                                <div class="col-sm-3 formValue">
+                                    <select id="Unit_Deletemark" name="Unit_Deletemark" type="select" class="form-control required">
+                                        <option value="">==请选择==</option>
+                                    </select>
+                                </div>
+                                <label class="col-sm-2 control-label"><i style="font-size:16px;color:red;">*  </i>描述：</label>
+                                <div class="col-sm-3 formValue">
+                                    <input id="Unit_Description" name="Unit_Description" type="text" class="form-control" maxlength="30" />
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="bt_ok" class="btn btn-primary" onclick="submitForm()">确定</button>
+                <button type="button" id="bt_close" class="btn btn-danger" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+@section PageSpecificJavascriptIncludes{
+<script src="~/Scripts/UnitInfoIndex.js"></script>
+}
