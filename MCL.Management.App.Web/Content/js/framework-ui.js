@@ -451,6 +451,7 @@ $.IsExist = function (Id, url, msg) {
         });
     }, 500);
 }
+
 $.fn.clearForm = function () {
     var element = $(this);
     element.find('input,select,checkbox,radio,textarea,password').each(function (r) {
@@ -473,6 +474,7 @@ $.fn.clearForm = function () {
         }
     });
 };
+
 $.fn.formSerialize = function (formdate) {
     var element = $(this);
     if (!!formdate) {
@@ -504,7 +506,7 @@ $.fn.formSerialize = function (formdate) {
         return false;
     }
     var postdata = {};
-    element.find('input,select,textarea,checkbox').each(function (r) {
+    element.find('input,select,textarea,checkbox,hidden').each(function (r) {
         var $this = $(this);
         var id = $this.attr('id');
         var type = $this.attr('type');

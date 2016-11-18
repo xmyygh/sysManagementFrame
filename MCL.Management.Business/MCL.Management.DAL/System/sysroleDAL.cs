@@ -27,13 +27,16 @@ namespace MCL.Management.DAL
             return Convert.ToInt32(_ScalarData);
         }
 
-//        public int IsExist(string _RoleId)
-//        { 
-
-//            SELECT COUNT(1) C FROM SYSROLEUSER 
-//UNION ALL
-//SELECT COUNT(1) C FROM SYSMENULIMIT WHERE MENT_TYPE=2
-//        }
+        public int IsExist(string _RoleId)
+        { 
+            StringBuilder sbsql = new StringBuilder();
+            sbsql.Append(" SELECT SUM(C) FROM");
+            sbsql.Append(" (SELECT COUNT(1) AS C FROM SYSROLEUSER WHERE ROLE_ID=@RID");
+            sbsql.Append(" UNION ALL");
+            sbsql.Append(" SELECT COUNT(1) AS C FROM SYSMENULIMIT WHERE MENT_TYPE=2 AND UNIT_ROLE_USER_ID=@RID) AS T");
+            object _ScalarData = DbHelp.ExecuteScalar<object>(@sbsql.ToString(), new { RID = _RoleId });
+            return Convert.ToInt32(_ScalarData);
+        }
 
         /// <summary>
         /// 查看全部

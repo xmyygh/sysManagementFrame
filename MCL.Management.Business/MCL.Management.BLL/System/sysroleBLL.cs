@@ -19,6 +19,10 @@ namespace MCL.Management.BLL
             return sysroledal.IsExist(_Wheresysrole);
         }
 
+        public int IsExist(string _RoleId)
+        {
+            return sysroledal.IsExist(_RoleId);
+        }
         /// <summary>
         /// 查看全部
         /// <summary>

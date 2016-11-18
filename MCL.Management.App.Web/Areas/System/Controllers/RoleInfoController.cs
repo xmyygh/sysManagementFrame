@@ -99,14 +99,7 @@ namespace MCL.Management.App.Web.Areas.System.Controllers
         {
             sysroleBLL bll = new sysroleBLL();
             try
-            {
-                sysroleModels roleMod = new sysroleModels();
-                roleMod.Role_Name = postData.Role_Name;
-                int count = bll.IsExist(roleMod);
-                if (count >= 1)
-                {
-                    return Warning("角色名称已存在！");
-                }
+            {                
                 postData.Role_Createdate = DateTime.Now.ToString("yyyyMMdd");
                 string id =bll.Insert(postData);
                 if (string.IsNullOrEmpty(id))
@@ -139,7 +132,6 @@ namespace MCL.Management.App.Web.Areas.System.Controllers
             sysroleBLL bll = new sysroleBLL();
             try
             {
-
                 bll.UpdateByKey(postData);
                 return Success("修改成功!");
             }
@@ -163,6 +155,11 @@ namespace MCL.Management.App.Web.Areas.System.Controllers
             sysroleBLL bll = new sysroleBLL();
             try
             {
+                string roleId = postData.Role_Id;
+                if (bll.IsExist(roleId)>0)
+                {
+                    return Warning("角色信息已使用不可删除！");
+                }
                 bll.DeleteByKey(postData);
                 return Success("删除成功!");
             }

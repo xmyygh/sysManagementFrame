@@ -71,6 +71,9 @@
                                     <input id="Role_Description" name="Role_Description" type="text" class="form-control " maxlength="200" />
                                 </div>
                             </div>
+                            <input type="hidden" id="Role_Id" name="Role_Id" />
+                            <input type="hidden" id="Role_Code" name="Role_Code" />
+                            <input type="hidden" id="Role_Createdate" name="Role_Createdate" />
                         </form>
                     </div>
                 </div>
@@ -252,14 +255,7 @@
             }
             else if (btoptions === 'edit') {
                 title = "编辑角色账户";
-                url = "/System/RoleInfo/SubmitFormUpdate";
-                var rowdata = getTableCheckData();
-                if (rowdata == null) {
-                    return;
-                }
-                postData.Role_Id = rowdata.Role_Id;
-                postData.Role_Code = rowdata.Role_Code;
-                postData.Role_Createdate = rowdata.Role_Createdate;
+                url = "/System/RoleInfo/SubmitFormUpdate";                
             }
 
             //提交表单
@@ -275,7 +271,7 @@
                         }
                     }
                     else if (btoptions === 'edit') {
-                        if (data.state == "success") {
+                        if (data.state == "success") {                            
                             $('#table').bootstrapTable('updateRow', { index: rowindex, row: postData });
                         }
                     }
