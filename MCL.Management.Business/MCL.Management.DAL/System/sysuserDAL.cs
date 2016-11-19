@@ -36,7 +36,7 @@ namespace MCL.Management.DAL
             sbsql.Append(" SELECT ");
             sbsql.Append(" USER_ID,USER_CODE,USER_NAME,USER_IMAGEURL,USER_SEX,USR_BIRTHDAY,");
             sbsql.Append(" USER_AGE,USER_IDCARD,USER_BANKCODE,USER_EMAIL,USER_MOBILE,USER_OICQ,");
-            sbsql.Append(" USER_SCHOOL,USER_ENABLED,USER_DESCRIPTION,USER_CREATEDATE");
+            sbsql.Append(" USER_SCHOOL,USER_ENABLED,USER_DESCRIPTION,UNIT_ID,USER_CREATEDATE");
             sbsql.Append(" FROM SYSUSER");
             IEnumerable<sysuserModels> _AllData = DbHelp.Query<sysuserModels>(@sbsql.ToString(), null , null, false, null, System.Data.CommandType.Text);
             return _AllData.ToList();
@@ -51,7 +51,7 @@ namespace MCL.Management.DAL
             sbsql.Append(" SELECT ");
             sbsql.Append(" USER_ID,USER_CODE,USER_NAME,USER_IMAGEURL,USER_SEX,USR_BIRTHDAY,");
             sbsql.Append(" USER_AGE,USER_IDCARD,USER_BANKCODE,USER_EMAIL,USER_MOBILE,USER_OICQ,");
-            sbsql.Append(" USER_SCHOOL,USER_ENABLED,USER_DESCRIPTION,USER_CREATEDATE");
+            sbsql.Append(" USER_SCHOOL,USER_ENABLED,USER_DESCRIPTION,UNIT_ID,USER_CREATEDATE");
             sbsql.Append(" FROM SYSUSER");
             sbsql.Append(" WHERE 1=1");
             if(_WhereType==null)
@@ -92,7 +92,7 @@ namespace MCL.Management.DAL
             sbsql.Append(" SELECT ");
             sbsql.Append(" USER_ID,USER_CODE,USER_NAME,USER_IMAGEURL,USER_SEX,USR_BIRTHDAY,");
             sbsql.Append(" USER_AGE,USER_IDCARD,USER_BANKCODE,USER_EMAIL,USER_MOBILE,USER_OICQ,");
-            sbsql.Append(" USER_SCHOOL,USER_ENABLED,USER_DESCRIPTION,USER_CREATEDATE");
+            sbsql.Append(" USER_SCHOOL,USER_ENABLED,USER_DESCRIPTION,UNIT_ID,USER_CREATEDATE");
             sbsql.Append(" FROM SYSUSER");
             sbsql.Append(" WHERE");
             sbsql.Append(" USER_ID=@User_Id");
@@ -118,7 +118,7 @@ namespace MCL.Management.DAL
             sbsql.Append(" SELECT ");
             sbsql.Append(" USER_ID,USER_CODE,USER_NAME,USER_IMAGEURL,USER_SEX,USR_BIRTHDAY,");
             sbsql.Append(" USER_AGE,USER_IDCARD,USER_BANKCODE,USER_EMAIL,USER_MOBILE,USER_OICQ,");
-            sbsql.Append(" USER_SCHOOL,USER_ENABLED,USER_DESCRIPTION,USER_CREATEDATE");
+            sbsql.Append(" USER_SCHOOL,USER_ENABLED,USER_DESCRIPTION,UNIT_ID,USER_CREATEDATE");
             sbsql.Append(" FROM SYSUSER");
             sbsql.Append(" WHERE 1=1");
             if (!string.IsNullOrEmpty(sqlWhere))
@@ -180,11 +180,11 @@ namespace MCL.Management.DAL
             sbsql.Append(" INSERT INTO SYSUSER (");
             sbsql.Append(" USER_ID,USER_CODE,USER_NAME,USER_IMAGEURL,USER_SEX,USR_BIRTHDAY,");
             sbsql.Append(" USER_AGE,USER_IDCARD,USER_BANKCODE,USER_EMAIL,USER_MOBILE,USER_OICQ,");
-            sbsql.Append(" USER_SCHOOL,USER_ENABLED,USER_DESCRIPTION,USER_CREATEDATE");
+            sbsql.Append(" USER_SCHOOL,USER_ENABLED,USER_DESCRIPTION,UNIT_ID,USER_CREATEDATE");
             sbsql.Append(" ) VALUES (");
             sbsql.Append(" @User_Id,@User_Code,@User_Name,@User_Imageurl,@User_Sex,@Usr_Birthday,");
             sbsql.Append(" @User_Age,@User_Idcard,@User_Bankcode,@User_Email,@User_Mobile,");
-            sbsql.Append(" @User_Oicq,@User_School,@User_Enabled,@User_Description,@User_Createdate)");
+            sbsql.Append(" @User_Oicq,@User_School,@User_Enabled,@User_Description,@Unit_Id,@User_Createdate)");
             int _InsRow = DbHelp.Execute(@sbsql.ToString(), _Insertsysuser , null, null, System.Data.CommandType.Text);
             return _InsRow;
         }
@@ -210,6 +210,7 @@ namespace MCL.Management.DAL
             sbsql.Append(" USER_SCHOOL =@User_School,");
             sbsql.Append(" USER_ENABLED =@User_Enabled,");
             sbsql.Append(" USER_DESCRIPTION =@User_Description,");
+            sbsql.Append(" UNIT_ID =@Unit_Id,");
             sbsql.Append(" USER_CREATEDATE =@User_Createdate");
             sbsql.Append(" WHERE");
             sbsql.Append(" USER_ID=@User_Id");
@@ -316,6 +317,10 @@ namespace MCL.Management.DAL
                 if (!string.IsNullOrEmpty(_Wheresysuser.User_Description))
                 {
                     sbwhere.Append(" AND  USER_DESCRIPTION LIKE CONCAT('%',@User_Description,'%')");
+                }
+                if (!string.IsNullOrEmpty(_Wheresysuser.User_Description))
+                {
+                    sbwhere.Append(" AND  UNIT_ID =@Unit_Id");
                 }
                 if (!string.IsNullOrEmpty(_Wheresysuser.User_Createdate))
                 {

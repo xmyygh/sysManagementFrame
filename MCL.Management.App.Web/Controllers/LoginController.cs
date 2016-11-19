@@ -67,7 +67,9 @@ namespace MCL.Management.App.Web.Controllers
                 sysuserModels sysuser =  userCache.GetByKey(syslogin.User_Id);
 
                 sysunitBLL unitbll = new sysunitBLL();
-                sysunitModels sysunit = unitbll.SelectByUserID(syslogin.User_Id);
+                sysunitModels unit = new sysunitModels();
+                unit.Unit_Id = sysuser.Unit_Id;
+                sysunitModels sysunit = unitbll.SelectByKey(unit);
 
                 sysroleBLL rolebll = new sysroleBLL();
                 sysroleModels sysrole = rolebll.SelectByUserID(syslogin.User_Id);

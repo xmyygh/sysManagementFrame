@@ -132,7 +132,7 @@ namespace MCL.Management.Models
         }
 
         /// <summary>
-        /// 有效标识 0删除 1使用 2锁定 
+        /// 有效标识 0禁用 1启用
         /// <summary>
         public int? User_Enabled
         {
@@ -151,6 +151,15 @@ namespace MCL.Management.Models
         {
             get ;
             set ;
+        }
+
+        /// <summary>
+        /// 用户所属部门
+        /// <summary>
+        public string Unit_Id
+        {
+            get;
+            set;
         }
 
         /// <summary>
