@@ -96,22 +96,7 @@ namespace MCL.Management.DAL
             sysunitModels _OneData = DbHelp.QueryOne<sysunitModels>(@sbsql.ToString(), _Wheresysunit , null, false, null, System.Data.CommandType.Text);
             return _OneData;
         }
-
-        /// <summary>
-        /// 根据用户ID查询单位
-        /// <summary>
-        public sysunitModels SelectByUserID(string _UserID)
-        {
-            StringBuilder sbsql = new StringBuilder();
-            sbsql.Append(" SELECT ");
-            sbsql.Append(" UNIT_ID,UNTI_TYPE,UNIT_CODE,UNIT_NAME,UNIT_PARENTID,UNIT_DELETEMARK,");
-            sbsql.Append(" UNIT_DESCRIPTION,UNIT_CREATEDATE");
-            sbsql.Append(" FROM SYSUNIT");
-            sbsql.Append(" WHERE");
-            sbsql.Append(" UNIT_ID IN (SELECT UNIT_ID FROM SYSUNITUSER WHERE USER_ID=@UserID)");
-            sysunitModels _OneData = DbHelp.QueryOne<sysunitModels>(@sbsql.ToString(), new { UserID = _UserID }, null, false, null, System.Data.CommandType.Text);
-            return _OneData;
-        }
+       
         /// <summary>
         /// 查询分页
         /// <summary>

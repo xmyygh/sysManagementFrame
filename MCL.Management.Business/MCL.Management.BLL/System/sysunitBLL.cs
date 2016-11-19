@@ -43,16 +43,6 @@ namespace MCL.Management.BLL
         {
             return sysunitdal.SelectByKey(_Wheresysunit);
         }
-
-        /// <summary>
-        /// 根据用户ID查询单位
-        /// </summary>
-        /// <param name="_UserID">用户ID</param>
-        /// <returns></returns>
-        public sysunitModels SelectByUserID(string _UserID)
-        {
-            return sysunitdal.SelectByUserID(_UserID);
-        }
         /// <summary>
         /// 分页查询
         /// <summary>
