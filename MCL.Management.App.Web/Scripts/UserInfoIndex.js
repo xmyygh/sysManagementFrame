@@ -9,6 +9,12 @@ $(function () {
         minView: 2
     });
     $(".gridPanel").height($(window).height() - 60);
+
+    $('#User_Sex').select2({
+        minimumResultsForSearch: Infinity
+    });
+
+
     //帐号状态下拉框绑定 注：下拉框绑定通用的查询都写在ItemDataController中
     $("#User_Enabled").bindSelect({
         url: "/ItemData/GetByKeyItemData",
@@ -67,7 +73,7 @@ $(function () {
             },
             {
                 title: '性别',
-                field: 'User_SexText',
+                field: 'User_Sex',
                 align: 'center',
                 valign: 'middle',
                 sortable: true
@@ -130,7 +136,6 @@ function submitForm() {
     }
     var postData = $("#commentForm").formSerialize();
     postData.User_EnabledText = $('#User_Enabled').find("option:selected").text();
-    postData.User_SexText = $('#User_Sex').find("option:selected").text();
     var url;
     var title = "";
     if (btoptions === 'add') {

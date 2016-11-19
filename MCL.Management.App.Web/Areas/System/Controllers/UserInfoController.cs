@@ -34,7 +34,7 @@ namespace MCL.Management.App.Web.Areas.System.Controllers
             {
                 sysuserBLL bll = new sysuserBLL();
                 sysuserModels userMod = new sysuserModels();
-                userMod.User_Idcard = postData.User_Idcard;
+                userMod.User_Code = postData.User_Code;
                 int count = bll.IsExist(userMod);
                 if (count >= 1)
                 {
@@ -73,7 +73,6 @@ namespace MCL.Management.App.Web.Areas.System.Controllers
                 {
 
                     user.User_EnabledText = user.User_Enabled == 1 ? "启用" : (user.User_Enabled == 0 ? "禁用" : "锁定");
-                    user.User_SexText = user.User_Sex == "W" ? "女" : "男";
                 }
             }
             catch (Exception ex)
@@ -106,7 +105,6 @@ namespace MCL.Management.App.Web.Areas.System.Controllers
                 foreach (sysuserModels user in userlist)
                 {
                     user.User_EnabledText = user.User_Enabled == 1 ? "使用" : (user.User_Enabled == 0 ? "删除" : "锁定");
-                    user.User_SexText = user.User_Sex == "W" ? "女" : "男";
                 }
             }
             catch (Exception ex)
