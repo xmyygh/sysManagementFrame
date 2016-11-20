@@ -88,20 +88,20 @@
                                 </div>
                                 <label class="col-sm-3 control-label"><i style="font-size:16px;color:red;">*  </i>用户姓名：</label>
                                 <div class="col-sm-3 formValue">
-                                    <input id="User_Name" name="User_Name" type="text" class="form-control required" maxlength="30" placeholder="请输入用户姓名" />
+                                    <input id="User_Name" name="User_Name" type="text" class="form-control required" maxlength="60" placeholder="请输入用户姓名" />
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-2 control-label"><i style="font-size:16px;color:red;">*  </i>性别：</label>
+                                <label class="col-sm-2 control-label">性别：</label>
                                 <div class="col-sm-3 formValue">
-                                    <select id="User_Sex" name="User_Sex" type="select2" class="form-control required">
+                                    <select id="User_Sex" name="User_Sex" type="select2" class="form-control">
                                         <option value="男">男</option>
                                         <option value="女">女</option>
                                     </select>
                                 </div>
-                                <label class="col-sm-3 control-label"><i style="font-size:16px;color:red;">*  </i>用户状态：</label>
+                                <label class="col-sm-3 control-label">用户状态：</label>
                                 <div class="col-sm-3 formValue">
-                                    <select id="User_Enabled" name="User_Enabled" type="select2" class="form-control required">
+                                    <select id="User_Enabled" name="User_Enabled" type="select2" class="form-control">
                                     </select>
                                 </div>
                                
@@ -117,14 +117,14 @@
                                 </div>
                                 <label class="col-sm-3 control-label">年龄：</label>
                                 <div class="col-sm-3 formValue">
-                                    <input id="User_Age" name="User_Age" type="text" class="form-control" digits="true" placeholder="请输入年龄" />
+                                    <input id="User_Age" name="User_Age" type="text" class="form-control" range=[0,150] placeholder="请输入年龄" />
                                 </div>
                                
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-2 control-label" style="padding-left: 5px;">身份证号码：</label>
                                 <div class="col-sm-3 formValue">
-                                    <input id="User_Idcard" name="User_Idcard" type="text" class="form-control" maxlength="30" placeholder="请输入身份证号码" />
+                                    <input id="User_Idcard" name="User_Idcard" type="text" class="form-control" maxlength="100" placeholder="请输入身份证号码" />
                                 </div>
                                 <label class="col-sm-3 control-label">邮箱：</label>
                                 <div class="col-sm-3 formValue">
@@ -146,7 +146,7 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">QQ号码：</label>
                                 <div class="col-sm-3 formValue">
-                                    <input id="User_Oicq" name="User_Oicq" type="text" class="form-control" maxlength="30" placeholder="请输入QQ号码" />
+                                    <input id="User_Oicq" name="User_Oicq" type="text" class="form-control"  placeholder="请输入QQ号码" />
                                 </div>
                                 <label class="col-sm-3 control-label">毕业学校：</label>
                                 <div class="col-sm-3 formValue">
@@ -156,7 +156,7 @@
                             <div class="form-group">
                                 
                                 <label class="col-sm-2 control-label">描述：</label>
-                                <div class="col-sm-8 formValue">
+                                <div class="col-sm-9 formValue">
                                     <input id="User_Description" name="User_Description" type="text" class="form-control" maxlength="30" />
                                 </div>
                             </div>
