@@ -3,6 +3,8 @@ var rowindex, btoptions, selRow,$selTable;
 
 $(function () {
     $(".gridPanel").height($(window).height() - 60);
+  
+
     //帐号状态下拉框绑定 注：下拉框绑定通用的查询都写在ItemDataController中
     $("#Unit_Deletemark").bindSelect({
         url: "/ItemData/GetByKeyItemData",

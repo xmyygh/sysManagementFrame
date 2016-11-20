@@ -38,7 +38,7 @@ namespace MCL.Management.App.Web.Areas.System.Controllers
                 int count = bll.IsExist(userMod);
                 if (count >= 1)
                 {
-                    return Warning("用户名已存在！");
+                    return Warning("员工名已存在！");
                 }
                 postData.User_Createdate = DateTime.Now.ToShortDateString();
                 string id = userCache.Insert(postData);
@@ -47,7 +47,7 @@ namespace MCL.Management.App.Web.Areas.System.Controllers
             }
             catch (Exception ex)
             {
-                Logger.Error("新增用户错误：" + ex.ToString() + "\r\n");
+                Logger.Error("新增员工错误：" + ex.ToString() + "\r\n");
                 throw;
             }
         }
@@ -72,12 +72,12 @@ namespace MCL.Management.App.Web.Areas.System.Controllers
                 foreach (sysuserModels user in userlist)
                 {
 
-                    user.User_EnabledText = user.User_Enabled == 1 ? "启用" : (user.User_Enabled == 0 ? "禁用" : "锁定");
+                    user.User_EnabledText = user.User_Enabled == 1 ? "启用" : "禁用";
                 }
             }
             catch (Exception ex)
             {
-                Logger.Error("查询登录用户信息错误：" + ex.ToString() + "\r\n");
+                Logger.Error("查询登录员工信息错误：" + ex.ToString() + "\r\n");
                 throw;
             }
 
@@ -104,16 +104,16 @@ namespace MCL.Management.App.Web.Areas.System.Controllers
                 }
                 foreach (sysuserModels user in userlist)
                 {
-                    user.User_EnabledText = user.User_Enabled == 1 ? "使用" : (user.User_Enabled == 0 ? "删除" : "锁定");
+                    user.User_EnabledText = user.User_Enabled == 1 ? "启用" : "禁用";
                 }
             }
             catch (Exception ex)
             {
-                Logger.Error("用户搜索错误：" + ex.ToString() + "\r\n");
+                Logger.Error("员工搜索错误：" + ex.ToString() + "\r\n");
                 throw;
             }
 
-            return Success("用户搜索成功", userlist);
+            return Success("员工搜索成功", userlist);
         }
 
 
@@ -135,13 +135,13 @@ namespace MCL.Management.App.Web.Areas.System.Controllers
             }
             catch (Exception ex)
             {
-                Logger.Error("修改用户错误：" + ex.ToString() + "\r\n");
+                Logger.Error("修改员工错误：" + ex.ToString() + "\r\n");
                 throw;
             }
         }
 
         /// <summary>
-        /// 删除 没有完成需要判断已使用的用户不可删除
+        /// 删除 没有完成需要判断已使用的员工不可删除
         /// </summary>
         /// <param name="postData"></param>
         /// <returns></returns>
@@ -158,7 +158,7 @@ namespace MCL.Management.App.Web.Areas.System.Controllers
             }
             catch (Exception ex)
             {
-                Logger.Error("删除用户信息错误：" + ex.ToString() + "\r\n");
+                Logger.Error("删除员工信息错误：" + ex.ToString() + "\r\n");
                 throw;
             }
         }

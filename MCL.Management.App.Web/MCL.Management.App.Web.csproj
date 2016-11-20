@@ -351,8 +351,8 @@
     <Content Include="App_Config\db.config" />
     <Content Include="App_Config\log4net.config" />
     <Content Include="App_Config\system.config" />
-    <Content Include="Scripts\UnitInfoIndex.js" />
-    <Content Include="Scripts\UserInfoIndex.js" />
+    <Content Include="Scripts\System\UnitInfoIndex.js" />
+    <Content Include="Scripts\System\UserInfoIndex.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

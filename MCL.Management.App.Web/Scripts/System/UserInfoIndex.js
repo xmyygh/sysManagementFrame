@@ -13,7 +13,13 @@ $(function () {
     $('#User_Sex').select2({
         minimumResultsForSearch: Infinity
     });
-
+    //绑定部门下拉框
+    $("#UNIT_ID").bindSelect({
+        url: "/ItemData/GetUnit",
+        param: {},
+        id: "Unit_Id",
+        text: "Unit_Name"
+    });
 
     //帐号状态下拉框绑定 注：下拉框绑定通用的查询都写在ItemDataController中
     $("#User_Enabled").bindSelect({
@@ -66,10 +72,16 @@ $(function () {
                 sortable: true
             },
             {
-                title: '用户姓名',
+                title: '员工姓名',
                 field: 'User_Name',
                 align: 'center',
-                valign: 'middle',
+                valign: 'middle'
+            },
+            {
+                title: '所属部门',
+                field: 'UNIT_ID',
+                align: 'center',
+                valign: 'middle'
             },
             {
                 title: '性别',
@@ -98,7 +110,7 @@ $(function () {
                 valign: 'middle'
             },
             {
-                title: '用户状态',
+                title: '员工状态',
                 field: 'User_EnabledText',
                 align: 'center',
                 valign: 'middle',
@@ -118,7 +130,7 @@ $(function () {
         }
     });
     $("#table").bootstrapTable('hideColumn', 'User_Id');
-    $("#table").bootstrapTable('hideColumn', 'User_Createdate');
+    //$("#table").bootstrapTable('hideColumn', 'User_Createdate');
     //表格中的操作事件
     window.operateEvents = {
         'click .rowEdit': function (event, value, row, index) {
@@ -139,12 +151,12 @@ function submitForm() {
     var url;
     var title = "";
     if (btoptions === 'add') {
-        title = "新增用户";
+        title = "新增员工";
 
         url = "/System/UserInfo/SubmitFormAdd";
     }
     else if (btoptions === 'edit') {
-        title = "修改用户";
+        title = "修改员工";
         postData.User_Id = selRow.User_Id;
         url = "/System/UserInfo/SubmitFormUpdate";
     }
@@ -222,7 +234,42 @@ function updateRowData(row, index) {
 
     modal_open(row);
 }
+//禁用
+function bt_disable() {
+    var rowdata = getTableCheckData();
+    if (rowdata == null) {
+        return;
+    }
+    rowdata.User_Enabled = "0";
+    rowdata.User_EnabledText = "禁用";
+    options("您确定将员工禁用！", "员工禁用", rowdata);
+}
 
+//启用
+function bt_enable() {
+    var rowdata = getTableCheckData();
+    if (rowdata == null) {
+        return;
+    }
+    rowdata.User_Enabled = "1";
+    rowdata.User_EnabledText = "启用";
+    options("您确定将员工启用！", "员工启用", rowdata);
+}
+//提交表单弹出是否提交提示框
+function options(confirmmsg, msg, rowdata) {
+    $.submitFormConfirm({
+        confirmtitle: confirmmsg,
+        url: "/System/UserInfo/SubmitFormUpdate",
+        param: rowdata,
+        title: msg,
+        successbox: true,
+        success: function (data) {
+            if (data.state == "success") {
+                $('#table').bootstrapTable('updateRow', { index: rowindex, row: rowdata });
+            }
+        }
+    })
+}
 //弹出窗体
 function modal_open(row) {
 
