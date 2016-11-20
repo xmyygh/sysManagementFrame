@@ -166,6 +166,7 @@
     <Compile Include="Areas\System\Controllers\LoginInfoController.cs" />
     <Compile Include="Areas\System\Controllers\RoleInfoController.cs" />
     <Compile Include="Areas\System\Controllers\UnitInfoController.cs" />
+    <Compile Include="Areas\System\Controllers\UnitUserInfoController.cs" />
     <Compile Include="Areas\System\Controllers\UserInfoController.cs" />
     <Compile Include="Areas\System\SystemAreaRegistration.cs" />
     <Compile Include="Controllers\ClientsDataController.cs" />
@@ -446,6 +447,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\System\Views\UnitInfo\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\System\Views\UnitUserInfo\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
