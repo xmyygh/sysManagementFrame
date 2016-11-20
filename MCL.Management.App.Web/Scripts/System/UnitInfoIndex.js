@@ -11,7 +11,7 @@ $(function () {
         param: { "keyName": "ENABLED" },
         id: "Sysdic_Code",
         text: "Sysdic_Name"
-    });
+    }); 
 
     initTable();
 

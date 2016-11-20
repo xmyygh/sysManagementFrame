@@ -258,7 +258,7 @@ function bt_enable() {
 //提交表单弹出是否提交提示框
 function options(confirmmsg, msg, rowdata) {
     $.submitFormConfirm({
-        confirmtitle: confirmmsg,
+        confirmtitle: confirmmsg, 
         url: "/System/UserInfo/SubmitFormUpdate",
         param: rowdata,
         title: msg,
