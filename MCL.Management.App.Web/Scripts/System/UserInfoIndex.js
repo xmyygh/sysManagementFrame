@@ -223,6 +223,26 @@ function bt_del() {
     });
 }
 
+function bt_loginSet() {
+    var rowdata = getTableCheckData();
+    if (rowdata == null) {
+        return;
+    }
+    $.submitFormConfirm({
+        confirmtitle: "您确定将此员工设置为登录用户！",
+        url: "/System/UserInfo/LoginUserSet",
+        param: rowdata,
+        title: "设置登录账户",
+        successbox: true,
+        success: function (data) {
+            if (data.state == "success") {
+               
+            }
+        }
+    })
+
+}
+
 //表格删除
 function delRowData(rowData) {
     $.deleteForm({
@@ -264,7 +284,7 @@ function bt_enable() {
 //提交表单弹出是否提交提示框
 function options(confirmmsg, msg, rowdata) {
     $.submitFormConfirm({
-        confirmtitle: confirmmsg, 
+        confirmtitle: confirmmsg,
         url: "/System/UserInfo/SubmitFormUpdate",
         param: rowdata,
         title: msg,
@@ -274,8 +294,9 @@ function options(confirmmsg, msg, rowdata) {
                 $('#table').bootstrapTable('updateRow', { index: rowindex, row: rowdata });
             }
         }
-    })
+    });
 }
+
 //弹出窗体
 function modal_open(row) {
 

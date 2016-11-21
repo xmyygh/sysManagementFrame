@@ -52,6 +52,11 @@ namespace MCL.Management.App.Web.Areas.System.Controllers
             }
         }
 
+
+
+
+
+
         /// <summary>
         /// 获取登录列表
         /// </summary>
@@ -138,6 +143,35 @@ namespace MCL.Management.App.Web.Areas.System.Controllers
                 Logger.Error("修改员工错误：" + ex.ToString() + "\r\n");
                 throw;
             }
+        }
+
+
+        public ActionResult LoginUserSet(sysuserModels postData)
+        {
+            LoginCache login = new LoginCache();
+            sysloginModels loginMod = new sysloginModels();
+            var tempStr = AppSettingsHelper.GetString("LoginType");
+            var tempSel = "";
+            tempSel = tempStr == "Code" ? postData.User_Code : postData.User_Name;
+            loginMod.Account = tempSel;
+            loginMod.Password = "123456";
+            loginMod.User_Id = postData.User_Id;
+            loginMod.Enabled = 1;
+            loginMod.Line = 0;
+            sysloginBLL bll = new sysloginBLL();
+            sysloginModels temp = new sysloginModels();
+            temp.Account = loginMod.Account;
+            int count = bll.IsExist(loginMod);
+            if (count >= 1)
+            {
+                return Warning("登录账户已存在！");
+            }
+            if (!string.IsNullOrEmpty(loginMod.Password))
+            {
+                loginMod.Password = Encrypt.Encode(loginMod.Password);
+            }
+            login.Insert(loginMod);
+            return Success("设置成功。");
         }
 
         /// <summary>
