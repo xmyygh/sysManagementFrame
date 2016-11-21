@@ -14,7 +14,7 @@ $(function () {
         minimumResultsForSearch: Infinity
     });
     //绑定部门下拉框
-    $("#UNIT_ID").bindSelect({
+    $("#Unit_Id").bindSelect({
         url: "/ItemData/GetUnit",
         param: {},
         id: "Unit_Id",
@@ -76,10 +76,15 @@ $(function () {
                 field: 'User_Name',
                 align: 'center',
                 valign: 'middle'
+            }, {
+                title: '所属部门',
+                field: 'UNIT_NAME',
+                align: 'center',
+                valign: 'middle'
             },
             {
-                title: '所属部门',
-                field: 'UNIT_ID',
+                title: '所属部门ID',
+                field: 'Unit_Id',
                 align: 'center',
                 valign: 'middle'
             },
@@ -148,6 +153,7 @@ function submitForm() {
     }
     var postData = $("#commentForm").formSerialize();
     postData.User_EnabledText = $('#User_Enabled').find("option:selected").text();
+    postData.UNIT_NAME = $('#Unit_Id').find("option:selected").text();
     var url;
     var title = "";
     if (btoptions === 'add') {

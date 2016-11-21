@@ -36,8 +36,9 @@ namespace MCL.Management.DAL
             sbsql.Append(" SELECT ");
             sbsql.Append(" USER_ID,USER_CODE,USER_NAME,USER_IMAGEURL,USER_SEX,USR_BIRTHDAY,");
             sbsql.Append(" USER_AGE,USER_IDCARD,USER_BANKCODE,USER_EMAIL,USER_MOBILE,USER_OICQ,");
-            sbsql.Append(" USER_SCHOOL,USER_ENABLED,USER_DESCRIPTION,UNIT_ID,USER_CREATEDATE");
+            sbsql.Append(" USER_SCHOOL,USER_ENABLED,USER_DESCRIPTION,SYSUSER.UNIT_ID,USER_CREATEDATE,UNIT_NAME");
             sbsql.Append(" FROM SYSUSER");
+            sbsql.Append(" LEFT JOIN SYSUNIT ON SYSUSER.UNIT_ID=SYSUNIT.UNIT_ID ");
             IEnumerable<sysuserModels> _AllData = DbHelp.Query<sysuserModels>(@sbsql.ToString(), null , null, false, null, System.Data.CommandType.Text);
             return _AllData.ToList();
         }

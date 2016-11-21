@@ -12,8 +12,8 @@ namespace MCL.Management.Models
         /// <summary>
         public string User_Id
         {
-            get ;
-            set ;
+            get;
+            set;
         }
 
         /// <summary>
@@ -21,8 +21,8 @@ namespace MCL.Management.Models
         /// <summary>
         public string User_Code
         {
-            get ;
-            set ;
+            get;
+            set;
         }
 
         /// <summary>
@@ -30,8 +30,8 @@ namespace MCL.Management.Models
         /// <summary>
         public string User_Name
         {
-            get ;
-            set ;
+            get;
+            set;
         }
 
         /// <summary>
@@ -39,8 +39,8 @@ namespace MCL.Management.Models
         /// <summary>
         public string User_Imageurl
         {
-            get ;
-            set ;
+            get;
+            set;
         }
 
         /// <summary>
@@ -48,8 +48,8 @@ namespace MCL.Management.Models
         /// <summary>
         public string User_Sex
         {
-            get ;
-            set ;
+            get;
+            set;
         }
         /// <summary>
         /// 性别 M男 W女
@@ -64,8 +64,8 @@ namespace MCL.Management.Models
         /// <summary>
         public string Usr_Birthday
         {
-            get ;
-            set ;
+            get;
+            set;
         }
 
         /// <summary>
@@ -73,8 +73,8 @@ namespace MCL.Management.Models
         /// <summary>
         public int? User_Age
         {
-            get ;
-            set ;
+            get;
+            set;
         }
 
         /// <summary>
@@ -82,8 +82,8 @@ namespace MCL.Management.Models
         /// <summary>
         public string User_Idcard
         {
-            get ;
-            set ;
+            get;
+            set;
         }
 
         /// <summary>
@@ -91,8 +91,8 @@ namespace MCL.Management.Models
         /// <summary>
         public string User_Bankcode
         {
-            get ;
-            set ;
+            get;
+            set;
         }
 
         /// <summary>
@@ -100,8 +100,8 @@ namespace MCL.Management.Models
         /// <summary>
         public string User_Email
         {
-            get ;
-            set ;
+            get;
+            set;
         }
 
         /// <summary>
@@ -109,8 +109,8 @@ namespace MCL.Management.Models
         /// <summary>
         public string User_Mobile
         {
-            get ;
-            set ;
+            get;
+            set;
         }
 
         /// <summary>
@@ -118,8 +118,8 @@ namespace MCL.Management.Models
         /// <summary>
         public string User_Oicq
         {
-            get ;
-            set ;
+            get;
+            set;
         }
 
         /// <summary>
@@ -127,8 +127,8 @@ namespace MCL.Management.Models
         /// <summary>
         public string User_School
         {
-            get ;
-            set ;
+            get;
+            set;
         }
 
         /// <summary>
@@ -136,21 +136,21 @@ namespace MCL.Management.Models
         /// <summary>
         public int? User_Enabled
         {
-            get ;
-            set ;
+            get;
+            set;
         }
         public string User_EnabledText
         {
-            get ;
-            set ;
+            get;
+            set;
         }
         /// <summary>
         /// 描述
         /// <summary>
         public string User_Description
         {
-            get ;
-            set ;
+            get;
+            set;
         }
 
         /// <summary>
@@ -161,14 +161,21 @@ namespace MCL.Management.Models
             get;
             set;
         }
-
+        /// <summary>
+        /// 用户所属部门名称
+        /// <summary>
+        public string UNIT_NAME
+        {
+            get;
+            set;
+        }
         /// <summary>
         /// 创建时间
         /// <summary>
         public string User_Createdate
         {
-            get ;
-            set ;
+            get;
+            set;
         }
 
     }
