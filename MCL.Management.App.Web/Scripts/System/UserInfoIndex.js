@@ -135,6 +135,7 @@ function submitForm() {
     var postData = $("#commentForm").formSerialize();
     postData.User_EnabledText = $('#User_Enabled').find("option:selected").text();
     postData.UNIT_NAME = $('#Unit_Id').find("option:selected").text();
+    
     var url;
     var title = "";
     if (btoptions === 'add') {
@@ -159,8 +160,8 @@ function submitForm() {
         success: function (data) {
             if (btoptions === 'add') {
                 if (data.state == "success") {
-                    postData.User_Id = data.resultdata;
-
+                    postData.User_Id = data.resultdata.User_Id;
+                    postData.User_Createdate = data.resultdata.User_Createdate;
                     $('#table').bootstrapTable('prepend', postData);
                 }
             }

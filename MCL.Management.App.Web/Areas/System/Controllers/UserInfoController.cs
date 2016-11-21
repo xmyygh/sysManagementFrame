@@ -43,7 +43,7 @@ namespace MCL.Management.App.Web.Areas.System.Controllers
                 postData.User_Createdate = DateTime.Now.ToString("yyyy-MM-dd");
                 string id = userCache.Insert(postData);
                 postData.User_Id = id;
-                return Success("新增成功。", postData.User_Id);
+                return Success("新增成功。", postData);
             }
             catch (Exception ex)
             {
