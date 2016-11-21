@@ -109,19 +109,7 @@
                         checkbox: true,
                         align: 'center',
                         valign: 'middle'
-                    },
-                        {
-                            title: '操作',
-                            field: 'operation',
-                            align: 'center',
-                            valign: 'middle',
-                            formatter: function (value, row, index) {
-                                var s = '<a class = "rowEdit" title="修改" href="javascript:void(0)"><i class="glyphicon glyphicon-edit"></i></a>';
-                                var d = '<a class = "rowDelete" title="删除" href="javascript:void(0)"><i class="glyphicon glyphicon-trash"></i></a>';
-                                return s + ' ' + d;
-                            },
-                            events: 'operateEvents'
-                        },
+                    },                      
                         {
                             title: '角色名称',
                             halign: 'center',
@@ -147,16 +135,6 @@
                     rowindex = index;
                 }
             });
-
-            //表格中的操作事件
-            window.operateEvents = {
-                'click .rowEdit': function (event, value, row, index) {
-                    updateRowData(row, index);
-                },
-                'click .rowDelete': function (event, value, row, index) {
-                    delRowData(row);
-                }
-            };
         })
 
         //查询
@@ -191,16 +169,8 @@
             modal_open();
         }
 
-        //表格中的修改
-        function updateRowData(row, index) {
-            btoptions = 'edit';
-            rowindex = index;
-
-            modal_open(row);
-        }
-
         //弹出窗体
-        function modal_open(row) {
+        function modal_open() {
 
             //确定按钮显示
             $('#bt_ok').css({ "display": "inline" });
@@ -220,18 +190,13 @@
                 $('#commentForm').clearForm();  //清空from表单内容
             }
             else if (btoptions === 'edit') { //修改
-                if (row == null) {  //表格修改操作
-                    var rowdata = getTableCheckData();
-                    if (rowdata == null) {
-                        return;
-                    }
-                    $('#commentForm').formSerialize(rowdata);
-                    if (rowdata.length == 0) { //没有选择数据
-                        $('#bt_ok').css({ "display": "none" });
-                    }
+                var rowdata = getTableCheckData();
+                if (rowdata == null) {
+                    return;
                 }
-                else {
-                    $('#commentForm').formSerialize(row);
+                $('#commentForm').formSerialize(rowdata);
+                if (rowdata.length == 0) { //没有选择数据
+                    $('#bt_ok').css({ "display": "none" });
                 }
 
             }
@@ -292,18 +257,7 @@
                     $('#table').bootstrapTable('removeByUniqueId', rowdata.Role_Id);
                 }
             });
-        }
-
-        //表格删除
-        function delRowData(rowData) {
-            $.deleteForm({
-                url: "/System/RoleInfo/SubmitFormDel",
-                param: rowData,
-                success: function () {
-                    $('#table').bootstrapTable('removeByUniqueId', rowData.Role_Id);
-                }
-            });
-        }      
+        }   
 
         //获取表格选择的数据
         function getTableCheckData() {

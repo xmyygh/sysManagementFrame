@@ -100,7 +100,7 @@ namespace MCL.Management.App.Web.Areas.System.Controllers
             sysroleBLL bll = new sysroleBLL();
             try
             {                
-                postData.Role_Createdate = DateTime.Now.ToString("yyyyMMdd");
+                postData.Role_Createdate = DateTime.Now.ToString("yyyy-MM-dd");
                 string id =bll.Insert(postData);
                 if (string.IsNullOrEmpty(id))
                 {
