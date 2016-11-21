@@ -454,7 +454,7 @@ $.IsExist = function (Id, url, msg) {
 
 $.fn.clearForm = function () {
     var element = $(this);
-    element.find('input,select,checkbox,radio,textarea,password').each(function (r) {
+    element.find('input,select,select2,checkbox,radio,textarea,password').each(function (r) {
         var $this = $(this);
         var type = $this.attr('type');
         var tag = $this.tagName;
@@ -466,6 +466,9 @@ $.fn.clearForm = function () {
                 $this.checked = false;
                 break;
             case "select":
+                $this.val("").trigger("change");
+                break;
+            case "select2":
                 $this.val("").trigger("change");
                 break;
             default:
