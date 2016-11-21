@@ -506,13 +506,20 @@ $.fn.formSerialize = function (formdate) {
         return false;
     }
     var postdata = {};
-    element.find('input,select,textarea,checkbox,hidden').each(function (r) {
+    element.find('input,select,select2,textarea,checkbox,hidden').each(function (r) {
         var $this = $(this);
         var id = $this.attr('id');
         var type = $this.attr('type');
         switch (type) {
             case "checkbox":
                 postdata[id] = $this.is(":checked");
+                break;
+            case "select2":
+                var value = $this.val();
+                if (value == null && $("#"+id+" option").length>0) {
+                    value = $("#" + id + " option:first").val()
+                }
+                postdata[id] = value;
                 break;
             default:
                 var value = $this.val();

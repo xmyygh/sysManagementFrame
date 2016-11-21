@@ -96,7 +96,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">帐号状态：</label>
                                 <div class="col-sm-8 formValue">
-                                    <select id="Enabled" name="Enabled" type="select2" class="form-control required"></select>
+                                    <select id="Enabled" name="Enabled" type="select2" class="form-control"></select>
                                 </div>
                             </div>
                         </form>
@@ -310,6 +310,8 @@
             }
 
             var postData = $("#commentForm").formSerialize();
+            alert(JSON.stringify(postData));
+
             postData.User_Name = $('#User_Id').find("option:selected").text();
             postData.EnabledText = $('#Enabled').find("option:selected").text();
 
