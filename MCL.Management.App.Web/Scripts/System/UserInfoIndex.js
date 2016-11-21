@@ -42,18 +42,7 @@ $(function () {
                 align: 'center',
                 valign: 'middle'
             },
-            {
-                title: '操作',
-                field: 'operation',
-                align: 'center',
-                valign: 'middle',
-                formatter: function (value, row, index) {
-                    var s = '<a class = "rowEdit" title="修改" href="javascript:void(0)"><i class="glyphicon glyphicon-edit"></i></a>';
-                    var d = '<a class = "rowDelete" title="删除" href="javascript:void(0)"><i class="glyphicon glyphicon-trash"></i></a>';
-                    return s + ' ' + d;
-                },
-                events: 'operateEvents'
-            },
+          
             {
                 title: '主键',
                 halign: 'center',
@@ -136,15 +125,7 @@ $(function () {
     });
     $("#table").bootstrapTable('hideColumn', 'User_Id');
     //$("#table").bootstrapTable('hideColumn', 'User_Createdate');
-    //表格中的操作事件
-    window.operateEvents = {
-        'click .rowEdit': function (event, value, row, index) {
-            updateRowData(row, index);
-        },
-        'click .rowDelete': function (event, value, row, index) {
-            delRowData(row);
-        }
-    };
+ 
 });
 //提交表单
 function submitForm() {
@@ -243,23 +224,6 @@ function bt_loginSet() {
 
 }
 
-//表格删除
-function delRowData(rowData) {
-    $.deleteForm({
-        url: "/System/UserInfo/SubmitFormDel",
-        param: rowData,
-        success: function () {
-            $('#table').bootstrapTable('removeByUniqueId', rowData.User_Id);
-        }
-    });
-}
-//表格中的修改
-function updateRowData(row, index) {
-    btoptions = 'edit';
-    rowindex = index;
-
-    modal_open(row);
-}
 //禁用
 function bt_disable() {
     var rowdata = getTableCheckData();

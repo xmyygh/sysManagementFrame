@@ -27,19 +27,6 @@ function initTable() {
             align: 'center',
             valign: 'middle'
         },
-//字段名称和Model类中的一样
-        {
-            title: '操作',
-            field: 'operation',
-            align: 'center',
-            valign: 'middle',
-            formatter: function (value, row, index) {
-                var s = '<a class = "rowEdit" title="修改" href="javascript:void(0)"><i class="glyphicon glyphicon-edit"></i></a>';
-                var d = '<a class = "rowDelete" title="删除" href="javascript:void(0)"><i class="glyphicon glyphicon-trash"></i></a>';
-                return s + ' ' + d;
-            },
-            events: 'operateEvents'
-        },
          
         {
             title: '主键',
@@ -133,18 +120,10 @@ function initTable() {
                 oInit.InitSubTable(index, row, $detail);
             }
         });
+        $(cur_table).bootstrapTable('hideColumn', 'Unit_Id');
     }
 
     $("#table").bootstrapTable('hideColumn', 'Unit_Id');
-    //表格中的操作事件
-    window.operateEvents = {
-        'click .rowEdit': function (event, value, row, index) {
-            updateRowData(row, index);
-        },
-        'click .rowDelete': function (event, value, row, index) {
-            delRowData(row);
-        }
-    };
 }
 //删除
 function bt_del() {
@@ -221,23 +200,8 @@ function bt_edit() {
     btoptions = 'edit';
     modal_open();
 }
-//表格删除
-function delRowData(rowData) {
-    $.deleteForm({
-        url: "/System/UnitInfo/SubmitFormDel",
-        param: rowData,
-        success: function () {
-            $('#table').bootstrapTable('removeByUniqueId', rowData.Unit_Id);
-        }
-    });
-}
-//表格中的修改
-function updateRowData(row, index) {
-    btoptions = 'edit';
-    rowindex = index;
 
-    modal_open(row);
-}
+
 //弹出窗体
 function modal_open(row) {
 
