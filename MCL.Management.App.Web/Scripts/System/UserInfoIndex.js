@@ -124,7 +124,7 @@ $(function () {
         }
     });
     $("#table").bootstrapTable('hideColumn', 'User_Id');
-    //$("#table").bootstrapTable('hideColumn', 'User_Createdate');
+    $("#table").bootstrapTable('hideColumn', 'Unit_Id');
  
 });
 //提交表单

@@ -40,7 +40,7 @@ namespace MCL.Management.App.Web.Areas.System.Controllers
                 {
                     return Warning("员工名已存在！");
                 }
-                postData.User_Createdate = DateTime.Now.ToShortDateString();
+                postData.User_Createdate = DateTime.Now.ToString("yyyy-MM-dd");
                 string id = userCache.Insert(postData);
                 postData.User_Id = id;
                 return Success("新增成功。", postData.User_Id);
