@@ -458,6 +458,7 @@ $.fn.clearForm = function () {
         var $this = $(this);
         var type = $this.attr('type');
         var tag = $this.tagName;
+        var id = $this.attr('id');
         switch (type) {
             case "checkbox":
                 $this.removeAttr("checked");
@@ -469,7 +470,10 @@ $.fn.clearForm = function () {
                 $this.val("").trigger("change");
                 break;
             case "select2":
-                $this.val("").trigger("change");
+                if ($("#" + id + " option").length > 0) {
+                    var value = $("#" + id + " option:first").val();
+                    $this.val(value).trigger("change");
+                }                
                 break;
             default:
                 $this.val("");
