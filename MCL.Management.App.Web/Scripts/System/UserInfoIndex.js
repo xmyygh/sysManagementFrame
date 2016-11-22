@@ -50,6 +50,7 @@ $(function () {
                 align: 'center',
                 valign: 'middle',
                 visible: false,
+                switchable: false,
                 cardVisible: false,
                 sortable: true
             },
@@ -78,6 +79,7 @@ $(function () {
                 align: 'center',
                 valign: 'middle',
                 cardVisible: false,
+                switchable:false,
                 visible: false
             },
             {
