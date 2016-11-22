@@ -42,14 +42,15 @@ $(function () {
                 align: 'center',
                 valign: 'middle'
             },
-          
+
             {
                 title: '主键',
                 halign: 'center',
                 field: 'User_Id',
                 align: 'center',
                 valign: 'middle',
-
+                visible: false,
+                cardVisible: false,
                 sortable: true
             },
             {
@@ -75,7 +76,9 @@ $(function () {
                 title: '所属部门ID',
                 field: 'Unit_Id',
                 align: 'center',
-                valign: 'middle'
+                valign: 'middle',
+                cardVisible: false,
+                visible: false
             },
             {
                 title: '性别',
@@ -123,9 +126,9 @@ $(function () {
             selRow = row;
         }
     });
-    $("#table").bootstrapTable('hideColumn', 'User_Id');
-    $("#table").bootstrapTable('hideColumn', 'Unit_Id');
- 
+    //$("#table").bootstrapTable('hideColumn', 'User_Id');
+    //$("#table").bootstrapTable('hideColumn', 'Unit_Id');
+
 });
 //提交表单
 function submitForm() {
@@ -135,7 +138,7 @@ function submitForm() {
     var postData = $("#commentForm").formSerialize();
     postData.User_EnabledText = $('#User_Enabled').find("option:selected").text();
     postData.UNIT_NAME = $('#Unit_Id').find("option:selected").text();
-    
+
     var url;
     var title = "";
     if (btoptions === 'add') {
@@ -146,6 +149,7 @@ function submitForm() {
     else if (btoptions === 'edit') {
         title = "修改员工";
         postData.User_Id = selRow.User_Id;
+        postData.User_Createdate = selRow.User_Createdate;
         url = "/System/UserInfo/SubmitFormUpdate";
     }
 
@@ -218,7 +222,7 @@ function bt_loginSet() {
         successbox: true,
         success: function (data) {
             if (data.state == "success") {
-               
+
             }
         }
     })
