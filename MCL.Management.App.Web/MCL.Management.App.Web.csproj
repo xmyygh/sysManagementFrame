@@ -262,6 +262,10 @@
     <Content Include="Content\js\bootstrap-table\extensions\sticky-header\bootstrap-table-sticky-header.min.js" />
     <Content Include="Content\js\bootstrap-table\extensions\toolbar\bootstrap-table-toolbar.js" />
     <Content Include="Content\js\bootstrap-table\extensions\toolbar\bootstrap-table-toolbar.min.js" />
+    <Content Include="Content\js\bootstrap-treeview\bootstrap-treeview.css" />
+    <Content Include="Content\js\bootstrap-treeview\bootstrap-treeview.js" />
+    <Content Include="Content\js\bootstrap-treeview\bootstrap-treeview.min.css" />
+    <Content Include="Content\js\bootstrap-treeview\bootstrap-treeview.min.js" />
     <Content Include="Content\js\bootstrapTable.js" />
     <Content Include="Content\js\bootstrap\bootstrap.js" />
     <Content Include="Content\js\bootstrap\bootstrap.min.css" />
