@@ -1,9 +1,9 @@
 ﻿//行号 和操作类型如：增删改查
-var rowindex, btoptions, selRow,$selTable;
+var rowindex, btoptions, selRow, $selTable, type, tableId;
 
 $(function () {
     $(".gridPanel").height($(window).height() - 60);
-  
+
 
     //帐号状态下拉框绑定 注：下拉框绑定通用的查询都写在ItemDataController中
     $("#Unit_Deletemark").bindSelect({
@@ -11,7 +11,7 @@ $(function () {
         param: { "keyName": "ENABLED" },
         id: "Sysdic_Code",
         text: "Sysdic_Name"
-    }); 
+    });
 
     initTable();
 
@@ -27,14 +27,15 @@ function initTable() {
             align: 'center',
             valign: 'middle'
         },
-         
+
         {
             title: '主键',
             halign: 'center',
             field: 'Unit_Id',
             align: 'center',
             valign: 'middle',
-
+            visible: false,
+            switchable: false,
             sortable: true
         },
         {
@@ -63,6 +64,8 @@ function initTable() {
             field: 'Unit_Parentid',
             align: 'center',
             valign: 'middle',
+            visible: false,
+            switchable: false,
             sortable: true
         },
         {
@@ -87,13 +90,14 @@ function initTable() {
         },
         //注册加载子表的事件。注意下这里的三个参数！
         onExpandRow: function (index, row, $detail) {
+            tableId = row.Unit_Id;
             oInit.InitSubTable(index, row, $detail);
         }
     });
-
+    $selTable = $("#table");
     oInit.InitSubTable = function (index, row, $detail) {
         var postData = { "Unit_Parentid": row.Unit_Code }
-        var cur_table = $detail.html('<table></table>').find('table');
+        var cur_table = $detail.html('<table id=' + tableId + '></table>').find('table');
         //arrsubmenutable.push(cur_table);
         $(cur_table).treeTableClient({
             url: "/System/UnitInfo/GetByCodeData",
@@ -117,13 +121,14 @@ function initTable() {
             },
             //注册加载子表的事件。注意下这里的三个参数！
             onExpandRow: function (index, row, $detail) {
+                tableId = row.Unit_Id;
                 oInit.InitSubTable(index, row, $detail);
             }
         });
-        $(cur_table).bootstrapTable('hideColumn', 'Unit_Id');
+
     }
 
-    $("#table").bootstrapTable('hideColumn', 'Unit_Id');
+
 }
 //删除
 function bt_del() {
@@ -149,9 +154,14 @@ function submitForm() {
     postData.Unit_DeletemarkText = $('#Unit_Deletemark').find("option:selected").text();
     var url;
     var title = "";
+    //定义操作的表格
+    var $table = $selTable;
     if (btoptions === 'add') {
         title = "新增科室";
-
+        //新增下级
+        if (type == 1 && tableId) {
+            $table = $('#' + tableId);
+        }
         url = "/System/UnitInfo/SubmitFormAdd";
     }
     else if (btoptions === 'edit') {
@@ -172,12 +182,18 @@ function submitForm() {
             if (btoptions === 'add') {
                 if (data.state == "success") {
                     postData.Unit_Id = data.resultdata;
-                    $('#table').bootstrapTable('prepend', postData);
+                    if (type == 1) {
+                        if (tableId) {
+                            $table.bootstrapTable('prepend', postData);
+                        }
+                    } else {
+                        $table.bootstrapTable('prepend', postData);
+                    }
                 }
             }
             else if (btoptions === 'edit') {
                 if (data.state == "success") {
-                    $('#table').bootstrapTable('updateRow', { index: rowindex, row: postData });
+                    $table.bootstrapTable('updateRow', { index: rowindex, row: postData });
                 }
             }
         }
@@ -190,8 +206,9 @@ function bt_detail() {
 }
 
 //添加
-function bt_add() {
+function bt_add(type) {
     btoptions = 'add';
+    this.type = type;
     modal_open();
 }
 
@@ -220,6 +237,21 @@ function modal_open(row) {
         $('#bt_ok').css({ "display": "none" }); //确定按钮隐藏
     } else if (btoptions === 'add') { //新增
         $('#commentForm').clearForm(); //清空from表单内容
+        var rowdata = $selTable.bootstrapTable('getSelections');
+        var fId = "0";
+        if (type == 1) {
+            if (rowdata == null || rowdata.length == 0) {
+                $.modalMsg('请选择需要添加下级的数据！', '', 2000);
+                return null;
+            }
+        }
+        if (rowdata == null || rowdata.length == 0) {
+            fId = "0";
+        } else {
+            fId = type == 0 ? rowdata[0].Unit_Parentid : rowdata[0].Unit_Code;
+        }
+
+        $('#Unit_Parentid').val(fId);
     } else if (btoptions === 'edit') { //修改
         if (row == null) { //表格修改操作
             var rowdata = getTableCheckData();

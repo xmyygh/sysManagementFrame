@@ -30,8 +30,11 @@
                             <button type="button" class="btn btn-outline btn-default" onclick="bt_detail()">
                                 <i class="glyphicon glyphicon-zoom-in" aria-hidden="true">查看</i>
                             </button>
-                            <button type="button" class="btn btn-outline btn-default" onclick="bt_add()">
-                                <i class="glyphicon glyphicon-plus" aria-hidden="true">新增</i>
+                            <button type="button" class="btn btn-outline btn-default" onclick="bt_add(0) ">
+                                <i class="glyphicon glyphicon-plus" aria-hidden="true">新增同级</i>
+                            </button>
+                            <button type="button" class="btn btn-outline btn-default" onclick="bt_add(1)">
+                                <i class="glyphicon glyphicon-plus" aria-hidden="true">新增下级</i>
                             </button>
                             <button type="button" class="btn btn-outline btn-default" onclick="bt_edit()">
                                 <i class="glyphicon glyphicon-edit" aria-hidden="true">编辑</i>
@@ -79,7 +82,7 @@
                                 </div>
                                 <label class="col-sm-2 control-label">父编码：</label>
                                 <div class="col-sm-3 formValue">
-                                    <input id="Unit_Parentid" name="Unit_Parentid" type="text" class="form-control" maxlength="30" placeholder="请输入父编码" />
+                                    <input id="Unit_Parentid" name="Unit_Parentid" type="text" disabled="disabled" class="form-control" maxlength="30" placeholder="请输入父编码" />
                                 </div>
                             </div>
                            
