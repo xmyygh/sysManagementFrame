@@ -80,7 +80,10 @@ namespace MCL.Management.App.Web.Areas.System.Controllers
             sysunitBLL unit = new sysunitBLL();
             try
             {
+                //此处删除还要考虑子记录
+
                 unit.DeleteByKey(postData);
+                
                 return Success("删除成功。");
             }
             catch (Exception ex)
@@ -186,6 +189,29 @@ namespace MCL.Management.App.Web.Areas.System.Controllers
             return Success("数据搜索成功", unitlist);
         }
 
+
+        /// <summary>
+        /// 获取数据条数
+        /// </summary>
+        /// <param name="postData"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [HandlerAjaxOnly]
+        public ActionResult GetDataCount(sysunitModels postData)
+        {
+            sysunitBLL bll = new sysunitBLL();
+            List<sysunitModels> unitlist = new List<sysunitModels>();
+            try
+            {
+                unitlist = bll.SelectByWhere(postData, null, null);
+
+                return Success("", unitlist.Count);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
     }
 }

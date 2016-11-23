@@ -42,6 +42,8 @@ function initTable() {
             field: 'Unti_Type',
             align: 'center',
             valign: 'middle',
+            visible: false,
+            switchable: false,
             sortable: true
         },
         {
@@ -67,8 +69,14 @@ function initTable() {
             sortable: true
         },
         {
-            title: '启用标识',
+            title: '部门状态',
             field: 'Unit_DeletemarkText',
+            align: 'center',
+            valign: 'middle'
+        },
+        {
+            title: '备注',
+            field: 'Unit_Description',
             align: 'center',
             valign: 'middle'
         }
@@ -89,12 +97,29 @@ function initTable() {
         //注册加载子表的事件。注意下这里的三个参数！
         onExpandRow: function (index, row, $detail) {
             tableId = row.Unit_Id;
-            oInit.InitSubTable(index, row, $detail);
+            var postData = { "Unit_Parentid": row.Unit_Id }
+            var count = 0;
+
+            $.ajaxQuery({
+                async:false,
+                url: "/System/UnitInfo/GetDataCount",
+                param: postData ,
+                success: function (data) {
+                    count = data.resultdata;
+                    if (count > 0) {
+                        oInit.InitSubTable(index, row, $detail);
+                    } else {
+                        $.modalMsg('没有数据！', '', 2000);
+                        return false;
+                    }
+                }
+            });
+          
         }
     });
     $selTable = $("#table");
     oInit.InitSubTable = function (index, row, $detail) {
-        var postData = { "Unit_Parentid": row.Unit_Code }
+        var postData = { "Unit_Parentid": row.Unit_Id }
         var cur_table = $detail.html('<table id=' + tableId + '></table>').find('table');
         //arrsubmenutable.push(cur_table);
         $(cur_table).treeTableClient({
@@ -155,7 +180,7 @@ function submitForm() {
     //定义操作的表格
     var $table = $selTable;
     if (btoptions === 'add') {
-        title = "新增科室";
+        title = "新增部门";
         //新增下级
         if (type == 1 && tableId) {
             $table = $('#' + tableId);
@@ -163,7 +188,7 @@ function submitForm() {
         url = "/System/UnitInfo/SubmitFormAdd";
     }
     else if (btoptions === 'edit') {
-        title = "修改科室";
+        title = "修改部门";
         postData.Unit_Id = selRow.Unit_Id;
         url = "/System/UnitInfo/SubmitFormUpdate";
     }
@@ -200,12 +225,14 @@ function submitForm() {
 //查看
 function bt_detail() {
     btoptions = 'detail';
+    $(".modal-title").text("部门信息");
     modal_open();
 }
 
 //添加
 function bt_add(type) {
     btoptions = 'add';
+    $(".modal-title").text("新增部门信息");
     this.type = type;
     modal_open();
 }
@@ -213,6 +240,7 @@ function bt_add(type) {
 //修改
 function bt_edit() {
     btoptions = 'edit';
+    $(".modal-title").text("修改部门信息");
     modal_open();
 }
 
@@ -246,7 +274,7 @@ function modal_open(row) {
         if (rowdata == null || rowdata.length == 0) {
             fId = "0";
         } else {
-            fId = type == 0 ? rowdata[0].Unit_Parentid : rowdata[0].Unit_Code;
+            fId = type == 0 ? rowdata[0].Unit_Parentid : rowdata[0].Unit_Id;
         }
 
         $('#Unit_Parentid').val(fId);

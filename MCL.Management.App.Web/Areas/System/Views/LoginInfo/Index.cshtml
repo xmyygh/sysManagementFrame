@@ -4,7 +4,40 @@
 }
 
 @section PageSpecificStyleSheetIncludes{
+    <style type="text/css">
+        #loadingPage .loading-shade {
+            cursor: wait;
+            display: block;
+            width: 100%;
+            height: 100%;
+            opacity: 0.0;
+            filter: alpha(opacity=00);
+            background: #fff;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 100009;
+        }
 
+        #loadingPage .loading-content {
+            cursor: default;
+            position: absolute;
+            z-index: 100019;
+            width: auto;
+            border: 1px solid rgb(187, 187, 187);
+            height: 80px;
+            line-height: 80px;
+            padding-left: 80px;
+            padding-right: 20px;
+            border-radius: 10px;
+            color: rgb(102, 102, 102);
+            font-size: 20px;
+            left: 0px;
+            top: 0px;
+            background: url(../img/loading.gif) 5px 50% no-repeat rgb(255, 255, 255);
+            box-shadow: 0 1px 15px rgba(0,0,0,.175);
+        }
+    </style>
 }
 
 <div class="topPanel">
@@ -135,7 +168,7 @@
                 id: "Sysdic_Code",
                 text: "Sysdic_Name"
             });
-            
+
             //初始化表格 以下信息必须有 具体信息可到bootstrapTable.js中查看
             $("#table").tableClient({
                 url: "/System/LoginInfo/GetAllLogin",
@@ -144,11 +177,11 @@
                 uniqueId: "Account",    //主键
                 columns: [              //字段名称和Model类中的一样
                     {
-                        checkbox: true,   
+                        checkbox: true,
                         align: 'center',
-                        valign: 'middle'   
+                        valign: 'middle'
                     },
-                        
+
                         {
                             title: '登录帐号',
                             halign: 'center',
@@ -215,7 +248,7 @@
             $(".modal-title").text("编辑登录信息");
             modal_open();
         }
-        
+
         //弹出窗体
         function modal_open() {
 
@@ -236,7 +269,7 @@
                 $('#bt_ok').css({ "display": "none" });   //确定按钮隐藏
             }
             else if (btoptions === 'add') {  //新增
-                $('#commentForm').clearForm();  //清空from表单内容   
+                $('#commentForm').clearForm();  //清空from表单内容
                 $('#Password').val("123456");   //密码默认123456
             }
             else if (btoptions === 'edit') { //修改
@@ -281,7 +314,7 @@
             $.submitForm({
                 url: url,
                 param: postData,
-                title:title,
+                title: title,
                 modal: $('#myModal'),
                 success: function (data) {
                     if (btoptions === 'add') {
@@ -304,11 +337,11 @@
             if (rowdata == null) {
                 return;
             }
-            $.deleteForm({                
+            $.deleteForm({
                 url: "/System/LoginInfo/SubmitFormDel",
                 param: rowdata,
                 success: function () {
-                    $('#table').bootstrapTable('removeByUniqueId',  rowdata.Account );
+                    $('#table').bootstrapTable('removeByUniqueId', rowdata.Account);
                 }
             });
         }
@@ -346,14 +379,13 @@
         }
 
         //提交表单弹出是否提交提示框
-        function options(confirmmsg,msg, rowdata)
-        {
+        function options(confirmmsg, msg, rowdata) {
             $.submitFormConfirm({
                 confirmtitle: confirmmsg,
                 url: "/System/LoginInfo/SubmitFormUpdate",
                 param: rowdata,
                 title: msg,
-                successbox: true, 
+                successbox: true,
                 success: function (data) {
                     if (data.state == "success") {
                         $('#table').bootstrapTable('updateRow', { index: rowindex, row: rowdata });
@@ -363,9 +395,8 @@
         }
 
         //获取表格选择的数据
-        function getTableCheckData()
-        {
-            var rowdata = $('#table').bootstrapTable('getSelections');            
+        function getTableCheckData() {
+            var rowdata = $('#table').bootstrapTable('getSelections');
             if (rowdata == null || rowdata.length == 0) {
                 $.modalMsg('请选择数据！', '', 2000);
                 return null;
