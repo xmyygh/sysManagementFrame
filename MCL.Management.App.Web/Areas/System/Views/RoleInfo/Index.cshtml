@@ -96,13 +96,11 @@
 
         $(function () {
 
-            $(".gridPanel").height($(window).height() - 60);
-
             //初始化表格 以下信息必须有 具体信息可到bootstrapTable.js中查看
             $("#table").tableClient({
                 url: "/System/RoleInfo/GetAllRole",
                 toolbar: '#tableToolbar', //菜单
-                height: $(window).height() - 65,
+                height: $(window).height() - 68,
                 uniqueId: "Role_Id",    //主键
                 columns: [              //字段名称和Model类中的一样
                     {

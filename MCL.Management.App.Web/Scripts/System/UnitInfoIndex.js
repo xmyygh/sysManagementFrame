@@ -2,8 +2,6 @@
 var rowindex, btoptions, selRow, $selTable, type, tableId;
 
 $(function () {
-    $(".gridPanel").height($(window).height() - 60);
-
 
     //帐号状态下拉框绑定 注：下拉框绑定通用的查询都写在ItemDataController中
     $("#Unit_Deletemark").bindSelect({
@@ -78,7 +76,7 @@ function initTable() {
     $("#table").treeTableClient({
         url: "/System/UnitInfo/GetAllData",
         toolbar: '#tableToolbar', //菜单
-        height: $(window).height() - 65,
+        height: $(window).height() - 68,
         uniqueId: "Unit_Id", //主键
         columns: columns,
         rowindex: function (index, row) { //根据单击事件获取到选择的行号和这行的数据（json格式）

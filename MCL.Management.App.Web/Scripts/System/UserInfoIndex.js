@@ -8,7 +8,6 @@ $(function () {
         autoclose: 'true',
         minView: 2
     });
-    $(".gridPanel").height($(window).height() - 60);
 
     $('#User_Sex').select2({
         minimumResultsForSearch: Infinity
@@ -33,7 +32,7 @@ $(function () {
     $("#table").tableClient({
         url: "/System/UserInfo/GetAllUser",
         toolbar: '#tableToolbar', //菜单
-        height: $(window).height() - 65,
+        height: $(window).height() - 68,
         uniqueId: "User_Id", //主键
         columns: [
 //字段名称和Model类中的一样

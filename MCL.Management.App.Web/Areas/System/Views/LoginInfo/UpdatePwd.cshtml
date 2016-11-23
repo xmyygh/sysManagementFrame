@@ -2,7 +2,7 @@
     ViewBag.Title = "UpdatePwd";
     Layout = "~/Views/Shared/_BaseIndex.cshtml";
 }
-<div class="gridPanel">
+<div style="background: #fff; border: 1px solid #ddd; position: absolute; margin: 0; left: 5px; right: 5px; top: 5px; bottom: 5px; z-index: 0; overflow: auto; display: block; visibility: visible;">
     <div class="panel-body">
         <form class="form-horizontal m-t" id="commentForm">
             <div class="form-group" style="margin: 10px auto">
@@ -38,11 +38,6 @@
     @section PageSpecificJavascriptIncludes{
 
         <script type="text/javascript">
-
-            $(function () {
-
-                $(".gridPanel").height($(window).height() - 10);
-            })
 
             //验证登陆密码是否正确
             function vpwd()

@@ -121,8 +121,6 @@
 
         $(function () {
 
-            $(".gridPanel").height($(window).height() - 60);
-
             //用户姓名下拉框绑定 注：下拉框绑定通用的查询都写在ItemDataController中
             $("#User_Id").bindSelect({
                 url: "/ItemData/GetAllEnabledUser",
@@ -142,7 +140,7 @@
             $("#table").tableClient({
                 url: "/System/LoginInfo/GetAllLogin",
                 toolbar: '#tableToolbar', //菜单
-                height: $(window).height() - 65,
+                height: $(window).height() - 68,
                 uniqueId: "Account",    //主键
                 columns: [              //字段名称和Model类中的一样
                     {

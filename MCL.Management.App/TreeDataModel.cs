@@ -8,13 +8,18 @@ namespace MCL.Management.App
 {
     public class TreeDataModel
     {
-        public string Text
+        public string id
+        {
+            get;
+            set;
+        }
+        public string text
         {
             get;
             set;
         }
 
-        public List<TreeDataModel> Nodes
+        public List<TreeDataModel> nodes
         {
             get;
             set;
