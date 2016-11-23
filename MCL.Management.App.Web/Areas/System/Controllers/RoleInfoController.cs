@@ -42,8 +42,7 @@ namespace MCL.Management.App.Web.Areas.System.Controllers
             }
             catch (Exception ex)
             {
-                Logger.Error("查询角色信息错误：" + ex.ToString() + "\r\n");
-                throw;
+                throw ex;
             }
 
             return ToJsonResult(rolelist);
@@ -80,8 +79,7 @@ namespace MCL.Management.App.Web.Areas.System.Controllers
             }
             catch (Exception ex)
             {
-                Logger.Error("角色信息搜索错误：" + ex.ToString() + "\r\n");
-                throw;
+                throw ex;
             }
 
             return Success("角色信息搜索成功", rolelist);
@@ -114,8 +112,7 @@ namespace MCL.Management.App.Web.Areas.System.Controllers
             }
             catch (Exception ex)
             {
-                Logger.Error("新增角色信息错误：" + ex.ToString() + "\r\n");
-                throw;
+                throw ex;
             }
         }
 
@@ -137,8 +134,7 @@ namespace MCL.Management.App.Web.Areas.System.Controllers
             }
             catch (Exception ex)
             {
-                Logger.Error("修改角色信息错误：" + ex.ToString() + "\r\n");
-                throw;
+                throw ex;
             }
         }
 
@@ -165,8 +161,7 @@ namespace MCL.Management.App.Web.Areas.System.Controllers
             }
             catch (Exception ex)
             {
-                Logger.Error("删除角色信息错误：" + ex.ToString() + "\r\n");
-                throw;
+                throw ex;
             }
         }
 	}

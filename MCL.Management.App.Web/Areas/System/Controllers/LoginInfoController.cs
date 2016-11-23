@@ -72,8 +72,7 @@ namespace MCL.Management.App.Web.Areas.System.Controllers
             }
             catch (Exception ex)
             {
-                Logger.Error("查询登录账号错误：" + ex.ToString() + "\r\n");
-                throw;
+                throw ex;
             }
 
             return ToJsonResult(loginlist);
@@ -112,8 +111,7 @@ namespace MCL.Management.App.Web.Areas.System.Controllers
             }
             catch (Exception ex)
             {
-                Logger.Error("登录账号搜索错误：" + ex.ToString() + "\r\n");
-                throw;
+                throw ex;
             }
 
             return Success("登录账号搜索成功", loginlist);
@@ -149,8 +147,7 @@ namespace MCL.Management.App.Web.Areas.System.Controllers
             }
             catch (Exception ex)
             {
-                Logger.Error("新增登录账号错误：" + ex.ToString() + "\r\n");
-                throw;
+                throw ex;
             }
         }
 
@@ -177,8 +174,7 @@ namespace MCL.Management.App.Web.Areas.System.Controllers
             }
             catch (Exception ex)
             {
-                Logger.Error("修改登录账号错误：" + ex.ToString() + "\r\n");
-                throw;
+                throw ex;
             }
         }
 
@@ -200,8 +196,7 @@ namespace MCL.Management.App.Web.Areas.System.Controllers
             }
             catch (Exception ex)
             {
-                Logger.Error("删除登录账号错误：" + ex.ToString() + "\r\n");
-                throw;
+                throw ex;
             }
         }
 
@@ -225,8 +220,7 @@ namespace MCL.Management.App.Web.Areas.System.Controllers
             }
             catch (Exception ex)
             {
-                Logger.Error("修改登录密码错误：" + ex.ToString() + "\r\n");
-                throw;
+                throw ex;
             }
         }
     }

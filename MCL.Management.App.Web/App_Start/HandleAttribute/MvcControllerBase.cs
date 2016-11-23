@@ -9,6 +9,7 @@ using MCL.Management.Utility;
 namespace MCL.Management.App.Web
 {
     [HandlerLogin(LoginMode.Enforce)]
+    [HandlerError]
     public abstract class MvcControllerBase : Controller
     {
         private Log _logger;

@@ -99,30 +99,30 @@ $.modalAlert = function (type, content, message, timer) {
     if (content.length == 0) {
         switch (type) {
             case "info":
-                content = "系统提示!";
+                content = "提示!";
                 break;
             case "success":
-                content = "保存成功!";
+                content = "成功!";
                 break;
             case "warning":
-                content = "系统警告!";
+                content = "警告!";
                 break;
             case "error":
-                content = "保存失败!";
+                content = "错误!";
                 break;
             default:
                 content = "";
                 break;
         }
     }
-    if (content == null || content.length == 0) {
+    if (content == null) {
         return;
     }
 
     if (message == null || message.length == 0) {
         message = '';
     }
-    if (timer == null || timer.length == 0) {
+    if (!!timer||timer == null || timer.length == 0) {
         timer = null;
     }
     swal({ title: content, text: message, type: type, timer: timer, confirmButtonText: "确定" });
