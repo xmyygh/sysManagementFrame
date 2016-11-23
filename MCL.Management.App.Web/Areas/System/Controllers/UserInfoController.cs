@@ -47,8 +47,7 @@ namespace MCL.Management.App.Web.Areas.System.Controllers
             }
             catch (Exception ex)
             {
-                Logger.Error("新增员工错误：" + ex.ToString() + "\r\n");
-                throw;
+                throw ex;
             }
         }
 
@@ -82,8 +81,7 @@ namespace MCL.Management.App.Web.Areas.System.Controllers
             }
             catch (Exception ex)
             {
-                Logger.Error("查询登录员工信息错误：" + ex.ToString() + "\r\n");
-                throw;
+                throw ex;
             }
 
             return ToJsonResult(userlist);
@@ -114,8 +112,7 @@ namespace MCL.Management.App.Web.Areas.System.Controllers
             }
             catch (Exception ex)
             {
-                Logger.Error("员工搜索错误：" + ex.ToString() + "\r\n");
-                throw;
+                throw ex;
             }
 
             return Success("员工搜索成功", userlist);
@@ -140,8 +137,7 @@ namespace MCL.Management.App.Web.Areas.System.Controllers
             }
             catch (Exception ex)
             {
-                Logger.Error("修改员工错误：" + ex.ToString() + "\r\n");
-                throw;
+                throw ex;
             }
         }
 
@@ -192,8 +188,7 @@ namespace MCL.Management.App.Web.Areas.System.Controllers
             }
             catch (Exception ex)
             {
-                Logger.Error("删除员工信息错误：" + ex.ToString() + "\r\n");
-                throw;
+                throw ex;
             }
         }
     }

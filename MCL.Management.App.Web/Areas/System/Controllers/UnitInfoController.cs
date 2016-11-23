@@ -42,8 +42,7 @@ namespace MCL.Management.App.Web.Areas.System.Controllers
             }
             catch (Exception ex)
             {
-                Logger.Error("新增科室错误：" + ex.ToString() + "\r\n");
-                throw;
+                throw ex;
             }
         }
         /// <summary>
@@ -64,8 +63,7 @@ namespace MCL.Management.App.Web.Areas.System.Controllers
             }
             catch (Exception ex)
             {
-                Logger.Error("修改科室错误：" + ex.ToString() + "\r\n");
-                throw;
+                throw ex;
             }
         }
 
@@ -87,8 +85,7 @@ namespace MCL.Management.App.Web.Areas.System.Controllers
             }
             catch (Exception ex)
             {
-                Logger.Error("删除科室信息错误：" + ex.ToString() + "\r\n");
-                throw;
+                throw ex;
             }
         }
 
@@ -120,8 +117,7 @@ namespace MCL.Management.App.Web.Areas.System.Controllers
             }
             catch (Exception ex)
             {
-                Logger.Error("查询科室信息错误：" + ex.ToString() + "\r\n");
-                throw;
+                throw ex;
             }
 
             return ToJsonResult(unitlist);
@@ -152,8 +148,7 @@ namespace MCL.Management.App.Web.Areas.System.Controllers
             }
             catch (Exception ex)
             {
-                Logger.Error("数据搜索错误：" + ex.ToString() + "\r\n");
-                throw;
+                throw ex;
             }
 
             return Success("数据搜索成功", unitlist);
@@ -185,8 +180,7 @@ namespace MCL.Management.App.Web.Areas.System.Controllers
             }
             catch (Exception ex)
             {
-                Logger.Error("数据搜索错误：" + ex.ToString() + "\r\n");
-                throw;
+                throw ex;
             }
 
             return Success("数据搜索成功", unitlist);
