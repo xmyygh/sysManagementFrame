@@ -80,10 +80,16 @@ namespace MCL.Management.App.Web.Areas.System.Controllers
             sysunitBLL unit = new sysunitBLL();
             try
             {
+                sysunitModels temp = new sysunitModels();
+                temp.Unit_Parentid = postData.Unit_Id;
                 //此处删除还要考虑子记录
-
+                int count = unit.IsExist(temp);
+                if (count > 0)
+                {
+                    return Error("存在子记录不能删除！");
+                }
                 unit.DeleteByKey(postData);
-                
+
                 return Success("删除成功。");
             }
             catch (Exception ex)
@@ -104,7 +110,7 @@ namespace MCL.Management.App.Web.Areas.System.Controllers
             List<sysunitModels> unitlist = new List<sysunitModels>();
             try
             {
-                sysunitModels model=new sysunitModels();
+                sysunitModels model = new sysunitModels();
                 //yxl 暂时此种处理
                 model.Unit_Parentid = "0";
                 unitlist = bll.SelectByWhere(model, null, null);

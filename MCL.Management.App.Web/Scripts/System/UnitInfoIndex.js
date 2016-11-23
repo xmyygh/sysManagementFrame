@@ -145,7 +145,23 @@ function initTable() {
             //注册加载子表的事件。注意下这里的三个参数！
             onExpandRow: function (index, row, $detail) {
                 tableId = row.Unit_Id;
-                oInit.InitSubTable(index, row, $detail);
+                var postData = { "Unit_Parentid": row.Unit_Id }
+                var count = 0;
+
+                $.ajaxQuery({
+                    async: false,
+                    url: "/System/UnitInfo/GetDataCount",
+                    param: postData,
+                    success: function (data) {
+                        count = data.resultdata;
+                        if (count > 0) {
+                            oInit.InitSubTable(index, row, $detail);
+                        } else {
+                            $.modalMsg('没有数据！', '', 2000);
+                            return false;
+                        }
+                    }
+                });
             }
         });
 
