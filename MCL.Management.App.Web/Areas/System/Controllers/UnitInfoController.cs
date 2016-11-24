@@ -112,7 +112,7 @@ namespace MCL.Management.App.Web.Areas.System.Controllers
             {
                 sysunitModels model = new sysunitModels();
                 //yxl 暂时此种处理
-                model.Unit_Parentid = "0";
+                model.Unit_Parentid = "0"; 
                 unitlist = bll.SelectByWhere(model, null, null);
                 if (unitlist == null)
                 {
