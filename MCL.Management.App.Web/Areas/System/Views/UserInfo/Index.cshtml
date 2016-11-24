@@ -92,12 +92,10 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-2 control-label">性别：</label>
+
+                                <label class="col-sm-2 control-label">所属部门：</label>
                                 <div class="col-sm-3 formValue">
-                                    <select id="User_Sex" name="User_Sex" type="select2" class="form-control">
-                                        <option value="男">男</option>
-                                        <option value="女">女</option>
-                                    </select>
+                                    <select id="Unit_Id" name="Unit_Id" type="select2" class="form-control"></select>
                                 </div>
                                 <label class="col-sm-3 control-label">员工状态：</label>
                                 <div class="col-sm-3 formValue">
@@ -109,7 +107,6 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">出生日期：</label>
                                 <div class="col-sm-3 formValue">
-                                    @*<input id="Usr_Birthday" name="Usr_Birthday" type="text" readonly class="form-control form_datetime" maxlength="30" placeholder="请输入时间"/>*@
                                     <div class="input-append date form_datetime">
                                         <input size="10" type="text" id="Usr_Birthday" name="Usr_Birthday"  class="form-control" value=" " readonly>
                                         <span class=" add-on"><i class="icon-th"></i></span>
@@ -118,7 +115,20 @@
                                 <label class="col-sm-3 control-label">年龄：</label>
                                 <div class="col-sm-3 formValue">
                                     <input id="User_Age" name="User_Age" type="text" class="form-control" range=[0,150] maxlength="3" placeholder="请输入年龄" />
-                                </div>
+                                </div>                                                              
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">性别：</label>
+                                <div class="col-sm-3 formValue">
+                                    <select id="User_Sex" name="User_Sex" type="select2" class="form-control">
+                                        <option value="男">男</option>
+                                        <option value="女">女</option>
+                                    </select>
+                                </div>                                                             
+                                <label class="col-sm-3 control-label">手机号：</label>
+                                <div class="col-sm-3 formValue">
+                                    <input id="User_Mobile" name="User_Mobile" type="text" class="form-control" maxlength="20" placeholder="请输入手机号" />
+                                </div>                                
                                
                             </div>
                             <div class="form-group">
@@ -126,43 +136,38 @@
                                 <div class="col-sm-3 formValue">
                                     <input id="User_Idcard" name="User_Idcard" type="text" class="form-control" maxlength="50" placeholder="请输入身份证号码" />
                                 </div>
-                                <label class="col-sm-3 control-label">邮箱：</label>
-                                <div class="col-sm-3 formValue">
-                                    <input id="User_Email" name="User_Email" type="text" class="form-control" email="true" maxlength="100" placeholder="请输入邮箱" />
-                                </div>
-                               
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label">银行号码：</label>
+
+                                <label class="col-sm-3 control-label">银行卡号码：</label>
                                 <div class="col-sm-3 formValue">
                                     <input id="User_Bankcode" name="User_Bankcode" type="text" class="form-control" creditcard="true" maxlength="50"  placeholder="请输入银行号码" />
                                 </div>
-                                <label class="col-sm-3 control-label">手机号：</label>
-                                <div class="col-sm-3 formValue">
-                                    <input id="User_Mobile" name="User_Mobile" type="text" class="form-control" maxlength="20" placeholder="请输入手机号"/>
-                                </div>
+                                
                                
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-2 control-label">QQ号码：</label>
+                                <label class="col-sm-2 control-label">邮箱：</label>
+                                <div class="col-sm-3 formValue">
+                                    <input id="User_Email" name="User_Email" type="text" class="form-control" email="true" maxlength="100" placeholder="请输入邮箱" />
+                                </div>
+
+                                <label class="col-sm-3 control-label">QQ号码：</label>
                                 <div class="col-sm-3 formValue">
                                     <input id="User_Oicq" name="User_Oicq" type="text" class="form-control" maxlength="20" placeholder="请输入QQ号码" />
                                 </div>
-                                <label class="col-sm-3 control-label">毕业学校：</label>
-                                <div class="col-sm-3 formValue">
-                                    <input id="User_School" name="User_School" type="text" class="form-control" maxlength="100" placeholder="请输入毕业学校"/>
-                                </div>
+                                
                             </div>
                             <div class="form-group">
                                 
-                                <label class="col-sm-2 control-label">备注：</label>
+                                <label class="col-sm-2 control-label">毕业学校：</label>
+                                <div class="col-sm-3 formValue">
+                                    <input id="User_School" name="User_School" type="text" class="form-control" maxlength="100" placeholder="请输入毕业学校" />
+                                </div>
+
+                                <label class="col-sm-3 control-label">备注：</label>
                                 <div class="col-sm-3 formValue">
                                     <input id="User_Description" name="User_Description" type="text" maxlength="100" class="form-control"/>
                                 </div>
-                                <label class="col-sm-3 control-label">所属部门：</label>
-                                <div class="col-sm-3 formValue">
-                                    <select id="Unit_Id" name="Unit_Id" type="select2" class="form-control"></select>
-                                </div>
+                                
                             </div>
                         </form>
                     </div>

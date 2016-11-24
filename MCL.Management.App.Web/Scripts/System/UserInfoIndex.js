@@ -1,5 +1,5 @@
 ﻿//表格行号 和操作类型如：增删改查
-var rowindex, btoptions, selRow;
+var rowindex, btoptions;
 
 $(function () {
     $('#Usr_Birthday').datetimepicker({
@@ -41,20 +41,8 @@ $(function () {
                 align: 'center',
                 valign: 'middle'
             },
-
             {
-                title: '主键',
-                halign: 'center',
-                field: 'User_Id',
-                align: 'center',
-                valign: 'middle',
-                visible: false,
-                switchable: false,
-                cardVisible: false,
-                sortable: true
-            },
-            {
-                title: '编号',
+                title: '员工编号',
                 halign: 'center',
                 field: 'User_Code',
                 align: 'center',
@@ -124,7 +112,6 @@ $(function () {
         ],
         rowindex: function (index, row) { //根据单击事件获取到选择的行号和这行的数据（json格式）
             rowindex = index;
-            selRow = row;
         }
     });
     //$("#table").bootstrapTable('hideColumn', 'User_Id');
@@ -149,13 +136,11 @@ function submitForm() {
     }
     else if (btoptions === 'edit') {
         title = "修改员工";
-        postData.User_Id = selRow.User_Id;
-        postData.User_Createdate = selRow.User_Createdate;
+        var rowdata = getTableCheckData();
+        postData.User_Id = rowdata.User_Id;
+        postData.User_Createdate = rowdata.User_Createdate;
         url = "/System/UserInfo/SubmitFormUpdate";
     }
-
-
-
     //提交表单
     $.submitForm({
         url: url,
