@@ -487,5 +487,18 @@
     overflow: auto;
     display: block;
     visibility: visible;
-    width: 300px;
+    width: 350px;
+}
+
+.ui-layout-middle {
+    position: absolute;
+    margin: 0;
+    left: 360px;
+    right: 5px;
+    top: 5px;
+    bottom: 5px;
+    z-index: 0;
+    overflow: auto;
+    display: block;
+    visibility: visible;
 }
