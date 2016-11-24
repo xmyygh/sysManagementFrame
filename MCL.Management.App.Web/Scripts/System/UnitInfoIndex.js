@@ -146,7 +146,7 @@ function initTable() {
             onExpandRow: function (index, row, $detail) {
                 tableId = row.Unit_Id;
                 var postData = { "Unit_Parentid": row.Unit_Id }
-                var count = 0;
+                var count = 0; 
                  
                 $.ajaxQuery({
                     async: false,
