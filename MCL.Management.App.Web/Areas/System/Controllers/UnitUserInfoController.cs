@@ -53,6 +53,7 @@ namespace MCL.Management.App.Web.Areas.System.Controllers
                 TreeDataModel tree = new TreeDataModel();
                 tree.id = item.Unit_Id;
                 tree.text = item.Unit_Name;
+                tree.parentId = item.Unit_Parentid;
                 if (tree.nodes == null)
                 {
                     tree.nodes = new List<TreeDataModel>();
@@ -74,6 +75,7 @@ namespace MCL.Management.App.Web.Areas.System.Controllers
                     TreeDataModel tree = new TreeDataModel();
                     tree.id = item.Unit_Id;
                     tree.text = item.Unit_Name;
+                    tree.parentId = item.Unit_Parentid;
 
                     GetTree(tree, item, unitAllList);
                     if (treeData.nodes == null)
@@ -87,10 +89,24 @@ namespace MCL.Management.App.Web.Areas.System.Controllers
 
         [HttpGet]
         [HandlerAjaxOnly]
-        public ActionResult GetByKeyUser(string postData)
+        public ActionResult GetByKeyUser(string id, string username)
         {
             UserCache user = new UserCache();
-            List<sysuserModels> userList = user.GetAllList().Where(t => t.Unit_Id == postData).ToList();
+
+            List<sysuserModels> userList = null; 
+            if (!string.IsNullOrEmpty(id) && !string.IsNullOrEmpty(username))
+            {
+                userList = user.GetAllList().Where(t => t.Unit_Id == id && t.User_Name.Contains(username)).ToList();
+            }
+            else if (!string.IsNullOrEmpty(id))
+            {
+                userList = user.GetAllList().Where(t => t.Unit_Id == id).ToList();
+            }
+            else if (!string.IsNullOrEmpty(username))
+            {
+                userList = user.GetAllList().Where(t => t.User_Name.Contains(username)).ToList();
+            }
+
             if (userList!=null)
             {
                 foreach (sysuserModels item in userList)

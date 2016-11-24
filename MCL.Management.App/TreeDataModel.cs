@@ -19,6 +19,11 @@ namespace MCL.Management.App
             set;
         }
 
+        public string parentId
+        {
+            get;
+            set;
+        }
         public List<TreeDataModel> nodes
         {
             get;

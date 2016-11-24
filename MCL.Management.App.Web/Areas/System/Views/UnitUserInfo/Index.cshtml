@@ -10,7 +10,7 @@
     <div id="itemTree"></div>
 </div>
 <div class="ui-layout-middle">
-    @*<div class="topPanel">
+    <div class="topPanel">
         <div class="search">
             <div class="input-group">
                 <div class="btn-group">
@@ -21,16 +21,17 @@
                 </div>
             </div>
         </div>
-    </div>*@
-    <div class="gridPanel" style="left: 0; right: 0; top: 0; bottom:0;padding:2px">
+    </div>
+    <div class="gridPanel" style="left: 0; right: 0; top: 50px; bottom:0;padding-left:5px;padding-right:5px;">
         <table id="table"></table>
     </div>
 </div>
 @section PageSpecificJavascriptIncludes{
     <script src="~/Content/js/bootstrap-treeview/bootstrap-treeview.js"></script>
     <script type="text/javascript">
+        var treeNodeData;
             $("#table").tableClient({
-                height: $(window).height() - 10,
+                height: $(window).height() - 60,
                 uniqueId: "User_Id", //主键
                 columns: [
                     {
@@ -68,25 +69,40 @@
                     }
                 ]
             });
-        $.ajaxQuery({
-            url: "/System/UnitUserInfo/GetUnitTree",
-            success: function (data) {
-                $("#itemTree").treeview({
-                    data: data.resultdata,
-                    color: "#428bca",
-                    showTags: true,
-                    onNodeSelected: function (event, node) {
-                        $.ajaxQuery({
-                            url: "/System/UnitUserInfo/GetByKeyUser",
-                            param: { postData: node.id },
-                            success: function (data) {
-                                $('#table').bootstrapTable('load', data.resultdata);
-                            }
-                        })
+
+            $.ajaxQuery({
+                url: "/System/UnitUserInfo/GetUnitTree",
+                success: function (data) {
+                    $("#itemTree").treeview({
+                        data: data.resultdata,
+                        color: "#428bca",
+                        showTags: true,
+                        onNodeSelected: function (event, node) {
+                            treeNodeData = node;
+                            $.ajaxQuery({
+                                url: "/System/UnitUserInfo/GetByKeyUser",
+                                param: { id: node.id,username:"" },
+                                success: function (data) {
+                                    $('#table').bootstrapTable('load', data.resultdata);
+                                }
+                            })
+                        }
+                    });
+                }
+            });
+            function bt_query() {
+                if (treeNodeData==null) {
+                    $.modalMsg('请选择部门数据！', '', 2000);
+                    return null;
+                }
+                $.ajaxQuery({
+                    url: "/System/UnitUserInfo/GetByKeyUser",
+                    param: { id: treeNodeData.id, username: function () { return $("#txt_keyword").val(); } },
+                    success: function (data) {
+                        $('#table').bootstrapTable('load', data.resultdata);
                     }
-                });
+                })
             }
-        })
 
     </script>
 }
