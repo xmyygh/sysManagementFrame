@@ -181,18 +181,21 @@ function submitForm() {
 //查看
 function bt_detail() {
     btoptions = 'detail';
+    $(".modal-title").text("员工信息");
     modal_open();
 }
 
 //添加
 function bt_add() {
     btoptions = 'add';
+    $(".modal-title").text("新增员工信息");
     modal_open();
 }
 
 //修改
 function bt_edit() {
     btoptions = 'edit';
+    $(".modal-title").text("修改员工信息");
     modal_open();
 }
 //删除

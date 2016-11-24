@@ -327,7 +327,9 @@ $.ajaxQuery = function (options) {
     var options = $.extend(defaults, options);
     $.loading(true, options.loading);
     window.setTimeout(function () {
+        var async = (typeof (options.async) == "boolean") ? options.async : "true";
         $.ajax({
+            async: async,
             url: options.url,
             data: options.param,
             type: "get",

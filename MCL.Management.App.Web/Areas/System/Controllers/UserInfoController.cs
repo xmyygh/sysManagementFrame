@@ -76,7 +76,7 @@ namespace MCL.Management.App.Web.Areas.System.Controllers
                 foreach (sysuserModels user in userlist)
                 {
 
-                    user.User_EnabledText = user.User_Enabled == 1 ? "启用" : "禁用";
+                    user.User_EnabledText = user.User_Enabled == 1 ? "启用" : "禁用"; 
                 }
             }
             catch (Exception ex)
