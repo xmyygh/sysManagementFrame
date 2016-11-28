@@ -165,6 +165,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\System\Controllers\LoginInfoController.cs" />
     <Compile Include="Areas\System\Controllers\RoleInfoController.cs" />
+    <Compile Include="Areas\System\Controllers\RoleUserInfoController.cs" />
     <Compile Include="Areas\System\Controllers\UnitInfoController.cs" />
     <Compile Include="Areas\System\Controllers\UnitUserInfoController.cs" />
     <Compile Include="Areas\System\Controllers\UserInfoController.cs" />
@@ -194,6 +195,7 @@
     <Content Include="Content\css\style.min862f.css" />
     <Content Include="Content\fonts\fontawesome-webfont93e3.svg" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\img\photo.jpg" />
     <Content Include="Content\js\bootstrap-datetimepicker\bootstrap-datetimepicker.css" />
     <Content Include="Content\js\bootstrap-datetimepicker\bootstrap-datetimepicker.js" />
     <Content Include="Content\js\bootstrap-datetimepicker\locales\bootstrap-datetimepicker.zh-CN.js" />
@@ -270,34 +272,11 @@
     <Content Include="Content\js\bootstrap\bootstrap.js" />
     <Content Include="Content\js\bootstrap\bootstrap.min.css" />
     <Content Include="Content\js\framework-ui.js" />
-    <Content Include="Content\img\a1.jpg" />
-    <Content Include="Content\img\a2.jpg" />
-    <Content Include="Content\img\a3.jpg" />
-    <Content Include="Content\img\a4.jpg" />
-    <Content Include="Content\img\a5.jpg" />
-    <Content Include="Content\img\a6.jpg" />
-    <Content Include="Content\img\a7.jpg" />
-    <Content Include="Content\img\a8.jpg" />
-    <Content Include="Content\img\a9.jpg" />
     <Content Include="Content\img\bg.png" />
-    <Content Include="Content\img\iconfont-logo.png" />
-    <Content Include="Content\img\icons.png" />
-    <Content Include="Content\img\index.jpg" />
-    <Content Include="Content\img\index_4.jpg" />
-    <Content Include="Content\img\loading-upload.gif" />
-    <Content Include="Content\img\locked.png" />
-    <Content Include="Content\img\login-background.jpg" />
-    <Content Include="Content\img\p1.jpg" />
-    <Content Include="Content\img\p2.jpg" />
-    <Content Include="Content\img\p3.jpg" />
-    <Content Include="Content\img\pay.png" />
     <Content Include="Content\img\profile.jpg" />
     <Content Include="Content\img\profile_big.jpg" />
     <Content Include="Content\img\profile_small.jpg" />
     <Content Include="Content\img\progress.png" />
-    <Content Include="Content\img\p_big1.jpg" />
-    <Content Include="Content\img\p_big2.jpg" />
-    <Content Include="Content\img\p_big3.jpg" />
     <Content Include="Content\img\qr_code.png" />
     <Content Include="Content\img\success.png" />
     <Content Include="Content\img\user.png" />
@@ -307,6 +286,7 @@
     <Content Include="Content\js\content.min.js" />
     <Content Include="Content\js\globalvar.js" />
     <Content Include="Content\js\hplus.min.js" />
+    <Content Include="Content\js\jquery.json-2.3.js" />
     <Content Include="Content\js\layer\extend\layer.ext.js" />
     <Content Include="Content\js\layer\laydate-v1.1\demo.html" />
     <Content Include="Content\js\layer\laydate-v1.1\laydate\laydate.js" />
@@ -356,6 +336,7 @@
     <Content Include="App_Config\db.config" />
     <Content Include="App_Config\log4net.config" />
     <Content Include="App_Config\system.config" />
+    <Content Include="Scripts\System\RoleUserInfoIndex.js" />
     <Content Include="Scripts\System\UnitInfoIndex.js" />
     <Content Include="Scripts\System\UserInfoIndex.js" />
     <Content Include="Web.config" />
@@ -454,6 +435,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\System\Views\UnitUserInfo\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\System\Views\RoleUserInfo\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

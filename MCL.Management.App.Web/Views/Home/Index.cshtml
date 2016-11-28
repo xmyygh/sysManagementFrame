@@ -42,7 +42,7 @@
                 <ul class="nav" id="side-menu">
                     <li class="nav-header">
                         <div class="dropdown profile-element">
-                            <span><img alt="image" class="img-circle" src="~/Content/img/profile_small.jpg" /></span>
+                            <span><img alt="image" class="img-circle" src="~/Content/img/photo.jpg" /></span>
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                 <span class="clear">
                                     <span class="block m-t-xs"><strong class="font-bold">@MCL.Management.Client.Cache.CurrentUserProvider.Provider.GetCurrentUser().UserName</strong></span>
@@ -85,15 +85,14 @@
                         <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
                         <form role="search" class="navbar-form-custom" method="post" action="http://www.zi-han.net/theme/hplus/search_results.html">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入您需要查找的内容 …" class="form-control" name="top-search" id="top-search">
-                            </div>
+                                @*<input type="text" placeholder="请输入您需要查找的内容 …" class="form-control" name="top-search" id="top-search">*@
+                                <h4 class="h4" style="margin-top:18px">xxx管理系统</h4>
+                             </div>
                         </form>
                     </div>
                     <ul class="nav navbar-top-links navbar-right">
-                        <li class="dropdown">
-                            <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
-                                <i class="fa fa-envelope"></i> <span class="label label-warning">16</span>
-                            </a>
+                        @*<li class="dropdown">
+                          
                             <ul class="dropdown-menu dropdown-messages">
                                 <li class="m-t-xs">
                                     <div class="dropdown-messages-box">
@@ -133,9 +132,7 @@
                             </ul>
                         </li>
                         <li class="dropdown">
-                            <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
-                                <i class="fa fa-bell"></i> <span class="label label-primary">8</span>
-                            </a>
+                           
                             <ul class="dropdown-menu dropdown-alerts">
                                 <li>
                                     <a href="mailbox.html">
@@ -172,7 +169,7 @@
                             <a class="right-sidebar-toggle" aria-expanded="false">
                                 <i class="fa fa-tasks"></i> 主题
                             </a>
-                        </li>
+                        </li>*@
                     </ul>
                 </nav>
             </div>

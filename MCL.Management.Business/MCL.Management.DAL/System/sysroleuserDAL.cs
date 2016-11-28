@@ -34,8 +34,10 @@ namespace MCL.Management.DAL
         {
             StringBuilder sbsql = new StringBuilder();
             sbsql.Append(" SELECT ");
-            sbsql.Append(" ROLE_ID,USER_ID");
-            sbsql.Append(" FROM SYSROLEUSER");
+            sbsql.Append(" RU.ROLE_ID,RU.USER_ID,U.USER_NAME USER_IDNAME,R.ROLE_NAME ROLE_IDNAME");
+            sbsql.Append(@" FROM SYSROLEUSER RU
+                             LEFT JOIN SYSUSER U ON U.USER_ID=RU.USER_ID
+                             LEFT JOIN SYSROLE R ON R.ROLE_ID=RU.ROLE_ID");
             IEnumerable<sysroleuserModels> _AllData = DbHelp.Query<sysroleuserModels>(@sbsql.ToString(), null , null, false, null, System.Data.CommandType.Text);
             return _AllData.ToList();
         }

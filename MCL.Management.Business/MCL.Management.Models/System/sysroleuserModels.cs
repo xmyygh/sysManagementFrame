@@ -15,7 +15,11 @@ namespace MCL.Management.Models
             get ;
             set ;
         }
-
+        public string Role_IdName
+        {
+            get;
+            set;
+        }
         /// <summary>
         /// ÓÃ»§ID
         /// <summary>
@@ -24,6 +28,10 @@ namespace MCL.Management.Models
             get ;
             set ;
         }
-
+        public string User_IdName
+        {
+            get;
+            set;
+        }
     }
 }
