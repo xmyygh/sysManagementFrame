@@ -1,0 +1,83 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_BaseIndex.cshtml";
+}
+@section PageSpecificStyleSheetIncludes{
+<link href="~/Content/js/bootstrap-treeview/bootstrap-treeview.css" rel="stylesheet" />
+}
+<div class="topPanel">
+    <div class="search">
+        <div class="input-group">
+            <div class="btn-group">
+
+            </div>
+        </div>
+    </div>
+</div>
+@*数据显示区域*@
+<div class="gridPanel">
+    <div class="ibox float-e-margins">
+        <div class="ibox-content" style="padding: 0 5px 5px">
+            <div class="example-wrap">
+                <div class="example">
+
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div id="tableToolbar">
+                                <div class="btn-group hidden-xs" role="group">
+
+                                    <button type="button" class="btn  btn-primary" onclick=" btnSave() ">
+                                        <i class="glyphicon glyphicon-edit" aria-hidden="true">设置权限</i>
+                                    </button>
+                                </div>
+
+                            </div>
+                            <table id="tableRole"></table>
+                        </div>
+                        <div class="col-md-6">
+
+                            <table id="tableUser"></table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*弹出框*@
+<div class="modal inmodal" id="myModal" tabindex="-1" data-backdrop="static" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content animated bounceInRight">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span><span class="sr-only">关闭</span>
+                </button>
+                <h6 class="modal-title">权限信息</h6>
+            </div>
+            <div class="modal-body">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <form class="form-horizontal m-t-xs" id="commentForm">
+                            @*<table id="tableMenu"></table>*@
+                            <div id="itemTree"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="bt_ok" class="btn btn-primary" onclick=" submitForm() ">确定</button>
+                <button type="button" id="bt_close" class="btn btn-danger" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section PageSpecificJavascriptIncludes{
+<script src="~/Content/js/bootstrap-treeview/bootstrap-treeview.js"></script>
+<script src="~/Scripts/System/MenuLimitInfoIndex.js"></script>
+}
+
