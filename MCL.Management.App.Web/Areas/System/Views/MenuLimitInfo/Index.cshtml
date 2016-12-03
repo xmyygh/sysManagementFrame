@@ -49,8 +49,8 @@
 </div>
 
 @*弹出框*@
-<div class="modal inmodal" id="myModal" tabindex="-1" data-backdrop="static" role="dialog" aria-hidden="true">
-    <div class="modal-dialog">
+<div class="modal inmodal" id="myModal"  tabindex="-1" data-backdrop="static" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" >
         <div class="modal-content animated bounceInRight">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">
@@ -58,15 +58,15 @@
                 </button>
                 <h6 class="modal-title">权限信息</h6>
             </div>
-            <div class="modal-body">
-                <div class="panel panel-default">
+            <div class="modal-body" style="height: 400px">
+                @*<div class="panel panel-default">
                     <div class="panel-body">
-                        <form class="form-horizontal m-t-xs" id="commentForm">
+                        <form class="form-horizontal m-t-xs" id="commentForm">*@
                             @*<table id="tableMenu"></table>*@
                             <div id="itemTree"></div>
-                        </form>
+                        @*</form>
                     </div>
-                </div>
+                </div>*@
             </div>
             <div class="modal-footer">
                 <button type="button" id="bt_ok" class="btn btn-primary" onclick=" submitForm() ">确定</button>
@@ -77,6 +77,7 @@
 </div>
 
 @section PageSpecificJavascriptIncludes{
+<script src="~/Content/js/jquery.json-2.3.js"></script>
 <script src="~/Content/js/bootstrap-treeview/bootstrap-treeview.js"></script>
 <script src="~/Scripts/System/MenuLimitInfoIndex.js"></script>
 }

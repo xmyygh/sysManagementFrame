@@ -401,6 +401,10 @@
       <Project>{0179b29f-95a2-41df-8df6-c2cd79707c34}</Project>
       <Name>MCL.Management.Client.Cache 客户端缓存</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MCL.Management.Data\MCL.Management.Data.Dapper\DataAccess\DataAccess.csproj">
+      <Project>{1FAB4B66-4262-4E33-84E6-28F2DBBD6F2C}</Project>
+      <Name>DataAccess</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MCL.Management.Utility\MCL.Management.Utility.Log\MCL.Management.Utility.Log 日志工具类.csproj">
       <Project>{aaeda374-7e6f-4571-98cd-a92c8e774ac0}</Project>
       <Name>MCL.Management.Utility.Log 日志工具类</Name>
