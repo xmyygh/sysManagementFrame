@@ -118,17 +118,19 @@ namespace MCL.Management.App.Web.Areas.System.Controllers
         /// <param name="type"></param>
         /// <param name="userRoleId"></param>
         /// <returns></returns>
-        public ActionResult SaveData(List<sysmenulimitModels> list,int type,string userRoleId  )
+        public ActionResult SaveData(string postData,int type,string userRoleId  )
         {
+            List<sysmenulimitModels> list = postData.ToList<sysmenulimitModels>();
             if (list.Count>0)
             {
                 sysmenulimitBLL bll = new sysmenulimitBLL();
-                sysmenulimitModels model = new sysmenulimitModels();
-                model.Ment_Type = type;
-                model.Unit_Role_User_Id = userRoleId;
-                bll.DeleteByWhere(model, null);
                 //需要事务处理
                 List<string> strList = new List<string>();
+                //sysmenulimitModels model = new sysmenulimitModels();
+                //model.Ment_Type = type;
+                //model.Unit_Role_User_Id = userRoleId;
+                //bll.DeleteByWhere(model, null);
+                strList.Add("DELETE FROM SYSMENULIMIT WHERE MENT_TYPE=" + type + " AND UNIT_ROLE_USER_ID=" + userRoleId);
                 foreach (var item in list)
                 {
                     StringBuilder sbsql = new StringBuilder();

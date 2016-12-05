@@ -122,18 +122,18 @@ function InitMenuTree() {
                 data: data.resultdata,
                 color: "#428bca",
                 showTags: true,
-                
-                levels:1,
-                showCheckbox:true,
+
+                levels: 1,
+                showCheckbox: true,
                 onNodeSelected: function (event, node) {
                     treeNodeData = node;
 
                 },
                 onNodeChecked: function (event, node) {
-                   
+
                 },
                 onNodeUnchecked: function (event, node) {
-                   
+
                 }
             });
         }
@@ -151,19 +151,19 @@ function btnSave() {
     }
     var parr = [];
     var dd = {};
-    if (roleRowdata.length>0) {
+    if (roleRowdata.length > 0) {
 
-        $.each(roleRowdata,function(i, data) {
-            
+        $.each(roleRowdata, function (i, data) {
+            dd = {};
             dd.Ment_Type = 2;
             dd.Unit_Role_User_Id = data.Role_Id;
             parr.push(dd);
         });
-       
-    }
-    if (userRowdata.length>0) {
-        $.each(userRowdata, function (i, data) {
 
+    }
+    if (userRowdata.length > 0) {
+        $.each(userRowdata, function (i, data) {
+            dd = {};
             dd.Ment_Type = 3;
             dd.Unit_Role_User_Id = data.User_Id;
             parr.push(dd);
@@ -174,24 +174,24 @@ function btnSave() {
 
     $.ajaxQuery({
         url: "/System/MenuLimitInfo/GetTreeDataById",
-        param: {postData:$.toJSON(parr)},
+        param: { postData: $.toJSON(parr) },
         success: function (data) {
             if (data.resultdata) {
-              
+
 
                 $.each(data.resultdata, function (i, row) {
                     //var findCheckableNodess = function () {
                     //    return $checkableTree.treeview('search', ['系统管理', { ignoreCase: false, exactMatch: false }]);
                     //};
-                    var node = $("#itemTree").treeview('findNodes', [row.Menu_Id, 'g','id']);
+                    var node = $("#itemTree").treeview('findNodes', [row.Menu_Id, 'g', 'id']);
                     //node = $("#itemTree").treeview('getNode', '10003');
-                  $("#itemTree").treeview('checkNode', [node, { silent: true,ignoreChildren:true }]);
+                    $("#itemTree").treeview('checkNode', [node, { silent: true, ignoreChildren: true }]);
 
                 });
 
 
             }
-            
+
         }
     });
 
@@ -200,7 +200,7 @@ function btnSave() {
     $('#myModal').modal('show');
 
 
-//var postData = [];
+    //var postData = [];
 
     //$.each(userRowdata, function (i, row) {
     //    var param = {};
@@ -223,4 +223,60 @@ function btnSave() {
     //    }
     //});
 
+}
+
+function submitForm() {
+    var roleRowdata = $('#tableRole').bootstrapTable('getSelections');
+    var userRowdata = $('#tableUser').bootstrapTable('getSelections');
+
+    if ((roleRowdata == null || roleRowdata.length == 0) && (userRowdata == null || userRowdata.length == 0)) {
+        $.modalMsg('请选择一个角色或一个用户！', '', 2000);
+        return null;
+    }
+    var parr = [];
+    var dd = {};
+    if (roleRowdata.length > 0) {
+
+        $.each(roleRowdata, function (i, data) {
+            dd = {};
+            dd.Ment_Type = 2;
+            dd.Unit_Role_User_Id = data.Role_Id;
+            parr.push(dd);
+        });
+
+    }
+    if (userRowdata.length > 0) {
+        $.each(userRowdata, function (i, data) {
+            dd = {};
+            dd.Ment_Type = 3;
+            dd.Unit_Role_User_Id = data.User_Id;
+            parr.push(dd);
+        });
+    }
+    var selNodes = $("#itemTree").treeview('getChecked');
+    var arr = [];
+    var param = {};
+    if (selNodes.length>0) {
+        $.each(selNodes, function (i, data) {
+            param = {};
+            param.Menu_Id = data.id;
+            arr.push(param);
+        });
+    }
+
+    if (parr.length>0) {
+        $.each(parr, function(i,data) {
+            
+            $.submitForm({
+                url: "/System/MenuLimitInfo/SaveData",
+                param: { postData: $.toJSON(arr), type: data.Ment_Type, userRoleId: data.Unit_Role_User_Id },
+                title: "保存数据",
+                success: function (data) {
+
+                    $.modalAlert(data.state, "", data.message, 2000);
+
+                }
+            });
+        });
+    }
 }
