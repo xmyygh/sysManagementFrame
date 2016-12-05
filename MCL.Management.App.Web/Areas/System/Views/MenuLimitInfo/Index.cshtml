@@ -1,10 +1,10 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_BaseIndex.cshtml";
 }
 @section PageSpecificStyleSheetIncludes{
-<link href="~/Content/js/bootstrap-treeview/bootstrap-treeview.css" rel="stylesheet" />
+    <link href="~/Content/js/bootstrap-treeview/bootstrap-treeview.css" rel="stylesheet" />
+
 }
 <div class="topPanel">
     <div class="search">
@@ -49,8 +49,8 @@
 </div>
 
 @*弹出框*@
-<div class="modal inmodal" id="myModal"  tabindex="-1" data-backdrop="static" role="dialog" aria-hidden="true">
-    <div class="modal-dialog" >
+<div class="modal inmodal" id="myModal" tabindex="-1" data-backdrop="static" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
         <div class="modal-content animated bounceInRight">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">
@@ -62,11 +62,11 @@
                 @*<div class="panel panel-default">
                     <div class="panel-body">
                         <form class="form-horizontal m-t-xs" id="commentForm">*@
-                            @*<table id="tableMenu"></table>*@
-                            <div id="itemTree"></div>
-                        @*</form>
-                    </div>
-                </div>*@
+                @*<table id="tableMenu"></table>*@
+                <div id="itemTree"></div>
+                @*</form>
+                        </div>
+                    </div>*@
             </div>
             <div class="modal-footer">
                 <button type="button" id="bt_ok" class="btn btn-primary" onclick=" submitForm() ">确定</button>
@@ -77,8 +77,9 @@
 </div>
 
 @section PageSpecificJavascriptIncludes{
-<script src="~/Content/js/jquery.json-2.3.js"></script>
-<script src="~/Content/js/bootstrap-treeview/bootstrap-treeview.js"></script>
-<script src="~/Scripts/System/MenuLimitInfoIndex.js"></script>
+    <script src="~/Content/js/jquery.json-2.3.js"></script>
+    <script src="~/Content/js/bootstrap-treeview/bootstrap-treeview.js"></script>
+    <script src="~/Content/js/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="~/Scripts/System/MenuLimitInfoIndex.js"></script>
 }
 

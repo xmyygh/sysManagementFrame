@@ -6,6 +6,12 @@ $(function () {
     InitTable();
     //构造树形菜单
     InitMenuTree();
+    $('#itemTree').slimscroll({
+        height: '390px',
+        alwaysVisible: true,
+        disableFadeOut: false,
+        railVisible: true
+    });
 });
 
 function InitTable() {
