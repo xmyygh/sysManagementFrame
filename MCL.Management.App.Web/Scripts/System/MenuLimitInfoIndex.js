@@ -132,11 +132,22 @@ function InitMenuTree() {
                 levels: 1,
                 showCheckbox: true,
                 onNodeSelected: function (event, node) {
-                    treeNodeData = node;
-
+                    
+                },
+                onNodeUnselected: function (event, node) {
+                   
                 },
                 onNodeChecked: function (event, node) {
-
+                    var node1 = $("#itemTree").treeview('findNodes', [node.id, 'g', 'id']);
+                    if (node.nodes) {
+                   
+                     $("#itemTree").treeview('checkNode', [node1, { silent: false, ignoreChildren: false }]);
+                    } else {
+                        var pNode = $('#itemTree').treeview('getParent', node);
+                        if (!pNode.isCheck) {
+                            $("#itemTree").treeview('checkNode', [pNode, { silent: true, ignoreChildren: true }]);
+                        }
+                    }
                 },
                 onNodeUnchecked: function (event, node) {
 

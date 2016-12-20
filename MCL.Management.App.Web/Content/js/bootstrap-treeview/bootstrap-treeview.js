@@ -444,6 +444,13 @@
 			if (!options.silent) {
 				this.$element.trigger('nodeChecked', $.extend(true, {}, node));
 			}
+		    // Check child nodes
+			if (node.nodes && !options.ignoreChildren) {
+			    $.each(node.nodes, $.proxy(function (index, node) {
+			        this.setCheckedState(node, true, options);
+			    }, this));
+			}
+
 		}
 		else {
 
@@ -451,6 +458,12 @@
 			node.state.checked = false;
 			if (!options.silent) {
 				this.$element.trigger('nodeUnchecked', $.extend(true, {}, node));
+			}
+		    // Uncheck child nodes
+			if (node.nodes && !options.ignoreChildren) {
+			    $.each(node.nodes, $.proxy(function (index, node) {
+			        this.setCheckedState(node, false, options);
+			    }, this));
 			}
 		}
 	};
